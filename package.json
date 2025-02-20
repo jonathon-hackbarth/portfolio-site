@@ -8,8 +8,30 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/vercel": "8.0.1",
-    "astro": "^5.1.1",
-    "react": "18.3.1"
-  }
+    "@astrojs/react": "^4.2.0",
+    "@astrojs/vercel": "^8.0.7",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-brands-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "@tailwindcss/vite": "^4.0.7",
+    "astro": "^5.3.0",
+    "dotenv": "^16.4.7",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "name": "astro-boilerplate",
+  "version": "1.0.0",
+  "description": "This directory is a brief example of an [Astro](https://astro.build/) site that can be deployed to Vercel with zero configuration. This demo showcases:",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonathon-hackbarth/astro-boilerplate.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonathon-hackbarth/astro-boilerplate/issues"
+  },
+  "homepage": "https://github.com/jonathon-hackbarth/astro-boilerplate#readme"
 }

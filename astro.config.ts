@@ -1,8 +1,14 @@
-import { defineConfig } from 'astro/config';
-import vercel from '@astrojs/vercel';
+import { defineConfig } from "astro/config";
+import vercel from "@astrojs/vercel";
+import react from "@astrojs/react";
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  output: 'server',
+  vite: {
+    plugins: [tailwindcss()],
+  },
+  integrations: [react()],
+  output: "server",
   adapter: vercel({
     imageService: true,
     webAnalytics: {

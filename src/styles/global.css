@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@layer components {
+  /* Navbar */
+  .navbar {
+    @apply fixed top-0 left-0 w-full z-40 flex justify-between items-center px-4 py-2 bg-white/90 backdrop-blur-sm shadow-sm;
+  }
+
+  .nav-list {
+    @apply w-full mx-auto flex gap-4 flex-wrap justify-start list-none px-0 m-0;
+  }
+
+  .nav-link {
+    @apply text-gray-600 no-underline transition-colors duration-150 ease-in-out hover:text-blue-600;
+  }
+
+  /* Hero section */
+  .hero-section {
+    @apply flex flex-col-reverse md:flex-row items-center gap-10 justify-center px-8 py-16;
+  }
+
+  .hero-content {
+    @apply w-100 text-center;
+  }
+
+  .hero-title {
+    @apply text-4xl font-bold;
+  }
+
+  .hero-description {
+    @apply text-gray-600 mb-6;
+  }
+
+  .hero-button-container {
+    @apply flex gap-4 justify-center;
+  }
+
+  .hero-button {
+    @apply inline-block py-2 px-4 rounded;
+  }
+
+  .hero-button-blue {
+    @apply bg-blue-600 text-white hover:opacity-90 transition-opacity;
+  }
+
+  .hero-button-grey {
+    @apply bg-gray-200 text-gray-700 hover:opacity-90 transition-opacity;
+  }
+
+  .hero-image-container {
+    @apply flex justify-center;
+  }
+
+  .hero-image {
+    @apply rounded-full w-48 h-48 object-cover shadow-lg min-w-[200px];
+  }
+
+  /* Projects section */
+  .projects-section {
+    @apply py-16;
+  }
+
+  .projects-title {
+    @apply text-center text-4xl font-bold mb-12;
+  }
+
+  .projects-grid {
+    @apply flex flex-wrap justify-center gap-8 mx-auto px-8;
+  }
+
+  .project-wrapper {
+    @apply w-100;
+  }
+
+  .project-card {
+    @apply bg-white rounded-lg shadow-lg p-5 transition-all duration-200 h-fit w-full;
+  }
+
+  .project-content {
+    @apply flex flex-col gap-3;
+  }
+
+  .project-title {
+    @apply text-xl;
+  }
+
+  .project-description {
+    @apply text-gray-600;
+  }
+
+  .project-buttons {
+    @apply flex gap-2;
+  }
+
+  .project-button-primary {
+    @apply px-3 py-1.5 rounded-md font-medium bg-blue-600 text-white hover:opacity-90 transition-opacity;
+  }
+
+  .project-button-secondary {
+    @apply px-3 py-1.5 rounded-md font-medium bg-gray-200 text-gray-700 hover:opacity-90 transition-opacity;
+  }
+
+  .project-divider {
+    @apply border-t border-gray-200;
+  }
+
+  .project-languages {
+    @apply flex flex-wrap gap-2;
+  }
+
+  .language-tag {
+    @apply bg-gray-100 rounded-md px-2 py-0.5 min-w-[80px] flex items-center;
+  }
+
+  .language-name {
+    @apply text-sm font-medium text-gray-700 p-0.5;
+  }
+
+  .language-percentage {
+    @apply text-sm text-gray-500;
+  }
+
+  .project-footer {
+    @apply mt-auto pt-3 flex justify-between items-center text-sm text-gray-500;
+  }
+
+  .github-icon {
+    @apply text-gray-500 align-middle mr-1 text-base;
+  }
+
+  .update-time {
+    @apply italic ml-4;
+  }
+}

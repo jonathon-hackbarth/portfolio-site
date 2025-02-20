@@ -1,0 +1,35 @@
+---
+import { Image } from "astro:assets";
+import profilePic from "../images/jonathonhackbarth.jpeg";
+---
+
+<section id="about" class="hero-section">
+  <div class="hero-content">
+    <h1 class="hero-title">Hello! I'm Jonathon,</h1>
+    <p class="hero-description">Cloud Systems Engineer & Web Developer</p>
+    <div class="hero-button-container">
+      <a
+        href="mailto:dev@jonathonhackbarth.com"
+        class="hero-button hero-button-blue"
+      >
+        Contact Me
+      </a>
+      <a
+        href="https://docs.google.com/document/d/1enPulOw_YAEvC105e2d5cczOkIpw6vQ_VtAkaxMMtsQ/edit?tab=t.0"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hero-button hero-button-grey"
+      >
+        Resume
+      </a>
+    </div>
+  </div>
+  <div class="hero-image-container">
+    <Image
+      src={profilePic}
+      alt="Jonathon Hackbarth"
+      class="hero-image"
+      loading="eager"
+    />
+  </div>
+</section>

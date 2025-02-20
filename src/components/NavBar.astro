@@ -1,0 +1,21 @@
+---
+import "../styles/global.css";
+const navItems = [
+  { href: "#about", label: "About" },
+  { href: "#projects", label: "Projects" },
+];
+---
+
+<nav class="navbar">
+  <ul class="nav-list">
+    {
+      navItems.map((item) => (
+        <li>
+          <a href={item.href} class="nav-link">
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
