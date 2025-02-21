@@ -1,19 +1,9 @@
-interface ImportMetaEnv {
-  readonly GH_TOKEN: string;
-}
-
-interface ImportMeta {
-  readonly env: ImportMetaEnv;
-}
-
-declare global {
-  interface ImportMeta {
-    readonly env: ImportMetaEnv;
-  }
-}
-
 import type { APIRoute } from "astro";
 import { getProjectsData } from "../../utils/projectUtils";
+import "../../types/env.d.ts";
+import { GITHUB_CONFIG } from "../../utils/constants";
+
+const username = GITHUB_CONFIG.USERNAME;
 
 const fetchGitHubRepos = async (username: string, token: string) => {
   const response = await fetch(

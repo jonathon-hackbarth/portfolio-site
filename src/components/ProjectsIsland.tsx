@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import type { ProjectData } from "../utils/projectUtils";
 import ProjectCardReact from "./ProjectCardReact";
 import React from "react";
-
-const GITHUB_API_ENDPOINT = "/api/github"; // Correct API endpoint path
+import { GITHUB_CONFIG } from "../utils/constants";
 
 export default function ProjectsIsland() {
   const [projects, setProjects] = useState<ProjectData[]>([]);
@@ -14,7 +13,7 @@ export default function ProjectsIsland() {
     const fetchProjects = async () => {
       try {
         console.log("Fetching projects...");
-        const response = await fetch(GITHUB_API_ENDPOINT);
+        const response = await fetch(GITHUB_CONFIG.API_ENDPOINT);
         console.log("Response status:", response.status);
 
         if (!response.ok) {
