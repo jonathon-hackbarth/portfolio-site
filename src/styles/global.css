@@ -93,11 +93,15 @@
   }
 
   .project-button-primary {
-    @apply px-3 py-1.5 rounded-md font-medium bg-blue-600 text-white hover:opacity-90 transition-opacity;
+    @apply inline-flex items-center justify-center px-3 py-2 text-xs sm:text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 transition-colors;
   }
 
   .project-button-secondary {
-    @apply px-3 py-1.5 rounded-md font-medium bg-gray-200 text-gray-700 hover:opacity-90 transition-opacity;
+    @apply inline-flex items-center justify-center px-3 py-2 text-xs sm:text-sm font-medium rounded-md text-gray-700 bg-gray-200 hover:bg-gray-300 transition-colors;
+  }
+
+  .project-button-tiertiary {
+    @apply inline-flex items-center justify-center px-3 py-2 text-xs sm:text-sm font-medium rounded-md text-white bg-gray-800 hover:bg-gray-900 transition-colors;
   }
 
   .project-divider {

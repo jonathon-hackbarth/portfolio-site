@@ -2,14 +2,22 @@ import { useState } from "react";
 import type { ProjectData } from "../utils/projectUtils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import {
+  faArrowUpRightFromSquare,
+  faClone,
+  faFolderOpen,
+} from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
-interface ProjectCardProps extends ProjectData {}
+interface ProjectCardProps extends ProjectData {
+  homepage?: string; // Add homepage property to interface
+}
 
 export default function ProjectCardReact({
   name,
   description,
   html_url,
+  homepage,
   languages,
   pushed_at,
 }: ProjectCardProps) {
@@ -47,11 +55,32 @@ export default function ProjectCardReact({
           role="group"
           aria-label="Project actions"
         >
+          {homepage && (
+            <a
+              href={homepage}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-button-tiertiary"
+              aria-label={`Visit ${name} website`}
+            >
+              <FontAwesomeIcon
+                icon={faArrowUpRightFromSquare}
+                className="mr-1"
+                aria-hidden="true"
+              />
+              Site
+            </a>
+          )}
           <button
             className="project-button-primary"
             onClick={handleCloneClick}
             aria-label={`Copy git clone command for ${name}`}
           >
+            <FontAwesomeIcon
+              icon={faClone}
+              className="mr-1"
+              aria-hidden="true"
+            />
             {copyStatus}
           </button>
           <a
@@ -61,6 +90,11 @@ export default function ProjectCardReact({
             className="project-button-secondary"
             aria-label={`View ${name} repository on GitHub`}
           >
+            <FontAwesomeIcon
+              icon={faFolderOpen}
+              className="mr-1"
+              aria-hidden="true"
+            />
             Repo
           </a>
         </div>
