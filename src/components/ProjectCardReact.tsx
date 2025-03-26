@@ -6,11 +6,13 @@ import {
   faArrowUpRightFromSquare,
   faClone,
   faFolderOpen,
+  faCodeFork,
 } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
 interface ProjectCardProps extends ProjectData {
-  homepage?: string; // Add homepage property to interface
+  homepage?: string;
+  fork?: boolean;
 }
 
 export default function ProjectCardReact({
@@ -20,8 +22,9 @@ export default function ProjectCardReact({
   homepage,
   languages,
   pushed_at,
+  fork,
 }: ProjectCardProps) {
-  const [copyStatus, setCopyStatus] = useState("Clone"); // Track button text state
+  const [copyStatus, setCopyStatus] = useState("Clone");
   const gitCloneUrl = `git clone ${html_url}.git`;
   const updatedTime = new Date(pushed_at).toLocaleString("en-US", {
     day: "numeric",
@@ -122,19 +125,34 @@ export default function ProjectCardReact({
         )}
 
         <footer className="project-footer">
-          <a
-            href={html_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`View ${name} on GitHub`}
-            className="github-link"
-          >
-            <FontAwesomeIcon
-              icon={faGithub}
-              className="github-icon"
-              aria-hidden="true"
-            />
-          </a>
+          <div className="flex items-center">
+            <a
+              href={html_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`View ${name} on GitHub`}
+              className="github-link"
+            >
+              <FontAwesomeIcon
+                icon={faGithub}
+                className="github-icon"
+                aria-hidden="true"
+              />
+            </a>
+            {fork && (
+              <span
+                className="ml-2 text-xs text-gray-500"
+                title="Forked repository"
+              >
+                <FontAwesomeIcon
+                  icon={faCodeFork}
+                  className="text-gray-400"
+                  aria-hidden="true"
+                />
+                <span className="sr-only">Forked repository</span>
+              </span>
+            )}
+          </div>
           <time className="update-time" dateTime={pushed_at}>
             Updated on {updatedTime}
           </time>
