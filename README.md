@@ -1,40 +1,150 @@
-# Astro
+<div align="center">
 
-This directory is a brief example of an [Astro](https://astro.build/) site that can be deployed to Vercel with zero configuration. This demo showcases:
+# Portfolio Site (Astro + Partial Hydration)
 
-- `/` - A static page (pre-rendered)
-- `/ssr` - A page that uses server-side rendering (through [Vercel Functions](https://vercel.com/docs/functions))
-- `/ssr-with-swr-caching` - Similar to the previous page, but also caches the response on the [Vercel Edge Network](https://vercel.com/docs/edge-network/overview) using `cache-control` headers
-- `/image` - Astro [Asset](https://docs.astro.build/en/guides/images/) using Vercel [Image Optimization](https://vercel.com/docs/image-optimization)
+Modern, performant personal portfolio built with **Astro**, **React (selective)**, and **Tailwind CSS**—optimized for fast initial paint, minimal JavaScript, and live GitHub project data with caching.
 
-Learn more about [Astro on Vercel](https://vercel.com/docs/frameworks/astro).
+</div>
 
-## Deploy Your Own
+## ✨ Features
 
-Deploy your own Astro project with Vercel.
+- **Astro SSR + edge-friendly caching** (Vercel adapter, `s-maxage` + `stale-while-revalidate`)
+- **Server-rendered project list** with GitHub API aggregation (languages % computed server-side)
+- **In-memory + HTTP caching** (ETag, 304, rate limit awareness)
+- **Minimal client JS**: only progressive enhancement for copy-to-clipboard
+- **Responsive optimized image** in hero (explicit dimensions, WebP)
+- **SEO & metadata**: canonical URL, Open Graph/Twitter tags, JSON-LD Person, sitemap
+- **Accessible actions**: ARIA labeling, keyboard-friendly buttons (continuing improvements planned)
+- **Typed codebase** (TypeScript + strict util layer)
+- **Unit tests** (Vitest) for core data transformation
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/vercel/tree/main/examples/astro&template=astro)
+## 🗂 Tech Stack
 
-_Live Example: https://astro-template.vercel.app_
+| Layer            | Choice / Notes |
+|------------------|----------------|
+| Framework        | Astro (server output on Vercel) |
+| Styling          | Tailwind CSS (via `@tailwindcss/vite`) + component layer classes |
+| Icons            | `@fortawesome/react-fontawesome` (tree-shaken icon imports) |
+| Data Fetching    | Native `fetch` (GitHub REST v3) |
+| Caching          | In-memory per cold start + HTTP cache headers |
+| Deployment       | Vercel (@astrojs/vercel adapter) |
+| Testing          | Vitest |
 
-## Project Structure
+## 🔑 Environment Variables
 
-Astro looks for `.astro`, `.md`, or `.js` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Create a `.env` (not committed) or configure in Vercel:
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components or layouts.
+```
+GH_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxxx   # GitHub Personal Access Token (no special scopes needed for public repos)
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+| Var       | Required | Purpose |
+|-----------|----------|---------|
+| `GH_TOKEN`| Yes      | Authenticated requests raise rate limits & allow language stats fetch |
 
-## Commands
+## 🚀 Getting Started
 
-All commands are run from the root of the project, from a terminal:
+```bash
+npm install
+npm run dev
+# Open http://localhost:4321
+```
 
-| Command                | Action                                             |
-| :--------------------- | :------------------------------------------------- |
-| `pnpm install`          | Installs dependencies                              |
-| `pnpm run dev`          | Starts local dev server at `localhost:3000`        |
-| `pnpm run build`        | Build your production site to `./dist/`            |
-| `pnpm run preview`      | Preview your build locally, before deploying       |
-| `pnpm run start`       | Starts a production dev server at  `localhost:3000`     |
-| `pnpm run astro ...`    | Run CLI commands like `astro add`, `astro preview` |
-| `pnpm run astro --help` | Get help using the Astro CLI                       |
+Production build:
+
+```bash
+npm run build
+npm run preview
+```
+
+## 🧪 Testing
+
+```bash
+npm run test            # run once
+npm run test:watch      # watch mode
+```
+
+Current test coverage focuses on:
+1. `getProjectsData` language percentage math
+2. Error path (missing token)
+
+Suggested future tests:
+- API integration (simulate rate limit & 304)
+- Rendering snapshot for project cards
+- Accessibility smoke (axe / aria roles)
+
+## 🗃 Project Structure (Relevant)
+
+```
+src/
+	components/        UI building blocks (.astro + minimal React previously)
+	layouts/           Base layout & metadata
+	pages/             Routes (index + API endpoint)
+	utils/             Data + transformation logic
+	styles/global.css  Tailwind layer + component classes
+```
+
+## 🌐 SEO & Metadata
+
+- Canonical + sitemap generation (`@astrojs/sitemap`)
+- JSON-LD Person schema embedded
+- Placeholder social image reference (`/social-image.png`) – supply/replace with a generated OG image
+
+## 📦 Caching Strategy
+
+| Layer        | Strategy |
+|--------------|----------|
+| GitHub API   | Authenticated requests; language sub-requests aggregated per repo |
+| API Route    | In-memory (1h TTL) + ETag + `s-maxage=3600, stale-while-revalidate=86400` |
+| Browser      | Relies on HTTP freshness + 304 validation |
+
+Rate limit handling returns `429` with reset timestamp.
+
+## 🛡 Security / Hardening Roadmap
+
+- [ ] Add Content Security Policy (nonce or hash-based)
+- [ ] Add `robots.txt` (with sitemap reference)
+- [ ] OG image automation (dynamic generation or static build step)
+- [ ] Replace remaining `!important` overrides with design tokens (CSS vars)
+
+## ♿ Accessibility Roadmap
+
+- [ ] Live region feedback for copy action
+- [ ] Landmarks (`<header>`, `<main>`, `<footer>` wrappers)
+- [ ] Keyboard focus ring review & contrast audit
+
+## 🧭 Development Scripts
+
+| Command            | Description |
+|--------------------|-------------|
+| `npm run dev`      | Start local dev server |
+| `npm run build`    | Production build (Vercel server output) |
+| `npm run preview`  | Preview production build |
+| `npm run test`     | Run unit tests |
+| `npm run test:watch` | Watch tests |
+
+## 🔄 Deployment
+
+Pushed to `main` -> Vercel (auto build). Ensure `GH_TOKEN` is configured in Vercel project settings.
+
+## 🧩 Removing Legacy Code
+
+React island for projects was replaced with server-rendered Astro. Remaining React components can be:
+
+- Removed if not reused elsewhere
+- Or converted to Astro components for zero runtime JS
+
+## 📌 Roadmap (Next Candidates)
+
+- Integrate API integration test & contract test for rate limiting
+- Real OG/social image (generated or static)
+- Introduce design token system (CSS variables) and dark mode toggle
+- Add project filtering or tags client-side (progressive enhancement)
+
+## 📄 License
+
+ISC
+
+---
+
+Questions or ideas for improvement—feel free to open an issue or iterate directly.
