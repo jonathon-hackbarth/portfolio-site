@@ -105,7 +105,7 @@ Rate limit handling returns `429` with reset timestamp.
 - [ ] Add Content Security Policy (nonce or hash-based)
 - [x] Add `robots.txt` (with sitemap reference)
 - [ ] OG image automation (dynamic generation or static build step)
-- [ ] Replace remaining `!important` overrides with design tokens (CSS vars)
+- [x] Replace heading `!important` overrides with CSS variables (begin token system)
 
 ## ♿ Accessibility Roadmap
 

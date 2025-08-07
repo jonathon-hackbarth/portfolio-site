@@ -8,14 +8,38 @@ const navItems = [
 
 <nav class="navbar">
   <ul class="nav-list">
-    {
-      navItems.map((item) => (
-        <li>
-          <a href={item.href} class="nav-link">
-            {item.label}
-          </a>
-        </li>
-      ))
-    }
+    {navItems.map((item) => (
+      <li>
+        <a href={item.href} class="nav-link">{item.label}</a>
+      </li>
+    ))}
+    <li>
+      <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Toggle color theme" data-theme-state="light">Dark</button>
+    </li>
   </ul>
+  <script is:inline>
+    (() => {
+      const STORAGE_KEY = 'theme-pref-v1';
+      const root = document.documentElement;
+      const btn = document.getElementById('theme-toggle');
+      function apply(theme) {
+        if (theme === 'dark') {
+          root.classList.add('theme-dark');
+          btn.textContent = 'Light';
+          btn.setAttribute('data-theme-state','dark');
+        } else {
+          root.classList.remove('theme-dark');
+          btn.textContent = 'Dark';
+          btn.setAttribute('data-theme-state','light');
+        }
+      }
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved === 'dark' || saved === 'light') apply(saved);
+      btn?.addEventListener('click', () => {
+        const next = btn.getAttribute('data-theme-state') === 'light' ? 'dark' : 'light';
+        apply(next);
+        try { localStorage.setItem(STORAGE_KEY, next); } catch {}
+      });
+    })();
+  </script>
 </nav>

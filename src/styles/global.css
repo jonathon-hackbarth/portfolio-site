@@ -1,9 +1,38 @@
 @import "tailwindcss";
 
+/* Design tokens (simplified) */
+:root {
+  /* Fixed heading color for current light theme. Dark mode not yet implemented; avoid automatic prefers-color-scheme flip. */
+  --color-heading: #111827; /* gray-900 */
+  --color-bg: #f8fafc; /* light background */
+  --color-surface: #ffffff;
+  --color-text: #1f2937; /* gray-800 */
+  --color-text-muted: #4b5563; /* gray-600 */
+  --color-border: #e5e7eb; /* gray-200 */
+  --color-accent: #2563eb; /* blue-600 */
+}
+
+html.theme-dark {
+  --color-heading: #f3f4f6; /* gray-100 */
+  --color-bg: #0f172a; /* slate-900 */
+  --color-surface: #1e293b; /* slate-800 */
+  --color-text: #e2e8f0; /* slate-200 */
+  --color-text-muted: #94a3b8; /* slate-400 */
+  --color-border: #334155; /* slate-600 */
+  --color-accent: #3b82f6; /* blue-500 */
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
 @layer components {
   /* Navbar */
   .navbar {
-    @apply fixed top-0 left-0 w-full z-40 flex justify-between items-center px-4 py-2 bg-white/90 backdrop-blur-sm shadow-sm;
+    @apply fixed top-0 left-0 w-full z-40 flex justify-between items-center px-4 py-2 backdrop-blur-sm shadow-sm;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
   }
 
   .nav-list {
@@ -11,8 +40,18 @@
   }
 
   .nav-link {
-    @apply text-gray-600 no-underline transition-colors duration-150 ease-in-out hover:text-blue-600;
+    @apply no-underline transition-colors duration-150 ease-in-out;
+    color: var(--color-text-muted);
   }
+  .nav-link:hover { color: var(--color-accent); }
+
+  .theme-toggle-btn {
+    @apply text-sm px-3 py-1 rounded border transition-colors;
+    background: var(--color-surface);
+    color: var(--color-text);
+    border-color: var(--color-border);
+  }
+  .theme-toggle-btn:hover { color: var(--color-accent); }
 
   /* Hero section */
   .hero-section {
@@ -24,17 +63,13 @@
   }
 
   .hero-title {
-    @apply text-4xl font-bold text-gray-900 dark:text-gray-100;
-  }
-
-  /* Explicit fallback + override in case other rules override utilities */
-  .hero-title,
-  .projects-title {
-    color: #111827 !important; /* gray-900 */
+    @apply text-4xl font-bold text-gray-900; /* remove dark variant until full dark theme present */
+    color: var(--color-heading);
   }
 
   .hero-description {
-    @apply text-gray-600 mb-6;
+    @apply mb-6;
+    color: var(--color-text-muted);
   }
 
   .hero-button-container {
@@ -67,7 +102,8 @@
   }
 
   .projects-title {
-    @apply text-center text-4xl font-bold mb-12 text-gray-900 dark:text-gray-100;
+    @apply text-center text-4xl font-bold mb-12 text-gray-900;
+    color: var(--color-heading);
   }
 
   .projects-grid {
@@ -79,7 +115,9 @@
   }
 
   .project-card {
-    @apply bg-white rounded-lg shadow-lg p-5 transition-all duration-200 h-fit w-full;
+    @apply rounded-lg shadow-lg p-5 transition-all duration-200 h-fit w-full;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
   }
 
   .project-content {
@@ -87,16 +125,12 @@
   }
 
   .project-title {
-    @apply text-xl font-semibold text-gray-900 dark:text-gray-100;
-  }
-
-  /* Ensure project titles not overridden by other utility order */
-  .project-card .project-title {
-    color: #111827 !important;
+    @apply text-xl font-semibold text-gray-900;
+    color: var(--color-heading);
   }
 
   .project-description {
-    @apply text-gray-600;
+    color: var(--color-text-muted);
   }
 
   .project-buttons {
@@ -124,23 +158,28 @@
   }
 
   .language-tag {
-    @apply bg-gray-100 rounded-md px-2 py-0.5 min-w-[80px] flex items-center;
+    @apply rounded-md px-2 py-0.5 min-w-[80px] flex items-center;
+    background: color-mix(in srgb, var(--color-surface) 80%, var(--color-accent));
   }
 
   .language-name {
-    @apply text-sm font-medium text-gray-700 p-0.5;
+    @apply text-sm font-medium p-0.5;
+    color: var(--color-text);
   }
 
   .language-percentage {
-    @apply text-sm text-gray-500;
+    @apply text-sm;
+    color: var(--color-text-muted);
   }
 
   .project-footer {
-    @apply mt-auto pt-3 flex justify-between items-center text-sm text-gray-500;
+    @apply mt-auto pt-3 flex justify-between items-center text-sm;
+    color: var(--color-text-muted);
   }
 
   .github-icon {
-    @apply text-gray-500 align-middle mr-1 text-base;
+    @apply align-middle mr-1 text-base;
+    color: var(--color-text-muted);
   }
 
   .update-time {
