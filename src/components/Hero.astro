@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import profilePic from "../images/jonathonhackbarth.png";
 ---
 
@@ -47,8 +46,8 @@ import profilePic from "../images/jonathonhackbarth.png";
     </div>
   </div>
   <div class="hero-image-container">
-    <Image
-      src={profilePic}
+    <img
+      src={profilePic.src}
       alt="Portrait of Jonathon Hackbarth"
       class="hero-image"
       width={192}
@@ -56,8 +55,6 @@ import profilePic from "../images/jonathonhackbarth.png";
       loading="eager"
       decoding="async"
       fetchpriority="high"
-      format="webp"
-      sizes="(max-width: 640px) 160px, 192px"
     />
   </div>
 </section>

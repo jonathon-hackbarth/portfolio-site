@@ -102,8 +102,9 @@ Rate limit handling returns `429` with reset timestamp.
 
 ## 🛡 Security / Hardening Roadmap
 
-- [ ] Add Content Security Policy (nonce or hash-based)
 - [x] Add `robots.txt` (with sitemap reference)
+- [x] Introduce security middleware (CSP + core headers) – tighten CSP later (remove 'unsafe-inline')
+- [ ] Harden CSP with nonces & remove inline scripts
 - [ ] OG image automation (dynamic generation or static build step)
 - [x] Replace heading `!important` overrides with CSS variables (begin token system)
 
