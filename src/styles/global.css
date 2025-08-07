@@ -134,6 +134,28 @@ html {
     transition: transform 0.4s cubic-bezier(0.65, 0.05, 0.36, 1),
       background-color 0.3s, color 0.3s;
   }
+  .theme-toggle-btn[data-mode="auto"] .slider-thumb {
+    background: linear-gradient(
+      135deg,
+      var(--color-surface) 55%,
+      color-mix(in srgb, var(--color-accent) 22%, var(--color-surface)) 100%
+    );
+  }
+  /* (Old dual-icon auto mode styles removed; auto now uses single hybrid icon) */
+  .theme-toggle-btn .icon-auto {
+    display: none;
+  }
+  .theme-toggle-btn[data-mode="auto"] .icon-sun,
+  .theme-toggle-btn[data-mode="auto"] .icon-moon {
+    display: none;
+  }
+  .theme-toggle-btn[data-mode="auto"] .icon-auto {
+    display: inline;
+    opacity: 0.9;
+  }
+  .theme-toggle-btn[data-mode="auto"] .slider-thumb {
+    justify-content: center;
+  }
   html.theme-dark .theme-toggle-btn .slider-thumb {
     transform: translateX(36px);
   }
@@ -142,13 +164,27 @@ html {
     height: 16px;
     stroke: currentColor;
   }
-  .theme-toggle-btn .icon-moon {
+  /* Icon visibility base for new cloud/night set */
+  .theme-toggle-btn .icon-light {
+    display: inline;
+  }
+  .theme-toggle-btn .icon-dark {
     display: none;
   }
-  html.theme-dark .theme-toggle-btn .icon-sun {
+  .theme-toggle-btn .icon-auto {
     display: none;
   }
-  html.theme-dark .theme-toggle-btn .icon-moon {
+  html.theme-dark .theme-toggle-btn .icon-light {
+    display: none;
+  }
+  html.theme-dark .theme-toggle-btn .icon-dark {
+    display: inline;
+  }
+  .theme-toggle-btn[data-mode="auto"] .icon-light,
+  .theme-toggle-btn[data-mode="auto"] .icon-dark {
+    display: none;
+  }
+  .theme-toggle-btn[data-mode="auto"] .icon-auto {
     display: inline;
   }
   .theme-toggle-btn:hover,
@@ -169,23 +205,7 @@ html {
   .theme-toggle-btn:active {
     transform: translateY(1px);
   }
-  .theme-toggle-btn svg {
-    width: 1rem;
-    height: 1rem;
-    stroke: currentColor;
-  }
-  .theme-toggle-btn .icon-sun {
-    display: inline;
-  }
-  .theme-toggle-btn .icon-moon {
-    display: none;
-  }
-  html.theme-dark .theme-toggle-btn .icon-sun {
-    display: none;
-  }
-  html.theme-dark .theme-toggle-btn .icon-moon {
-    display: inline;
-  }
+  /* Remove duplicate icon rules (consolidated above) */
   html.theme-dark .theme-toggle-btn {
     box-shadow: 0 0 0 1px var(--color-border);
   }

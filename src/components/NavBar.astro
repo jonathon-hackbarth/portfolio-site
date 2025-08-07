@@ -45,30 +45,57 @@ const navItems = [
     aria-label="Activate dark theme"
     aria-pressed="false"
     data-theme-state="light"
+    data-mode="explicit"
   >
     <span class="slider-track" aria-hidden="true">
       <span class="slider-thumb">
+        <!-- Light: day cloud -->
         <svg
-          class="icon-sun"
+          class="icon-light"
           viewBox="0 0 24 24"
           fill="none"
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          ><circle cx="12" cy="12" r="4"></circle><path
-            d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l1.41-1.41m8.49-8.49 1.41-1.41"
-          ></path></svg
         >
+          <path
+            d="M6 15.5a4.5 4.5 0 0 1 .74-2.47 4 4 0 0 1 7.52-1.53A3.5 3.5 0 1 1 17.5 18H7A3.5 3.5 0 0 1 6 15.5Z"
+          ></path>
+          <path d="M9 6.5 9.5 5"></path>
+          <path d="M5.5 9H4"></path>
+          <path d="M13.5 7 14 5.5"></path>
+        </svg>
+        <!-- Dark: crescent + star -->
         <svg
-          class="icon-moon"
+          class="icon-dark"
           viewBox="0 0 24 24"
           fill="none"
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          ><path d="M21 12.79A9 9 0 0 1 11.21 3 7 7 0 1 0 21 12.79z"
-          ></path></svg
         >
+          <path d="M21 12.8A9 9 0 0 1 11.2 3a7 7 0 1 0 9.8 9.8Z"></path>
+          <path
+            d="M17 4.5 17.6 6 19 6.4 17.9 7.5 18.1 9 17 8.2 15.9 9l.2-1.5L15 6.4 16.4 6z"
+          ></path>
+        </svg>
+        <!-- Auto: hybrid cloud + star overlay -->
+        <svg
+          class="icon-auto"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M5.8 15.4a4.2 4.2 0 0 1 .69-2.3 3.7 3.7 0 0 1 6.9-1.42 3.3 3.3 0 1 1 1.96 6.02H7.4a3.4 3.4 0 0 1-1.6-2.3Z"
+          ></path>
+          <path
+            d="M18 7.2 18.6 8.7 20 9.1 18.9 10.2 19.1 11.7 18 10.9 16.9 11.7l.2-1.5L16 8.7l1.4-.4z"
+          ></path>
+          <path d="M9.2 6.2 9.6 5"></path>
+        </svg>
       </span>
     </span>
     <span class="sr-only">Toggle theme</span>
@@ -78,24 +105,51 @@ const navItems = [
       const STORAGE_KEY = "theme-pref-v1";
       const root = document.documentElement;
       const btn = document.getElementById("theme-toggle");
-      function apply(theme) {
-        const dark = theme === "dark";
+      if (!btn) return; // safety
+      const MODES = ["light", "dark", "auto"]; // cycle order
+      function systemPref() {
+        return window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+      function applyResolved(mode) {
+        const effective = mode === "auto" ? systemPref() : mode;
+        const dark = effective === "dark";
         root.classList.toggle("theme-dark", dark);
         btn.setAttribute("data-theme-state", dark ? "dark" : "light");
         btn.setAttribute("aria-pressed", dark ? "true" : "false");
-        btn.setAttribute(
-          "aria-label",
-          dark ? "Activate light theme" : "Activate dark theme"
-        );
+        const labelMap = {
+          light: "Switch to dark theme",
+          dark: "Switch to auto theme",
+          auto: "Switch to light theme",
+        };
+        btn.setAttribute("aria-label", labelMap[mode] || "Toggle theme");
+        btn.setAttribute("data-mode", mode);
       }
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved === "dark" || saved === "light") apply(saved);
+      let stored = null;
+      try {
+        stored = localStorage.getItem(STORAGE_KEY);
+      } catch {}
+      let currentMode =
+        stored === "light" || stored === "dark" || stored === "auto"
+          ? stored
+          : "auto";
+      applyResolved(currentMode);
+      btn.setAttribute("data-mode", currentMode);
+      const mq = window.matchMedia("(prefers-color-scheme: dark)");
+      const mqHandler = () => {
+        if (currentMode === "auto") applyResolved("auto");
+      };
+      mq.addEventListener
+        ? mq.addEventListener("change", mqHandler)
+        : mq.addListener(mqHandler);
       btn?.addEventListener("click", () => {
-        const next =
-          btn.getAttribute("data-theme-state") === "light" ? "dark" : "light";
-        apply(next);
+        const idx = MODES.indexOf(currentMode);
+        currentMode = MODES[(idx + 1) % MODES.length];
+        applyResolved(currentMode);
         try {
-          localStorage.setItem(STORAGE_KEY, next);
+          localStorage.setItem(STORAGE_KEY, currentMode);
         } catch {}
       });
     })();
