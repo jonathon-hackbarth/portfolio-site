@@ -43,7 +43,9 @@ body {
     @apply no-underline transition-colors duration-150 ease-in-out;
     color: var(--color-text-muted);
   }
-  .nav-link:hover { color: var(--color-accent); }
+  .nav-link:hover {
+    color: var(--color-accent);
+  }
 
   .theme-toggle-btn {
     @apply text-sm px-3 py-1 rounded border transition-colors;
@@ -51,7 +53,9 @@ body {
     color: var(--color-text);
     border-color: var(--color-border);
   }
-  .theme-toggle-btn:hover { color: var(--color-accent); }
+  .theme-toggle-btn:hover {
+    color: var(--color-accent);
+  }
 
   /* Hero section */
   .hero-section {
@@ -159,7 +163,11 @@ body {
 
   .language-tag {
     @apply rounded-md px-2 py-0.5 min-w-[80px] flex items-center;
-    background: color-mix(in srgb, var(--color-surface) 80%, var(--color-accent));
+    background: color-mix(
+      in srgb,
+      var(--color-surface) 80%,
+      var(--color-accent)
+    );
   }
 
   .language-name {

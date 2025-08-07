@@ -20,15 +20,15 @@ Modern, performant personal portfolio built with **Astro**, **React (selective)*
 
 ## 🗂 Tech Stack
 
-| Layer            | Choice / Notes |
-|------------------|----------------|
-| Framework        | Astro (server output on Vercel) |
-| Styling          | Tailwind CSS (via `@tailwindcss/vite`) + component layer classes |
-| Icons            | `@fortawesome/react-fontawesome` (tree-shaken icon imports) |
-| Data Fetching    | Native `fetch` (GitHub REST v3) |
-| Caching          | In-memory per cold start + HTTP cache headers |
-| Deployment       | Vercel (@astrojs/vercel adapter) |
-| Testing          | Vitest |
+| Layer         | Choice / Notes                                                   |
+| ------------- | ---------------------------------------------------------------- |
+| Framework     | Astro (server output on Vercel)                                  |
+| Styling       | Tailwind CSS (via `@tailwindcss/vite`) + component layer classes |
+| Icons         | `@fortawesome/react-fontawesome` (tree-shaken icon imports)      |
+| Data Fetching | Native `fetch` (GitHub REST v3)                                  |
+| Caching       | In-memory per cold start + HTTP cache headers                    |
+| Deployment    | Vercel (@astrojs/vercel adapter)                                 |
+| Testing       | Vitest                                                           |
 
 ## 🔑 Environment Variables
 
@@ -38,9 +38,9 @@ Create a `.env` (not committed) or configure in Vercel:
 GH_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxxx   # GitHub Personal Access Token (no special scopes needed for public repos)
 ```
 
-| Var       | Required | Purpose |
-|-----------|----------|---------|
-| `GH_TOKEN`| Yes      | Authenticated requests raise rate limits & allow language stats fetch |
+| Var        | Required | Purpose                                                               |
+| ---------- | -------- | --------------------------------------------------------------------- |
+| `GH_TOKEN` | Yes      | Authenticated requests raise rate limits & allow language stats fetch |
 
 ## 🚀 Getting Started
 
@@ -65,10 +65,12 @@ npm run test:watch      # watch mode
 ```
 
 Current test coverage focuses on:
+
 1. `getProjectsData` language percentage math
 2. Error path (missing token)
 
 Suggested future tests:
+
 - API integration (simulate rate limit & 304)
 - Rendering snapshot for project cards
 - Accessibility smoke (axe / aria roles)
@@ -92,11 +94,11 @@ src/
 
 ## 📦 Caching Strategy
 
-| Layer        | Strategy |
-|--------------|----------|
-| GitHub API   | Authenticated requests; language sub-requests aggregated per repo |
-| API Route    | In-memory (1h TTL) + ETag + `s-maxage=3600, stale-while-revalidate=86400` |
-| Browser      | Relies on HTTP freshness + 304 validation |
+| Layer      | Strategy                                                                  |
+| ---------- | ------------------------------------------------------------------------- |
+| GitHub API | Authenticated requests; language sub-requests aggregated per repo         |
+| API Route  | In-memory (1h TTL) + ETag + `s-maxage=3600, stale-while-revalidate=86400` |
+| Browser    | Relies on HTTP freshness + 304 validation                                 |
 
 Rate limit handling returns `429` with reset timestamp.
 
@@ -116,13 +118,13 @@ Rate limit handling returns `429` with reset timestamp.
 
 ## 🧭 Development Scripts
 
-| Command            | Description |
-|--------------------|-------------|
-| `npm run dev`      | Start local dev server |
-| `npm run build`    | Production build (Vercel server output) |
-| `npm run preview`  | Preview production build |
-| `npm run test`     | Run unit tests |
-| `npm run test:watch` | Watch tests |
+| Command              | Description                             |
+| -------------------- | --------------------------------------- |
+| `npm run dev`        | Start local dev server                  |
+| `npm run build`      | Production build (Vercel server output) |
+| `npm run preview`    | Preview production build                |
+| `npm run test`       | Run unit tests                          |
+| `npm run test:watch` | Watch tests                             |
 
 ## 🔄 Deployment
 
