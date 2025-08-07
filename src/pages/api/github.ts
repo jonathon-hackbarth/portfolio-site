@@ -3,7 +3,20 @@ import { getProjectsData } from "../../utils/projectUtils";
 import "../../types/env.d.ts";
 import { GITHUB_CONFIG } from "../../utils/constants";
 
-const username = GITHUB_CONFIG.USERNAME;
+// Simple in-memory cache (persists for warm serverless instances / dev server runtime)
+interface CacheEntry {
+  timestamp: number;
+  json: string; // serialized payload
+  etag: string;
+  rateLimit?: {
+    remaining?: string | null;
+    limit?: string | null;
+    reset?: string | null;
+  };
+}
+
+const CACHE_TTL_MS = 3600 * 1000; // 1 hour
+let cache: CacheEntry | null = null;
 
 const fetchGitHubRepos = async (username: string, token: string) => {
   const response = await fetch(
@@ -20,10 +33,25 @@ const fetchGitHubRepos = async (username: string, token: string) => {
     throw new Error(`GitHub API responded with ${response.status}`);
   }
 
-  return response.json();
+  const rateLimit = {
+    remaining: response.headers.get("x-ratelimit-remaining"),
+    limit: response.headers.get("x-ratelimit-limit"),
+    reset: response.headers.get("x-ratelimit-reset"),
+  };
+
+  const data = await response.json();
+  return { data, rateLimit };
 };
 
-export const GET: APIRoute = async () => {
+function buildEtag(body: string) {
+  // Weak ETag: size-hashlike (hash simplified to length + first/last chars)
+  const len = body.length;
+  const first = body.charCodeAt(0).toString(16);
+  const last = body.charCodeAt(body.length - 1).toString(16);
+  return `W/"${len}-${first}${last}"`;
+}
+
+export const GET: APIRoute = async ({ request }) => {
   const token = import.meta.env.GH_TOKEN;
 
   if (!token) {
@@ -36,23 +64,75 @@ export const GET: APIRoute = async () => {
     );
   }
 
-  try {
-    const username = "jonathon-hackbarth"; // Your GitHub username
-    const repos = await fetchGitHubRepos(username, token);
-    const projectsData = await getProjectsData(repos, token);
+  const now = Date.now();
 
-    return new Response(JSON.stringify(projectsData), {
+  // Serve from cache if fresh
+  if (cache && now - cache.timestamp < CACHE_TTL_MS) {
+    const ifNoneMatch = request.headers.get("if-none-match");
+    if (ifNoneMatch && ifNoneMatch === cache.etag) {
+      return new Response(null, {
+        status: 304,
+        headers: {
+          ETag: cache.etag,
+          "Cache-Control": "s-maxage=3600, stale-while-revalidate=86400",
+        },
+      });
+    }
+    return new Response(cache.json, {
       status: 200,
+      headers: {
+        "Content-Type": "application/json",
+        "Cache-Control": "s-maxage=3600, stale-while-revalidate=86400",
+        ETag: cache.etag,
+        "X-Cache": "HIT",
+        ...(cache.rateLimit?.remaining
+          ? { "X-RateLimit-Remaining": cache.rateLimit.remaining || "" }
+          : {}),
+      },
+    });
+  }
+
+  try {
+    const { data: repos, rateLimit } = await fetchGitHubRepos(
+      GITHUB_CONFIG.USERNAME,
+      token
+    );
+    const projectsData = await getProjectsData(repos, token);
+    const json = JSON.stringify(projectsData);
+    const etag = buildEtag(json);
+    cache = { json, timestamp: now, etag, rateLimit };
+
+    const ifNoneMatch = request.headers.get("if-none-match");
+    if (ifNoneMatch && ifNoneMatch === etag) {
+      return new Response(null, {
+        status: 304,
+        headers: {
+          ETag: etag,
+          "Cache-Control": "s-maxage=3600, stale-while-revalidate=86400",
+          "X-Cache": "MISS-IMPLIED-304",
+        },
+      });
+    }
+
+    return new Response(json, {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+        "Cache-Control": "s-maxage=3600, stale-while-revalidate=86400",
+        ETag: etag,
+        "X-Cache": "MISS",
+        ...(rateLimit.remaining
+          ? { "X-RateLimit-Remaining": rateLimit.remaining || "" }
+          : {}),
+      },
+    });
+  } catch (error: any) {
+    const message =
+      error instanceof Error ? error.message : "Failed to fetch GitHub data";
+    console.error("API Error:", message);
+    return new Response(JSON.stringify({ message }), {
+      status: 500,
       headers: { "Content-Type": "application/json" },
     });
-  } catch (error) {
-    console.error("API Error:", error);
-    return new Response(
-      JSON.stringify({ message: "Failed to fetch GitHub data" }),
-      {
-        status: 500,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
   }
 };
