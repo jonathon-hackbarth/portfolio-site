@@ -1,6 +1,7 @@
 ---
 import type { ProjectData as BaseProjectData } from "../utils/projectUtils";
 import { GITHUB_CONFIG } from "../utils/constants";
+import { getProjectsData } from "../utils/projectUtils";
 
 interface ProjectData extends BaseProjectData {
   homepage?: string | null;
@@ -10,21 +11,24 @@ interface ProjectData extends BaseProjectData {
 let projects: ProjectData[] = [];
 let error: string | null = null;
 try {
-  const res = await fetch(GITHUB_CONFIG.API_ENDPOINT);
-  if (!res.ok) {
-    let message = `Request failed: ${res.status}`;
-    try {
-      const errJson = await res.json();
-      if (errJson?.message) message = errJson.message;
-    } catch {}
-    throw new Error(message);
+  const token = import.meta.env.GH_TOKEN;
+  if (!token) throw new Error("GitHub token not configured");
+
+  // Fetch repos directly from GitHub (avoids internal /api call in SSR context)
+  const repoRes = await fetch(
+    `https://api.github.com/users/${GITHUB_CONFIG.USERNAME}/repos?sort=updated&direction=desc`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/vnd.github.v3+json",
+      },
+    }
+  );
+  if (!repoRes.ok) {
+    throw new Error(`GitHub API responded with ${repoRes.status}`);
   }
-  const jsonData = await res.json();
-  if (Array.isArray(jsonData)) {
-    projects = jsonData as ProjectData[];
-  } else {
-    throw new Error("Unexpected response format");
-  }
+  const repos = await repoRes.json();
+  projects = await getProjectsData(repos, token);
 } catch (err) {
   error = err instanceof Error ? err.message : "Failed to load projects";
 }

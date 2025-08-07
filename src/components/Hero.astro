@@ -49,9 +49,15 @@ import profilePic from "../images/jonathonhackbarth.png";
   <div class="hero-image-container">
     <Image
       src={profilePic}
-      alt="Jonathon Hackbarth"
+      alt="Portrait of Jonathon Hackbarth"
       class="hero-image"
+      width={192}
+      height={192}
       loading="eager"
+      decoding="async"
+      fetchpriority="high"
+      format="webp"
+      sizes="(max-width: 640px) 160px, 192px"
     />
   </div>
 </section>
