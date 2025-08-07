@@ -129,10 +129,7 @@ Pushed to `main` -> Vercel (auto build). Ensure `GH_TOKEN` is configured in Verc
 
 ## 🧩 Removing Legacy Code
 
-React island for projects was replaced with server-rendered Astro. Remaining React components can be:
-
-- Removed if not reused elsewhere
-- Or converted to Astro components for zero runtime JS
+React island for projects was replaced with server-rendered Astro. Legacy React components (`ProjectsIsland`, `ProjectCardReact`) have been removed to eliminate unused JS.
 
 ## 📌 Roadmap (Next Candidates)
 
