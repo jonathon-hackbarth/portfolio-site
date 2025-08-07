@@ -5,7 +5,9 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+  "astro": "astro",
+  "test": "vitest run",
+  "test:watch": "vitest"
   },
   "dependencies": {
     "@astrojs/react": "^4.2.0",
@@ -20,6 +22,11 @@
     "dotenv": "^16.4.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "vitest": "^2.0.5",
+    "@types/node": "^20.12.12",
+    "typescript": "^5.5.4"
   },
   "name": "astro-boilerplate",
   "version": "1.0.0",
