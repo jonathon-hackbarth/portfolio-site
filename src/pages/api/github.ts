@@ -29,18 +29,22 @@ const fetchGitHubRepos = async (username: string, token: string) => {
     }
   );
 
-  if (!response.ok) {
-    throw new Error(`GitHub API responded with ${response.status}`);
-  }
-
   const rateLimit = {
     remaining: response.headers.get("x-ratelimit-remaining"),
     limit: response.headers.get("x-ratelimit-limit"),
     reset: response.headers.get("x-ratelimit-reset"),
   };
 
+  if (response.status === 403 && rateLimit.remaining === "0") {
+    return { error: "RATE_LIMIT", rateLimit } as const;
+  }
+
+  if (!response.ok) {
+    return { error: `HTTP_${response.status}`, rateLimit } as const;
+  }
+
   const data = await response.json();
-  return { data, rateLimit };
+  return { data, rateLimit } as const;
 };
 
 function buildEtag(body: string) {
@@ -93,23 +97,59 @@ export const GET: APIRoute = async ({ request }) => {
   }
 
   try {
-    const { data: repos, rateLimit } = await fetchGitHubRepos(
-      GITHUB_CONFIG.USERNAME,
-      token
-    );
+    const result = await fetchGitHubRepos(GITHUB_CONFIG.USERNAME, token);
+
+    if ('error' in result) {
+      const { error: code, rateLimit } = result;
+      if (code === 'RATE_LIMIT') {
+        const resetSeconds = rateLimit.reset ? parseInt(rateLimit.reset, 10) : 0;
+        const resetDate = resetSeconds ? new Date(resetSeconds * 1000).toISOString() : undefined;
+        return new Response(
+          JSON.stringify({
+            error: code,
+            message: 'GitHub API rate limit exceeded',
+            resetAt: resetDate,
+            suggestion: 'Try again after reset or reduce request frequency.',
+          }),
+          {
+            status: 429,
+            headers: {
+              'Content-Type': 'application/json',
+              'Cache-Control': 'no-store',
+              ...(rateLimit.remaining
+                ? { 'X-RateLimit-Remaining': rateLimit.remaining || '' }
+                : {}),
+            },
+          }
+        );
+      }
+      // Generic upstream error
+      return new Response(
+        JSON.stringify({
+          error: code,
+          message: 'Failed to retrieve repositories from GitHub',
+        }),
+        {
+          status: 502,
+          headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
+        }
+      );
+    }
+
+    const { data: repos, rateLimit } = result;
     const projectsData = await getProjectsData(repos, token);
     const json = JSON.stringify(projectsData);
     const etag = buildEtag(json);
     cache = { json, timestamp: now, etag, rateLimit };
 
-    const ifNoneMatch = request.headers.get("if-none-match");
+    const ifNoneMatch = request.headers.get('if-none-match');
     if (ifNoneMatch && ifNoneMatch === etag) {
       return new Response(null, {
         status: 304,
         headers: {
           ETag: etag,
-          "Cache-Control": "s-maxage=3600, stale-while-revalidate=86400",
-          "X-Cache": "MISS-IMPLIED-304",
+          'Cache-Control': 's-maxage=3600, stale-while-revalidate=86400',
+          'X-Cache': 'MISS-IMPLIED-304',
         },
       });
     }
@@ -117,22 +157,24 @@ export const GET: APIRoute = async ({ request }) => {
     return new Response(json, {
       status: 200,
       headers: {
-        "Content-Type": "application/json",
-        "Cache-Control": "s-maxage=3600, stale-while-revalidate=86400",
+        'Content-Type': 'application/json',
+        'Cache-Control': 's-maxage=3600, stale-while-revalidate=86400',
         ETag: etag,
-        "X-Cache": "MISS",
+        'X-Cache': 'MISS',
         ...(rateLimit.remaining
-          ? { "X-RateLimit-Remaining": rateLimit.remaining || "" }
+          ? { 'X-RateLimit-Remaining': rateLimit.remaining || '' }
           : {}),
       },
     });
   } catch (error: any) {
-    const message =
-      error instanceof Error ? error.message : "Failed to fetch GitHub data";
-    console.error("API Error:", message);
-    return new Response(JSON.stringify({ message }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
-    });
+    const message = error instanceof Error ? error.message : 'Failed to fetch GitHub data';
+    console.error('API Error:', message);
+    return new Response(
+      JSON.stringify({ error: 'INTERNAL_ERROR', message }),
+      {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
   }
 };
