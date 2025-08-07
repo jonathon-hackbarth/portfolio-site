@@ -1,8 +1,185 @@
 ---
-import ProjectsIsland from "./ProjectsIsland";
+import type { ProjectData as BaseProjectData } from "../utils/projectUtils";
+import { GITHUB_CONFIG } from "../utils/constants";
+
+interface ProjectData extends BaseProjectData {
+  homepage?: string | null;
+  fork?: boolean;
+}
+
+let projects: ProjectData[] = [];
+let error: string | null = null;
+try {
+  const res = await fetch(GITHUB_CONFIG.API_ENDPOINT);
+  if (!res.ok) {
+    let message = `Request failed: ${res.status}`;
+    try {
+      const errJson = await res.json();
+      if (errJson?.message) message = errJson.message;
+    } catch {}
+    throw new Error(message);
+  }
+  const jsonData = await res.json();
+  if (Array.isArray(jsonData)) {
+    projects = jsonData as ProjectData[];
+  } else {
+    throw new Error("Unexpected response format");
+  }
+} catch (err) {
+  error = err instanceof Error ? err.message : "Failed to load projects";
+}
 ---
 
 <section id="projects" class="projects-section">
   <h2 class="projects-title">Recent Projects</h2>
-  <ProjectsIsland client:load />
+  {
+    error && (
+      <div class="flex justify-center items-center py-8">
+        <div class="text-center text-red-500">Error: {error}</div>
+      </div>
+    )
+  }
+  {
+    !error && projects.length === 0 && (
+      <div class="flex justify-center items-center py-8">
+        <div class="text-center">No projects found.</div>
+      </div>
+    )
+  }
+  {
+    !error && projects.length > 0 && (
+      <div class="projects-grid flex flex-wrap gap-4">
+        {projects.map((p) => {
+          return (
+            <div class="project-wrapper">
+              <article
+                class="project-card"
+                aria-labelledby={`project-title-${p.name}`}
+              >
+                <div class="project-content">
+                  <h3 id={`project-title-${p.name}`} class="project-title">
+                    {p.name}
+                  </h3>
+                  <p class="project-description">
+                    {p.description || "No description available."}
+                  </p>
+                  <div
+                    class="project-buttons"
+                    role="group"
+                    aria-label="Project actions"
+                  >
+                    {p.homepage ? (
+                      <a
+                        href={p.homepage}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="project-button-tiertiary"
+                        aria-label={`Visit ${p.name} website`}
+                      >
+                        Site
+                      </a>
+                    ) : null}
+                    <button
+                      type="button"
+                      class="project-button-primary clone-btn"
+                      data-clone-url={p.html_url}
+                      aria-label={`Copy git clone command for ${p.name}`}
+                    >
+                      Clone
+                    </button>
+                    <a
+                      href={p.html_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="project-button-secondary"
+                      aria-label={`View ${p.name} repository on GitHub`}
+                    >
+                      Repo
+                    </a>
+                  </div>
+                  <hr class="project-divider" aria-hidden="true" />
+                  {p.languages && p.languages.length > 0 && (
+                    <div
+                      class="project-languages"
+                      role="list"
+                      aria-label="Project languages"
+                    >
+                      {p.languages.map((lang) => (
+                        <div class="language-tag" role="listitem">
+                          <span class="language-name">{lang.name}</span>
+                          <span
+                            class="language-percentage"
+                            aria-label={`${lang.percentage}% ${lang.name}`}
+                          >
+                            {lang.percentage}%
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  <footer class="project-footer">
+                    <div class="flex items-center">
+                      <a
+                        href={p.html_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`View ${p.name} on GitHub`}
+                        class="github-link"
+                      >
+                        GitHub
+                      </a>
+                      {p.fork ? (
+                        <span
+                          class="ml-2 text-xs text-gray-500"
+                          title="Forked repository"
+                        >
+                          Fork
+                        </span>
+                      ) : null}
+                    </div>
+                    <time class="update-time" datetime={p.pushed_at}>
+                      Updated on{" "}
+                      {new Date(p.pushed_at).toLocaleDateString("en-US", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                      })}
+                    </time>
+                  </footer>
+                </div>
+              </article>
+            </div>
+          );
+        })}
+      </div>
+    )
+  }
+  <script is:inline>
+    document.addEventListener("click", function (e) {
+      var target = e.target;
+      if (!(target instanceof Element)) return;
+      var el = target.closest("[data-clone-url]");
+      if (!el) return;
+      var btn = el;
+      var url = btn.getAttribute("data-clone-url");
+      if (!url) return;
+      var original = btn.textContent;
+      navigator.clipboard
+        .writeText("git clone " + url + ".git")
+        .then(function () {
+          btn.textContent = "Copied!";
+          btn.setAttribute("disabled", "true");
+          setTimeout(function () {
+            btn.textContent = original || "Clone";
+            btn.removeAttribute("disabled");
+          }, 2000);
+        })
+        .catch(function () {
+          btn.textContent = "Failed";
+          setTimeout(function () {
+            btn.textContent = original || "Clone";
+          }, 2000);
+        });
+    });
+  </script>
 </section>
