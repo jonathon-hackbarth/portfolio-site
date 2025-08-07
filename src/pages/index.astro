@@ -10,16 +10,28 @@ import Projects from "../components/Projects.astro";
   title="Jonathon Hackbarth - Portfolio"
   description="Explore the portfolio of Jonathon Hackbarth, Cloud Systems Engineer & Web Developer."
 >
-  <div class="min-h-screen bg-gray-50">
-    <!-- <NavBarme@jonathon.hackbarth.com /> -->
-    <main class="bg-gray-50 w-full mx-auto">
-      <section class="w-full mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="min-h-screen flex flex-col">
+    <header>
+      <NavBar />
+    </header>
+    <main id="main-content" class="flex-1 w-full mx-auto" tabindex="-1">
+      <section
+        id="about"
+        aria-labelledby="about-heading"
+        class="w-full mx-auto px-4 sm:px-6 lg:px-8"
+      >
+        <h2 id="about-heading" class="sr-only">About</h2>
         <Hero />
       </section>
-
-      <div class="bg-gray-300 w-full mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <Projects />
       </div>
     </main>
+    <footer
+      class="site-footer mt-auto py-8 text-center text-xs"
+      role="contentinfo"
+    >
+      <p>&copy; {new Date().getFullYear()} Jonathon Hackbarth</p>
+    </footer>
   </div>
 </Layout>

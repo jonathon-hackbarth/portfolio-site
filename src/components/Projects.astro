@@ -159,6 +159,7 @@ try {
     )
   }
   <script is:inline>
+    const live = document.getElementById("clone-status-live");
     document.addEventListener("click", function (e) {
       var target = e.target;
       if (!(target instanceof Element)) return;
@@ -173,6 +174,11 @@ try {
         .then(function () {
           btn.textContent = "Copied!";
           btn.setAttribute("disabled", "true");
+          if (live) {
+            live.textContent =
+              "Copied clone command for " +
+              (btn.getAttribute("aria-label") || "project");
+          }
           setTimeout(function () {
             btn.textContent = original || "Clone";
             btn.removeAttribute("disabled");
@@ -180,10 +186,20 @@ try {
         })
         .catch(function () {
           btn.textContent = "Failed";
+          if (live) {
+            live.textContent = "Failed to copy clone command";
+          }
           setTimeout(function () {
             btn.textContent = original || "Clone";
           }, 2000);
         });
     });
   </script>
+  <div
+    id="clone-status-live"
+    class="sr-only"
+    aria-live="polite"
+    aria-atomic="true"
+  >
+  </div>
 </section>

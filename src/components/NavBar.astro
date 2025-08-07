@@ -6,42 +6,87 @@ const navItems = [
 ];
 ---
 
-<nav class="navbar">
-  <ul class="nav-list">
+<a
+  href="#main-content"
+  class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:bg-white focus:text-blue-600 focus:px-3 focus:py-2 focus:rounded"
+>
+  Skip to content
+</a>
+<nav class="navbar" aria-label="Primary">
+  <div class="nav-brand">
+    <a href="/" class="brand-link" aria-label="Home">
+      <span class="brand-text">Jonathon Hackbarth</span>
+      <span class="brand-accent" aria-hidden="true"></span>
+    </a>
+  </div>
+  <ul class="nav-list" role="list">
     {
-      navItems.map((item) => (
-        <li>
-          <a href={item.href} class="nav-link">
-            {item.label}
-          </a>
-        </li>
-      ))
+      navItems.map((item) => {
+        const isCurrent =
+          typeof window !== "undefined" && window.location.hash === item.href;
+        return (
+          <li>
+            <a
+              href={item.href}
+              class={`nav-link ${isCurrent ? "is-active" : ""}`}
+              aria-current={isCurrent ? "true" : undefined}
+            >
+              {item.label}
+            </a>
+          </li>
+        );
+      })
     }
-    <li>
-      <button
-        id="theme-toggle"
-        class="theme-toggle-btn"
-        type="button"
-        aria-label="Toggle color theme"
-        data-theme-state="light">Dark</button
-      >
-    </li>
   </ul>
+  <button
+    id="theme-toggle"
+    class="theme-toggle-btn theme-slider"
+    type="button"
+    aria-label="Activate dark theme"
+    aria-pressed="false"
+    data-theme-state="light"
+  >
+    <span class="slider-track" aria-hidden="true">
+      <span class="slider-thumb">
+        <svg
+          class="icon-sun"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><circle cx="12" cy="12" r="4"></circle><path
+            d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l1.41-1.41m8.49-8.49 1.41-1.41"
+          ></path></svg
+        >
+        <svg
+          class="icon-moon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><path d="M21 12.79A9 9 0 0 1 11.21 3 7 7 0 1 0 21 12.79z"
+          ></path></svg
+        >
+      </span>
+    </span>
+    <span class="sr-only">Toggle theme</span>
+  </button>
   <script is:inline>
     (() => {
       const STORAGE_KEY = "theme-pref-v1";
       const root = document.documentElement;
       const btn = document.getElementById("theme-toggle");
       function apply(theme) {
-        if (theme === "dark") {
-          root.classList.add("theme-dark");
-          btn.textContent = "Light";
-          btn.setAttribute("data-theme-state", "dark");
-        } else {
-          root.classList.remove("theme-dark");
-          btn.textContent = "Dark";
-          btn.setAttribute("data-theme-state", "light");
-        }
+        const dark = theme === "dark";
+        root.classList.toggle("theme-dark", dark);
+        btn.setAttribute("data-theme-state", dark ? "dark" : "light");
+        btn.setAttribute("aria-pressed", dark ? "true" : "false");
+        btn.setAttribute(
+          "aria-label",
+          dark ? "Activate light theme" : "Activate dark theme"
+        );
       }
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved === "dark" || saved === "light") apply(saved);
@@ -53,6 +98,23 @@ const navItems = [
           localStorage.setItem(STORAGE_KEY, next);
         } catch {}
       });
+    })();
+    // Active link pill update on hash change
+    (() => {
+      function update() {
+        const hash = window.location.hash || "#about";
+        document.querySelectorAll(".nav-link").forEach((a) => {
+          if (a.getAttribute("href") === hash) {
+            a.classList.add("is-active");
+            a.setAttribute("aria-current", "true");
+          } else {
+            a.classList.remove("is-active");
+            a.removeAttribute("aria-current");
+          }
+        });
+      }
+      window.addEventListener("hashchange", update, { passive: true });
+      window.addEventListener("DOMContentLoaded", update, { once: true });
     })();
   </script>
 </nav>
