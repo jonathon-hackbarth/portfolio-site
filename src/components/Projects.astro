@@ -88,6 +88,9 @@ try {
                       class="project-button-primary clone-btn"
                       data-clone-url={p.html_url}
                       aria-label={`Copy git clone command for ${p.name}`}
+                      data-clone-label="Clone"
+                      data-clone-copied="Copied!"
+                      data-clone-failed="Failed"
                     >
                       Clone
                     </button>
@@ -159,41 +162,66 @@ try {
     )
   }
   <script is:inline>
-    const live = document.getElementById("clone-status-live");
-    document.addEventListener("click", function (e) {
-      var target = e.target;
-      if (!(target instanceof Element)) return;
-      var el = target.closest("[data-clone-url]");
-      if (!el) return;
-      var btn = el;
-      var url = btn.getAttribute("data-clone-url");
-      if (!url) return;
-      var original = btn.textContent;
-      navigator.clipboard
-        .writeText("git clone " + url + ".git")
-        .then(function () {
-          btn.textContent = "Copied!";
-          btn.setAttribute("disabled", "true");
-          if (live) {
-            live.textContent =
-              "Copied clone command for " +
-              (btn.getAttribute("aria-label") || "project");
+    (function () {
+      const live = document.getElementById("clone-status-live");
+      function setLive(msg) {
+        if (live) live.textContent = msg;
+      }
+      function writeClipboard(text) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          return navigator.clipboard.writeText(text);
+        }
+        // Fallback for older browsers
+        return new Promise(function (resolve, reject) {
+          try {
+            const ta = document.createElement("textarea");
+            ta.value = text;
+            ta.style.position = "fixed";
+            ta.style.opacity = "0";
+            document.body.appendChild(ta);
+            ta.select();
+            const ok = document.execCommand("copy");
+            document.body.removeChild(ta);
+            ok ? resolve(undefined) : reject(new Error("execCommand failed"));
+          } catch (err) {
+            reject(err);
           }
-          setTimeout(function () {
-            btn.textContent = original || "Clone";
-            btn.removeAttribute("disabled");
-          }, 2000);
-        })
-        .catch(function () {
-          btn.textContent = "Failed";
-          if (live) {
-            live.textContent = "Failed to copy clone command";
-          }
-          setTimeout(function () {
-            btn.textContent = original || "Clone";
-          }, 2000);
         });
-    });
+      }
+      document.addEventListener("click", function (e) {
+        const target = e.target;
+        if (!(target instanceof Element)) return;
+        const btn = target.closest(".clone-btn");
+        if (!btn) return;
+        const url = btn.getAttribute("data-clone-url");
+        if (!url) return;
+        const baseLabel = btn.getAttribute("data-clone-label") || "Clone";
+        const copiedLabel = btn.getAttribute("data-clone-copied") || "Copied!";
+        const failedLabel = btn.getAttribute("data-clone-failed") || "Failed";
+        const gitCmd = "git clone " + url + ".git";
+        btn.disabled = true;
+        writeClipboard(gitCmd)
+          .then(function () {
+            btn.textContent = copiedLabel;
+            setLive(
+              "Copied clone command for " +
+                (btn.getAttribute("aria-label") || "project")
+            );
+            setTimeout(function () {
+              btn.textContent = baseLabel;
+              btn.disabled = false;
+            }, 1800);
+          })
+          .catch(function () {
+            btn.textContent = failedLabel;
+            setLive("Failed to copy clone command");
+            setTimeout(function () {
+              btn.textContent = baseLabel;
+              btn.disabled = false;
+            }, 2200);
+          });
+      });
+    })();
   </script>
   <div
     id="clone-status-live"
