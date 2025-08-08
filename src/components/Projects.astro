@@ -167,60 +167,146 @@ try {
       function setLive(msg) {
         if (live) live.textContent = msg;
       }
-      function writeClipboard(text) {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          return navigator.clipboard.writeText(text);
-        }
-        // Fallback for older browsers
-        return new Promise(function (resolve, reject) {
-          try {
-            const ta = document.createElement("textarea");
-            ta.value = text;
-            ta.style.position = "fixed";
-            ta.style.opacity = "0";
-            document.body.appendChild(ta);
-            ta.select();
-            const ok = document.execCommand("copy");
-            document.body.removeChild(ta);
-            ok ? resolve(undefined) : reject(new Error("execCommand failed"));
-          } catch (err) {
-            reject(err);
-          }
-        });
+      function buildCmd(url) {
+        // Avoid double .git
+        const clean = url.endsWith(".git") ? url : url + ".git";
+        return "git clone " + clean;
       }
-      document.addEventListener("click", function (e) {
-        const target = e.target;
-        if (!(target instanceof Element)) return;
-        const btn = target.closest(".clone-btn");
-        if (!btn) return;
+      function copyViaExec(text) {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        let ok = false;
+        try {
+          ok = document.execCommand("copy");
+        } catch {}
+        document.body.removeChild(ta);
+        return ok;
+      }
+      async function writeClipboard(text) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          try {
+            await navigator.clipboard.writeText(text);
+            return true;
+          } catch (e) {
+            /* fall through */
+          }
+        }
+        return copyViaExec(text);
+      }
+      function ensureHelper() {
+        let helper = document.getElementById("clone-fallback-helper");
+        if (!helper) {
+          helper = document.createElement("div");
+          helper.id = "clone-fallback-helper";
+          helper.style.position = "fixed";
+          helper.style.bottom = "1rem";
+          helper.style.left = "50%";
+          helper.style.transform = "translateX(-50%)";
+          helper.style.background = "var(--color-surface,#222)";
+          helper.style.color = "var(--color-text,#fff)";
+          helper.style.padding = "0.75rem 1rem";
+          helper.style.fontSize = "0.85rem";
+          helper.style.border = "1px solid var(--color-border,#444)";
+          helper.style.borderRadius = "6px";
+          helper.style.boxShadow = "0 4px 16px rgba(0,0,0,.25)";
+          helper.style.zIndex = "9999";
+          helper.style.maxWidth = "90%";
+          helper.style.wordBreak = "break-all";
+          helper.setAttribute("role", "alert");
+          document.body.appendChild(helper);
+        }
+        return helper;
+      }
+      function showFallback(cmd) {
+        const el = ensureHelper();
+        el.innerHTML = "";
+        const msg = document.createElement("div");
+        msg.textContent = "Copy failed. Manually copy below:";
+        const pre = document.createElement("pre");
+        pre.style.margin = "0.5rem 0 0";
+        pre.style.padding = "0.5rem";
+        pre.style.background = "rgba(0,0,0,.15)";
+        pre.style.fontSize = "0.75rem";
+        pre.style.whiteSpace = "pre-wrap";
+        pre.textContent = cmd;
+        el.appendChild(msg);
+        el.appendChild(pre);
+        setTimeout(() => {
+          if (el.parentNode) el.parentNode.removeChild(el);
+        }, 6000);
+        try {
+          const r = document.createRange();
+          r.selectNodeContents(pre);
+          const sel = window.getSelection();
+          if (sel) {
+            sel.removeAllRanges();
+            sel.addRange(r);
+          }
+        } catch {}
+      }
+      function handleClick(btn) {
         const url = btn.getAttribute("data-clone-url");
         if (!url) return;
         const baseLabel = btn.getAttribute("data-clone-label") || "Clone";
         const copiedLabel = btn.getAttribute("data-clone-copied") || "Copied!";
         const failedLabel = btn.getAttribute("data-clone-failed") || "Failed";
-        const gitCmd = "git clone " + url + ".git";
-        btn.disabled = true;
+        const gitCmd = buildCmd(url);
+        // Avoid disabling until after attempt to preserve gesture integrity (some browsers are picky)
         writeClipboard(gitCmd)
-          .then(function () {
-            btn.textContent = copiedLabel;
-            setLive(
-              "Copied clone command for " +
-                (btn.getAttribute("aria-label") || "project")
-            );
-            setTimeout(function () {
-              btn.textContent = baseLabel;
-              btn.disabled = false;
-            }, 1800);
+          .then((ok) => {
+            if (ok) {
+              btn.textContent = copiedLabel;
+              setLive(
+                "Copied clone command for " +
+                  (btn.getAttribute("aria-label") || "project")
+              );
+              btn.disabled = true;
+              setTimeout(() => {
+                btn.textContent = baseLabel;
+                btn.disabled = false;
+              }, 1800);
+            } else {
+              btn.textContent = failedLabel;
+              setLive("Failed to copy clone command");
+              showFallback(gitCmd);
+              setTimeout(() => {
+                btn.textContent = baseLabel;
+              }, 2200);
+            }
           })
-          .catch(function () {
+          .catch(() => {
             btn.textContent = failedLabel;
             setLive("Failed to copy clone command");
-            setTimeout(function () {
+            showFallback(gitCmd);
+            setTimeout(() => {
               btn.textContent = baseLabel;
-              btn.disabled = false;
             }, 2200);
           });
-      });
+      }
+      function bind() {
+        document.querySelectorAll(".clone-btn").forEach((btn) => {
+          if (btn._cloneBound) return; // @ts-ignore marker property
+          btn._cloneBound = true; // @ts-ignore
+          btn.addEventListener("click", function (e) {
+            e.preventDefault();
+            handleClick(btn);
+          });
+        });
+      }
+      // Initial
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", bind, { once: true });
+      } else {
+        bind();
+      }
+      // In case of any dynamic changes later (not expected but future-proof)
+      const mo = new MutationObserver(bind);
+      mo.observe(document.documentElement, { childList: true, subtree: true });
     })();
   </script>
   <div
