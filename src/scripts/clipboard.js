@@ -24,6 +24,7 @@
       : `git clone ${url}.git`;
     const baseLabel = btn.getAttribute("data-clone-label") || "Clone";
     const copiedLabel = btn.getAttribute("data-clone-copied") || "Copied!";
+    const failedLabel = btn.getAttribute("data-clone-failed") || "Failed";
 
     copyToClipboard(gitCmd).then((success) => {
       if (success) {
@@ -38,7 +39,7 @@
           btn.disabled = false;
         }, 1800);
       } else {
-        btn.textContent = "Failed";
+        btn.textContent = failedLabel;
         if (live)
           live.textContent = "Copy failed - please check browser permissions";
         setTimeout(() => {
