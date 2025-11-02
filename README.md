@@ -1,159 +1,99 @@
-<div align="center">
-
 # Portfolio Site
 
-Modern, performant personal portfolio built with **Astro** and **Tailwind CSS**—optimized for fast initial paint, minimal JavaScript, and live GitHub project data.
+Modern personal portfolio built with Astro and Tailwind CSS. Server-rendered with minimal JavaScript, featuring live GitHub project data and a light/dark/auto theme switcher.
 
-</div>
+## Tech Stack
 
-## ✨ Features
+- **Framework**: Astro (static site generation)
+- **Styling**: Tailwind CSS v4 + CSS custom properties
+- **Language**: TypeScript (strict mode)
+- **Deployment**: Cloudflare Pages
+- **Testing**: Vitest
 
-- **Astro static site generation** (deployed to Cloudflare Pages)
-- **Server-rendered project list** with GitHub API aggregation (languages % computed server-side)
-- **Minimal client JS**: only progressive enhancement for copy-to-clipboard
-- **Responsive optimized images** with proper dimensions
-- **SEO & metadata**: canonical URL, Open Graph/Twitter tags, JSON-LD Person schema, sitemap
-- **Accessible actions**: ARIA labeling, keyboard-friendly buttons, semantic HTML
-- **Theme switcher**: Light/Dark/Auto modes with system preference detection
-- **Typed codebase** (TypeScript + strict util layer)
-- **Unit tests** (Vitest) for core data transformation
+## Features
 
-## 🗂 Tech Stack
+- Server-side rendering with GitHub API integration
+- TypeScript throughout (scripts, utilities, components)
+- Light/Dark/Auto theme with system preference detection
+- SEO optimized (Open Graph, Twitter Cards, JSON-LD schema, sitemap)
+- Accessible (ARIA labels, semantic HTML, keyboard navigation)
+- Progressive enhancement for clipboard functionality
 
-| Layer         | Choice / Notes                                             |
-| ------------- | ---------------------------------------------------------- |
-| Framework     | Astro (static site generation)                             |
-| Styling       | Tailwind CSS (via `@tailwindcss/vite`) + custom properties |
-| Icons         | Inline SVG                                                 |
-| Data Fetching | Native `fetch` (GitHub REST v3)                            |
-| Deployment    | Cloudflare Pages (@astrojs/cloudflare adapter)             |
-| Testing       | Vitest                                                     |
-
-## 🔑 Environment Variables
-
-Create a `.env` (not committed) or configure in Cloudflare Pages:
-
-```
-GH_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxxx   # GitHub Personal Access Token (no special scopes needed for public repos)
-```
-
-| Var        | Required | Purpose                                                               |
-| ---------- | -------- | --------------------------------------------------------------------- |
-| `GH_TOKEN` | Yes      | Authenticated requests raise rate limits & allow language stats fetch |
-
-## 🚀 Getting Started
-
-```bash
-npm install
-npm run dev
-# Open http://localhost:4321
-```
-
-Production build:
-
-```bash
-npm run build
-npm run preview
-```
-
-## 🧪 Testing
-
-```bash
-npm run test            # run once
-npm run test:watch      # watch mode
-```
-
-Current test coverage:
-
-- `getProjectsData` language percentage calculations
-- Error handling (missing token)
-
-## 🧭 Development Scripts
-
-| Command              | Description                      |
-| -------------------- | -------------------------------- |
-| `npm run dev`        | Start local dev server           |
-| `npm run build`      | Production build (static output) |
-| `npm run preview`    | Preview production build         |
-| `npm run test`       | Run unit tests                   |
-| `npm run test:watch` | Watch tests                      |
-
-## 🔄 Deployment
-
-Deployed to Cloudflare Pages. Ensure `GH_TOKEN` is configured in Cloudflare Pages environment variables.
-
-## 🗃 Project Structure
+## Project Structure
 
 ```
 src/
-	components/        UI components (all Astro)
-	layouts/           Base layout & metadata
-	pages/             Routes (index page)
-	utils/             Data fetching & transformation logic
-	styles/global.css  Tailwind + custom CSS properties & theme system
+  components/     Astro components (Hero, NavBar, Projects, ProjectCard)
+  layouts/        Base HTML layout with metadata
+  pages/          Route pages
+  scripts/        TypeScript client scripts (theme, navigation, clipboard)
+  styles/         Global CSS with design tokens
+  utils/          Data fetching and transformation
+tests/            Vitest unit tests
 ```
 
-## 🌐 SEO & Metadata
+## Development
 
-- Canonical + sitemap generation (`@astrojs/sitemap`)
-- JSON-LD Person schema embedded
-- Open Graph image using profile photo (`/og-image.png`)
-- Favicon configured (`/favicon.ico`)
+**Prerequisites**: Node.js, npm
 
-## 📦 Caching Strategy
+**Environment Variables**: Create a `.env` file:
 
-| Layer      | Strategy                                                                  |
-| ---------- | ------------------------------------------------------------------------- |
-| GitHub API | Authenticated requests; language sub-requests aggregated per repo         |
-| API Route  | In-memory (1h TTL) + ETag + `s-maxage=3600, stale-while-revalidate=86400` |
-| Browser    | Relies on HTTP freshness + 304 validation                                 |
+```
+GH_TOKEN=your_github_personal_access_token
+```
 
-Rate limit handling returns `429` with reset timestamp.
+The GitHub token enables authenticated API requests for fetching repository data and language statistics.
 
-## 🛡 Security / Hardening Roadmap
+**Commands**:
 
-- [x] Add `robots.txt` (with sitemap reference)
-- [x] Introduce security middleware (CSP + core headers) – tighten CSP later (remove 'unsafe-inline')
-- [ ] Harden CSP with nonces & remove inline scripts
-- [ ] OG image automation (dynamic generation or static build step)
-- [x] Replace heading `!important` overrides with CSS variables (begin token system)
+```bash
+npm install          # Install dependencies
+npm run dev          # Start dev server (localhost:4321)
+npm run build        # Production build
+npm run preview      # Preview production build locally
+npm run test         # Run tests
+npm run test:watch   # Run tests in watch mode
+```
 
-## ♿ Accessibility Roadmap
+## Deployment
 
-- [ ] Live region feedback for copy action
-- [ ] Landmarks (`<header>`, `<main>`, `<footer>` wrappers)
-- [ ] Keyboard focus ring review & contrast audit
+### Cloudflare Pages Setup
 
-## 🧭 Development Scripts
+1. **Connect Repository**
 
-| Command              | Description                             |
-| -------------------- | --------------------------------------- |
-| `npm run dev`        | Start local dev server                  |
-| `npm run build`      | Production build (Vercel server output) |
-| `npm run preview`    | Preview production build                |
-| `npm run test`       | Run unit tests                          |
-| `npm run test:watch` | Watch tests                             |
+   - Go to [Cloudflare Dashboard](https://dash.cloudflare.com/)
+   - Navigate to Workers & Pages > Create application > Pages > Connect to Git
+   - Select repository: `jonathon-hackbarth/portfolio-site`
 
-## 🔄 Deployment
+2. **Build Settings**
 
-Pushed to `main` -> Vercel (auto build). Ensure `GH_TOKEN` is configured in Vercel project settings.
+   - Build command: `npm run build`
+   - Build output directory: `dist`
+   - Root directory: `/`
 
-## 🧩 Removing Legacy Code
+3. **Environment Variables**
 
-React island for projects was replaced with server-rendered Astro. Legacy React components (`ProjectsIsland`, `ProjectCardReact`) have been removed to eliminate unused JS.
+   - Add `GH_TOKEN` with your GitHub Personal Access Token
+   - Apply to Production (and Preview if needed)
 
-## 📌 Roadmap
+4. **Custom Domain** (Optional)
+   - Add custom domain in Cloudflare Pages settings
+   - DNS is automatically configured for Cloudflare-managed domains
 
-- [ ] Add more comprehensive test coverage (rendering, accessibility)
-- [ ] Custom OG image generation (possibly with headshot + branding)
-- [ ] Project filtering/search functionality
-- [ ] Performance monitoring integration
-- [ ] Analytics integration
+### Automatic Deployments
 
-## 📄 License
+- Production deploys trigger on pushes to `main` branch
+- Preview deploys are created for pull requests
+- Weekly rebuilds run every Sunday at 2 AM UTC via GitHub Actions
+
+## Testing
+
+Current test coverage:
+
+- Language percentage calculations
+- Error handling for missing tokens
+- GitHub API data transformation
+
+## License
 
 ISC
-
----
-
-Questions or ideas for improvement—feel free to open an issue.
