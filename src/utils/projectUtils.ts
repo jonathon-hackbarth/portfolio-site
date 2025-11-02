@@ -15,6 +15,8 @@ export interface Repository {
   html_url: string;
   languages_url: string;
   pushed_at: string;
+  homepage?: string | null;
+  fork?: boolean;
 }
 
 export interface ProjectData extends Repository {

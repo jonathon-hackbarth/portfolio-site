@@ -1,13 +1,8 @@
 ---
-import type { ProjectData as BaseProjectData } from "../utils/projectUtils";
+import type { ProjectData } from "../utils/projectUtils";
 import { getProjectsData } from "../utils/projectUtils";
 
 const GITHUB_USERNAME = "jonathon-hackbarth";
-
-interface ProjectData extends BaseProjectData {
-  homepage?: string | null;
-  fork?: boolean;
-}
 
 let projects: ProjectData[] = [];
 let error: string | null = null;
