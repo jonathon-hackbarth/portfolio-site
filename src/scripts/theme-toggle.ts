@@ -35,6 +35,9 @@ function applyResolved(mode: ThemeMode): void {
   btn.setAttribute("data-mode", mode);
 }
 
+/**
+ * Initializes theme toggle button and handles user preference
+ */
 export function initThemeToggle(): void {
   const btn = document.getElementById("theme-toggle");
   if (!btn) return;

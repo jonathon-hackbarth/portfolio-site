@@ -1,26 +1,26 @@
 // Define proper types for GitHub API responses
 export interface GitHubLanguages {
-  [key: string]: number;
+  readonly [key: string]: number;
 }
 
 export interface Language {
-  name: string;
-  percentage: string;
+  readonly name: string;
+  readonly percentage: string;
 }
 
 export interface Repository {
-  id: number;
-  name: string;
-  description: string | null;
-  html_url: string;
-  languages_url: string;
-  pushed_at: string;
-  homepage?: string | null;
-  fork?: boolean;
+  readonly id: number;
+  readonly name: string;
+  readonly description: string | null;
+  readonly html_url: string;
+  readonly languages_url: string;
+  readonly pushed_at: string;
+  readonly homepage?: string | null;
+  readonly fork?: boolean;
 }
 
 export interface ProjectData extends Repository {
-  languages: Language[];
+  readonly languages: ReadonlyArray<Language>;
 }
 
 // Moved fetchLanguages here to avoid circular dependencies
@@ -42,6 +42,9 @@ async function fetchLanguages(
   return response.json();
 }
 
+/**
+ * Fetches and enriches GitHub repository data with language percentages
+ */
 export async function getProjectsData(
   repos: Repository[],
   token: string

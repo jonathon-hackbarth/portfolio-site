@@ -1,0 +1,65 @@
+/**
+ * Clipboard utility for copying git clone commands
+ */
+
+const live = document.getElementById("clone-status-live");
+
+async function copyToClipboard(text: string): Promise<boolean> {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch (err) {
+    console.error("Clipboard copy failed:", err);
+    return false;
+  }
+}
+
+function handleClick(btn: HTMLButtonElement): void {
+  const url = btn.getAttribute("data-clone-url");
+  if (!url) return;
+
+  const gitCmd = url.endsWith(".git")
+    ? `git clone ${url}`
+    : `git clone ${url}.git`;
+  const baseLabel = btn.getAttribute("data-clone-label") || "Clone";
+  const copiedLabel = btn.getAttribute("data-clone-copied") || "Copied!";
+  const failedLabel = btn.getAttribute("data-clone-failed") || "Failed";
+
+  copyToClipboard(gitCmd).then((success) => {
+    if (success) {
+      btn.textContent = copiedLabel;
+      if (live)
+        live.textContent = `Copied clone command for ${
+          btn.getAttribute("aria-label") || "project"
+        }`;
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = baseLabel;
+        btn.disabled = false;
+      }, 1800);
+    } else {
+      btn.textContent = failedLabel;
+      if (live)
+        live.textContent = "Copy failed - please check browser permissions";
+      setTimeout(() => {
+        btn.textContent = baseLabel;
+      }, 2200);
+    }
+  });
+}
+
+function init(): void {
+  document.querySelectorAll<HTMLButtonElement>(".clone-btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      handleClick(btn);
+    });
+  });
+}
+
+// Initialize when DOM is ready
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", init);
+} else {
+  init();
+}
