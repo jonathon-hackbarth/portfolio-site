@@ -1,7 +1,8 @@
 ---
 import type { ProjectData as BaseProjectData } from "../utils/projectUtils";
-import { GITHUB_CONFIG } from "../utils/constants";
 import { getProjectsData } from "../utils/projectUtils";
+
+const GITHUB_USERNAME = "jonathon-hackbarth";
 
 interface ProjectData extends BaseProjectData {
   homepage?: string | null;
@@ -16,7 +17,7 @@ try {
 
   // Fetch repos directly from GitHub (avoids internal /api call in SSR context)
   const repoRes = await fetch(
-    `https://api.github.com/users/${GITHUB_CONFIG.USERNAME}/repos?sort=updated&direction=desc`,
+    `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&direction=desc`,
     {
       headers: {
         Authorization: `Bearer ${token}`,

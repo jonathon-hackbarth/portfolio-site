@@ -21,4 +21,6 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
-.vercel
+
+# Cloudflare local dev
+.wrangler/
