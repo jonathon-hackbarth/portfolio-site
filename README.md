@@ -1,38 +1,37 @@
 <div align="center">
 
-# Portfolio Site (Astro + Partial Hydration)
+# Portfolio Site
 
-Modern, performant personal portfolio built with **Astro**, **React (selective)**, and **Tailwind CSS**—optimized for fast initial paint, minimal JavaScript, and live GitHub project data with caching.
+Modern, performant personal portfolio built with **Astro** and **Tailwind CSS**—optimized for fast initial paint, minimal JavaScript, and live GitHub project data.
 
 </div>
 
 ## ✨ Features
 
-- **Astro SSR + edge-friendly caching** (Vercel adapter, `s-maxage` + `stale-while-revalidate`)
+- **Astro static site generation** (deployed to Cloudflare Pages)
 - **Server-rendered project list** with GitHub API aggregation (languages % computed server-side)
-- **In-memory + HTTP caching** (ETag, 304, rate limit awareness)
 - **Minimal client JS**: only progressive enhancement for copy-to-clipboard
-- **Responsive optimized image** in hero (explicit dimensions, WebP)
-- **SEO & metadata**: canonical URL, Open Graph/Twitter tags, JSON-LD Person, sitemap
-- **Accessible actions**: ARIA labeling, keyboard-friendly buttons (continuing improvements planned)
+- **Responsive optimized images** with proper dimensions
+- **SEO & metadata**: canonical URL, Open Graph/Twitter tags, JSON-LD Person schema, sitemap
+- **Accessible actions**: ARIA labeling, keyboard-friendly buttons, semantic HTML
+- **Theme switcher**: Light/Dark/Auto modes with system preference detection
 - **Typed codebase** (TypeScript + strict util layer)
 - **Unit tests** (Vitest) for core data transformation
 
 ## 🗂 Tech Stack
 
-| Layer         | Choice / Notes                                                   |
-| ------------- | ---------------------------------------------------------------- |
-| Framework     | Astro (server output on Vercel)                                  |
-| Styling       | Tailwind CSS (via `@tailwindcss/vite`) + component layer classes |
-| Icons         | `@fortawesome/react-fontawesome` (tree-shaken icon imports)      |
-| Data Fetching | Native `fetch` (GitHub REST v3)                                  |
-| Caching       | In-memory per cold start + HTTP cache headers                    |
-| Deployment    | Vercel (@astrojs/vercel adapter)                                 |
-| Testing       | Vitest                                                           |
+| Layer         | Choice / Notes                                             |
+| ------------- | ---------------------------------------------------------- |
+| Framework     | Astro (static site generation)                             |
+| Styling       | Tailwind CSS (via `@tailwindcss/vite`) + custom properties |
+| Icons         | Inline SVG                                                 |
+| Data Fetching | Native `fetch` (GitHub REST v3)                            |
+| Deployment    | Cloudflare Pages (@astrojs/cloudflare adapter)             |
+| Testing       | Vitest                                                     |
 
 ## 🔑 Environment Variables
 
-Create a `.env` (not committed) or configure in Vercel:
+Create a `.env` (not committed) or configure in Cloudflare Pages:
 
 ```
 GH_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxxx   # GitHub Personal Access Token (no special scopes needed for public repos)
@@ -64,33 +63,42 @@ npm run test            # run once
 npm run test:watch      # watch mode
 ```
 
-Current test coverage focuses on:
+Current test coverage:
 
-1. `getProjectsData` language percentage math
-2. Error path (missing token)
+- `getProjectsData` language percentage calculations
+- Error handling (missing token)
 
-Suggested future tests:
+## 🧭 Development Scripts
 
-- API integration (simulate rate limit & 304)
-- Rendering snapshot for project cards
-- Accessibility smoke (axe / aria roles)
+| Command              | Description                      |
+| -------------------- | -------------------------------- |
+| `npm run dev`        | Start local dev server           |
+| `npm run build`      | Production build (static output) |
+| `npm run preview`    | Preview production build         |
+| `npm run test`       | Run unit tests                   |
+| `npm run test:watch` | Watch tests                      |
 
-## 🗃 Project Structure (Relevant)
+## 🔄 Deployment
+
+Deployed to Cloudflare Pages. Ensure `GH_TOKEN` is configured in Cloudflare Pages environment variables.
+
+## 🗃 Project Structure
 
 ```
 src/
-	components/        UI building blocks (.astro + minimal React previously)
+	components/        UI components (all Astro)
 	layouts/           Base layout & metadata
-	pages/             Routes (index + API endpoint)
-	utils/             Data + transformation logic
-	styles/global.css  Tailwind layer + component classes
+	pages/             Routes (index page)
+	utils/             Data fetching & transformation logic
+	styles/global.css  Tailwind + custom CSS properties & theme system
 ```
 
 ## 🌐 SEO & Metadata
 
 - Canonical + sitemap generation (`@astrojs/sitemap`)
 - JSON-LD Person schema embedded
-- Placeholder social image reference (`/social-image.png`) – supply/replace with a generated OG image
+- Open Graph image using profile photo (`/og-image.png`)
+- Favicon configured (`/favicon.ico`)
 
 ## 📦 Caching Strategy
 
@@ -134,12 +142,13 @@ Pushed to `main` -> Vercel (auto build). Ensure `GH_TOKEN` is configured in Verc
 
 React island for projects was replaced with server-rendered Astro. Legacy React components (`ProjectsIsland`, `ProjectCardReact`) have been removed to eliminate unused JS.
 
-## 📌 Roadmap (Next Candidates)
+## 📌 Roadmap
 
-- Integrate API integration test & contract test for rate limiting
-- Real OG/social image (generated or static)
-- Introduce design token system (CSS variables) and dark mode toggle
-- Add project filtering or tags client-side (progressive enhancement)
+- [ ] Add more comprehensive test coverage (rendering, accessibility)
+- [ ] Custom OG image generation (possibly with headshot + branding)
+- [ ] Project filtering/search functionality
+- [ ] Performance monitoring integration
+- [ ] Analytics integration
 
 ## 📄 License
 
@@ -147,4 +156,4 @@ ISC
 
 ---
 
-Questions or ideas for improvement—feel free to open an issue or iterate directly.
+Questions or ideas for improvement—feel free to open an issue.

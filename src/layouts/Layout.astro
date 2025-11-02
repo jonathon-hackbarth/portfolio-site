@@ -11,7 +11,7 @@ const {
 
 const siteUrl = "https://jonathonhackbarth.com";
 const canonical = siteUrl + (Astro.url?.pathname || "/");
-const ogImage = `${siteUrl}/social-image.png`; // Placeholder path; replace with generated image later
+const ogImage = `${siteUrl}/og-image.png`;
 const personJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
@@ -32,7 +32,7 @@ const personJsonLd = {
     <base href="/" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
   <link rel="canonical" href={canonical} />
   <meta name="robots" content="index,follow" />

@@ -4,23 +4,16 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "wrangler pages dev ./dist",
     "astro": "astro",
     "test": "vitest run",
     "test:watch": "vitest"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.10",
-    "@astrojs/react": "^4.2.0",
     "@astrojs/sitemap": "^3.4.2",
-    "@fortawesome/fontawesome-svg-core": "^6.7.2",
-    "@fortawesome/free-brands-svg-icons": "^6.7.2",
-    "@fortawesome/free-solid-svg-icons": "^6.7.2",
-    "@fortawesome/react-fontawesome": "^0.2.2",
     "@tailwindcss/vite": "^4.0.7",
     "astro": "^5.3.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
     "tslib": "^2.8.1"
   },
   "devDependencies": {
@@ -28,18 +21,18 @@
     "typescript": "^5.5.4",
     "vitest": "^4.0.6"
   },
-  "name": "astro-boilerplate",
+  "name": "portfolio-site",
   "version": "1.0.0",
-  "description": "This directory is a brief example of an [Astro](https://astro.build/) site that can be deployed to Vercel with zero configuration. This demo showcases:",
+  "description": "Modern, performant personal portfolio built with Astro and Tailwind CSS, deployed to Cloudflare Pages",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jonathon-hackbarth/astro-boilerplate.git"
+    "url": "git+https://github.com/jonathon-hackbarth/portfolio-site.git"
   },
-  "author": "",
+  "author": "Jonathon Hackbarth",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jonathon-hackbarth/astro-boilerplate/issues"
+    "url": "https://github.com/jonathon-hackbarth/portfolio-site/issues"
   },
-  "homepage": "https://github.com/jonathon-hackbarth/astro-boilerplate#readme"
+  "homepage": "https://jonathonhackbarth.com"
 }
