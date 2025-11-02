@@ -12,17 +12,18 @@ const {
 const siteUrl = "https://jonathonhackbarth.com";
 const canonical = siteUrl + (Astro.url?.pathname || "/");
 const ogImage = `${siteUrl}/og-image.png`;
+const imageAlt = `Preview image for ${title}`;
 const personJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Jonathon Hackbarth',
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Jonathon Hackbarth",
   url: siteUrl,
   sameAs: [
-    'https://github.com/jonathon-hackbarth',
-    'https://www.linkedin.com/in/jonathon-w-hackbarth'
+    "https://github.com/jonathon-hackbarth",
+    "https://www.linkedin.com/in/jonathon-w-hackbarth",
   ],
-  jobTitle: 'Cloud Systems Engineer & Web Developer',
-  description
+  jobTitle: "Cloud Systems Engineer & Web Developer",
+  description,
 };
 ---
 
@@ -34,11 +35,15 @@ const personJsonLd = {
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-  <link rel="canonical" href={canonical} />
-  <meta name="robots" content="index,follow" />
-  <meta name="theme-color" content="#ffffff" />
-  <meta name="color-scheme" content="light dark" />
-  <link rel="preconnect" href="https://avatars.githubusercontent.com" crossorigin />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light dark" />
+    <link
+      rel="preconnect"
+      href="https://avatars.githubusercontent.com"
+      crossorigin
+    />
 
     <!-- Page Title -->
     <title>{title}</title>
@@ -50,22 +55,27 @@ const personJsonLd = {
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-  <meta property="og:url" content={canonical} />
-  <meta property="og:image" content={ogImage} />
-  <meta property="og:image:alt" content={`Preview image for ${title}`} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={imageAlt} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-  <meta property="twitter:image" content={ogImage} />
-  <meta property="twitter:image:alt" content={`Preview image for ${title}`} />
+    <meta property="twitter:image" content={ogImage} />
+    <meta property="twitter:image:alt" content={imageAlt} />
 
-  <script type="application/ld+json" is:inline>{JSON.stringify(personJsonLd)}</script>
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(personJsonLd)}
+    />
   </head>
   <body>
     <script is:inline>
-      {`(() => { try { const t = localStorage.getItem('theme-pref-v1'); if (t==='dark') document.documentElement.classList.add('theme-dark'); } catch {} })();`}
+      {
+        `(() => { try { const t = localStorage.getItem('theme-pref-v1'); if (t==='dark') document.documentElement.classList.add('theme-dark'); } catch {} })();`;
+      }
     </script>
     <slot />
   </body>
