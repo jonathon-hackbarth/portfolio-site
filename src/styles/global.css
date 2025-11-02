@@ -209,6 +209,10 @@ html {
     color: var(--color-text-muted);
   }
 
+  .hero-button-base {
+    @apply inline-flex items-center justify-center px-3 py-2 text-xs sm:text-sm font-medium rounded-md transition-colors;
+  }
+
   .hero-button-container {
     @apply flex gap-4 justify-center;
   }
