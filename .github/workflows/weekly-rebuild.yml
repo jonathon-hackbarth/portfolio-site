@@ -1,0 +1,15 @@
+name: Weekly Rebuild
+
+on:
+  schedule:
+    # Runs every Sunday at 2 AM UTC
+    - cron: "0 2 * * 0"
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Cloudflare Pages deployment
+        run: |
+          curl -X POST "https://api.cloudflare.com/client/v4/pages/webhooks/deploy_hooks/${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}"

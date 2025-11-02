@@ -1,18 +1,15 @@
 import { defineConfig } from "astro/config";
-import vercel from "@astrojs/vercel";
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
+import cloudflare from "@astrojs/cloudflare";
 
 export default defineConfig({
   site: "https://jonathonhackbarth.com",
+  adapter: cloudflare(),
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [tailwindcss() as any],
   },
   integrations: [react(), sitemap()],
-  output: "server",
-  adapter: vercel({
-    imageService: true,
-    webAnalytics: { enabled: true },
-  }),
+  output: "static",
 });
