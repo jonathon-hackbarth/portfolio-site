@@ -257,12 +257,8 @@ html {
     @apply flex flex-wrap justify-center gap-8 mx-auto px-8;
   }
 
-  .project-wrapper {
-    @apply w-100;
-  }
-
   .project-card {
-    @apply rounded-lg p-5 transition-all duration-300 h-fit w-full;
+    @apply rounded-lg p-5 transition-all duration-300 h-fit w-100;
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     box-shadow: var(--shadow-elev);

@@ -51,9 +51,7 @@ try {
     !error && projects.length > 0 && (
       <div class="projects-grid flex flex-wrap gap-4">
         {projects.map((p) => (
-          <div class="project-wrapper">
-            <ProjectCard project={p} />
-          </div>
+          <ProjectCard project={p} />
         ))}
       </div>
     )
