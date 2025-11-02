@@ -21,21 +21,13 @@ const navItems = [
   </div>
   <ul class="nav-list" role="list">
     {
-      navItems.map((item) => {
-        const isCurrent =
-          typeof window !== "undefined" && window.location.hash === item.href;
-        return (
-          <li>
-            <a
-              href={item.href}
-              class={`nav-link ${isCurrent ? "is-active" : ""}`}
-              aria-current={isCurrent ? "true" : undefined}
-            >
-              {item.label}
-            </a>
-          </li>
-        );
-      })
+      navItems.map((item) => (
+        <li>
+          <a href={item.href} class="nav-link">
+            {item.label}
+          </a>
+        </li>
+      ))
     }
   </ul>
   <button
