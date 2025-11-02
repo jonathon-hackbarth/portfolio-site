@@ -213,22 +213,6 @@ html {
     @apply inline-flex items-center justify-center px-3 py-2 text-xs sm:text-sm font-medium rounded-md transition-colors;
   }
 
-  .hero-button-container {
-    @apply flex gap-4 justify-center;
-  }
-
-  .hero-button {
-    @apply inline-block py-2 px-4 rounded;
-  }
-
-  .hero-button-blue {
-    @apply bg-blue-600 text-white hover:opacity-90 transition-opacity;
-  }
-
-  .hero-button-grey {
-    @apply bg-gray-200 text-gray-700 hover:opacity-90 transition-opacity;
-  }
-
   .hero-image-container {
     @apply flex justify-center;
   }
@@ -333,11 +317,6 @@ html {
     color: var(--color-text-muted);
   }
 
-  .github-icon {
-    @apply align-middle mr-1 text-base;
-    color: var(--color-text-muted);
-  }
-
   .update-time {
     @apply italic ml-4;
   }
@@ -349,10 +328,6 @@ html {
   }
 
   /* Dark theme component overrides */
-  html.theme-dark .hero-button-grey {
-    background: #2d333b;
-    color: var(--color-text);
-  }
   html.theme-dark .project-button-secondary {
     background: #2d333b;
     color: var(--color-text);
