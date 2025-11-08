@@ -21,7 +21,7 @@ Modern personal portfolio built with Astro and Tailwind CSS. Server-rendered wit
 
 ## Project Structure
 
-```
+```text
 src/
   components/     Astro components (Hero, NavBar, Projects, ProjectCard)
   layouts/        Base HTML layout with metadata
@@ -38,7 +38,7 @@ tests/            Vitest unit tests
 
 **Environment Variables**: Create a `.env` file:
 
-```
+```text
 GH_TOKEN=your_github_personal_access_token
 ```
 
