@@ -1,6 +1,6 @@
 # Portfolio Site
 
-Modern personal portfolio built with Astro and Tailwind CSS. Server-rendered with minimal JavaScript, featuring live GitHub project data and a light/dark/auto theme switcher.
+Modern personal portfolio built with Astro and Tailwind CSS. Static site with build-time rendering, minimal JavaScript, featuring live GitHub project data and a light/dark/auto theme switcher.
 
 ## Tech Stack
 
@@ -12,7 +12,7 @@ Modern personal portfolio built with Astro and Tailwind CSS. Server-rendered wit
 
 ## Features
 
-- Server-side rendering with GitHub API integration
+- Static site generation with build-time GitHub API integration
 - TypeScript throughout (scripts, utilities, components)
 - Light/Dark/Auto theme with system preference detection
 - SEO optimized (Open Graph, Twitter Cards, JSON-LD schema, sitemap)
@@ -50,7 +50,7 @@ The GitHub token enables authenticated API requests for fetching repository data
 npm install          # Install dependencies
 npm run dev          # Start dev server (localhost:4321)
 npm run build        # Production build
-npm run preview      # Preview production build locally
+npm run preview      # Preview production build (requires wrangler)
 npm run test         # Run tests
 npm run test:watch   # Run tests in watch mode
 ```
