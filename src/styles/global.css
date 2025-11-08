@@ -190,13 +190,17 @@ html {
 
   /* Hero section */
   .hero-section {
-    @apply flex flex-col-reverse md:flex-row items-center gap-10 justify-center px-8 py-16;
+    @apply flex flex-col md:flex-row items-center gap-12 justify-center px-8 py-16;
     /* Extra top padding compensates for fixed nav overlay so visible space remains balanced */
     padding-top: calc(4rem + var(--nav-height));
   }
 
+  .hero-image-container-left {
+    @apply shrink-0 order-first;
+  }
+
   .hero-content {
-    @apply w-100 text-center;
+    @apply flex-1 text-left;
   }
 
   .hero-title {
@@ -211,6 +215,45 @@ html {
 
   .hero-button-base {
     @apply inline-flex items-center justify-center px-3 py-2 text-xs sm:text-sm font-medium rounded-md transition-colors;
+  }
+
+  /* Minimalist button style */
+  .hero-button-minimal {
+    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded transition-colors duration-200;
+    @apply border border-gray-300 text-gray-700;
+    @apply dark:border-gray-600 dark:text-gray-300;
+    @apply hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50;
+    @apply dark:hover:border-blue-400 dark:hover:text-blue-300 dark:hover:bg-blue-950/20;
+  }
+
+  /* Minimalist icon-only button style */
+  .hero-icon-button {
+    @apply inline-flex items-center justify-center w-14 h-14 rounded-full transition-all duration-200;
+    @apply hover:scale-110;
+  }
+
+  .hero-icon-email {
+    color: #1e40af;
+    background-color: #bfdbfe;
+    @apply hover:bg-blue-300 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800;
+  }
+
+  .hero-icon-resume {
+    color: #065f46;
+    background-color: #86efac;
+    @apply hover:bg-green-400 dark:bg-green-900 dark:text-green-100 dark:hover:bg-green-800;
+  }
+
+  .hero-icon-github {
+    color: #ffffff;
+    background-color: #1f2937;
+    @apply hover:bg-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700;
+  }
+
+  .hero-icon-linkedin {
+    color: #003d82;
+    background-color: #bfdbfe;
+    @apply hover:bg-blue-300 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800;
   }
 
   .hero-image-container {

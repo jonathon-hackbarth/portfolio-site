@@ -1,0 +1,295 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Jonathon Hackbarth",
+    "label": "Enterprise Solutions Architect - Microsoft 365 & AI Innovation",
+    "image": "https://jonathonhackbarth.com/og-image.webp",
+    "email": "me@jonathonhackbarth.com",
+    "phone": "",
+    "url": "https://www.jonathonhackbarth.com",
+    "summary": "Enterprise Solutions Architect with 18+ years driving transformational cloud initiatives in Microsoft 365, Power Platform, and Azure ecosystems. Specialized expertise in M365 Copilot implementation (Microsoft first pilot program participant), AI-enhanced workflow automation, Graph API architecture, and government/financial sector compliance. Proven ability to architect scalable solutions delivering measurable business impact: $15M annual automation savings, 90% support ticket reduction, 100k+ user governance frameworks. Combining deep technical expertise with strategic vision to build enterprise-grade solutions that solve critical business problems at scale.",
+    "location": {
+      "address": "",
+      "postalCode": "",
+      "city": "",
+      "countryCode": "US",
+      "region": ""
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "jhackbarth",
+        "url": "https://github.com/jhackbarth"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "jonathonhackbarth",
+        "url": "https://linkedin.com/in/jonathonhackbarth"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Alpha Omega",
+      "location": "Remote",
+      "description": "Technology and consulting company",
+      "position": "Senior Microsoft Power Platform, SharePoint & Applications Developer III",
+      "url": "https://www.alphaomega.com",
+      "startDate": "2025-08",
+      "summary": "Senior developer specializing in Microsoft Power Platform and SharePoint solutions, driving enterprise application development and cloud transformations.",
+      "highlights": [
+        "Architecting and leading development of enterprise Modern Web App Add-In for Office, seamlessly integrating Outlook and SharePoint for advanced document management capabilities",
+        "Leveraging AI-enhanced workflows to accelerate development velocity and enable rapid feature prototyping, delivering solutions faster and more efficiently to clients",
+        "Delivering strategic consulting services for government contracts with rigorous compliance and security requirements",
+        "Collaborating with Financial and Legal institutions on mission-critical applications requiring regulatory adherence and data protection standards"
+      ]
+    },
+    {
+      "name": "Best Buy",
+      "location": "Remote",
+      "description": "Retail and technology services company",
+      "position": "Engineer II - Microsoft M365 Admin, Power Platform Admin & Developer",
+      "url": "https://www.bestbuy.com",
+      "startDate": "2022-10",
+      "endDate": "2025-08",
+      "summary": "Leading enterprise cloud transformations and AI implementations across Microsoft 365 ecosystem, including M365 Copilot pilot programs, Graph API integrations, and Power Platform automation frameworks.",
+      "highlights": [
+        "Spearheaded enterprise-wide implementation of M365 Copilot, participating in Microsoft's first Copilot pilot program",
+        "Created internal knowledge base by integrating Microsoft Learn with proprietary enterprise content, reducing support tickets and improving operational efficiency",
+        "Directed proof-of-concept for Copilot Studio, managing end-to-end security and accelerating time to business outcomes",
+        "Built custom Graph API connectors for Power Platform and developed governance automation scripts",
+        "Directed migration of SharePoint to cloud infrastructure, reducing costs and improving system reliability",
+        "Designed enterprise automation frameworks, increasing engineering capacity by 50%"
+      ]
+    },
+    {
+      "name": "Best Buy",
+      "location": "Remote",
+      "description": "Retail and technology services company",
+      "position": "Developer - Microsoft Power Platform and SharePoint",
+      "url": "https://www.bestbuy.com",
+      "startDate": "2019-11",
+      "endDate": "2022-10",
+      "summary": "Developed enterprise applications achieving $15M in annual labor cost savings through streamlined automation and quality control initiatives.",
+      "highlights": [
+        "Developed enterprise applications on Power Platform, achieving $15M in annual labor cost savings",
+        "Implemented control processes to reduce support tickets by 90%",
+        "Created scalable solutions across CRM, services, and supply chain systems",
+        "Created 50+ Power Apps, Power Automates, Azure Automations and other solutions"
+      ]
+    },
+    {
+      "name": "Best Buy",
+      "location": "Remote",
+      "description": "Retail and technology services company",
+      "position": "Data Analyst & Automation Developer",
+      "url": "https://www.bestbuy.com",
+      "startDate": "2018-11",
+      "endDate": "2019-11",
+      "summary": "Spearheaded enterprise automation efforts and cloud migration initiatives with focus on Graph API integrations and data analytics.",
+      "highlights": [
+        "Spearheaded enterprise automation efforts during migration projects",
+        "Designed automation workflows leveraging Graph API endpoints for governance",
+        "Developed Power BI dashboards, improving analytics and reporting efficiency by 40%"
+      ]
+    },
+    {
+      "name": "Best Buy",
+      "location": "Remote",
+      "description": "Retail and technology services company",
+      "position": "Manager of Remote Support Quality Operations",
+      "url": "https://www.bestbuy.com",
+      "startDate": "2014-07",
+      "endDate": "2018-11",
+      "summary": "Established customer success programs and led major migration projects, delivering industry-leading CSAT scores and improving workforce productivity.",
+      "highlights": [
+        "Established customer outreach program, delivering industry-leading CSAT scores for both onshore and offshore teams",
+        "Successfully led multiple major migration projects with clear expectations and actionable milestones",
+        "Improved workforce productivity by 20% through enhanced training and leadership development",
+        "Implemented scalable frameworks for issue resolution"
+      ]
+    },
+    {
+      "name": "Best Buy",
+      "location": "Remote",
+      "description": "Retail and technology services company",
+      "position": "Various Roles - Remote Senior Service Tech, Senior Service Tech, Sales",
+      "url": "https://www.bestbuy.com",
+      "startDate": "2007-08",
+      "endDate": "2014-07",
+      "summary": "Delivered exceptional technical support and customer solutions with 95%+ first-call resolution rate.",
+      "highlights": [
+        "Delivered exceptional technical support with 95%+ first-call resolution rate",
+        "Consistently surpassed performance metrics in speed, quality, and satisfaction",
+        "Designed and implemented tailored technical solutions for clients"
+      ]
+    }
+  ],
+  "volunteer": [],
+  "education": [],
+  "awards": [],
+  "certificates": [
+    {
+      "name": "Microsoft Power Platform Fundamentals",
+      "date": "2024-01-01",
+      "issuer": "Microsoft",
+      "url": "https://learn.microsoft.com/api/credentials/share/en-us/JonathonHackbarth/BDFF05D4096E9A02?sharingId=40BE5172EDDED34"
+    }
+  ],
+  "publications": [],
+  "skills": [
+    {
+      "name": "Cloud & Services",
+      "level": "Master",
+      "keywords": [
+        "Azure",
+        "Microsoft 365",
+        "Teams",
+        "Power Platform",
+        "SharePoint",
+        "M365 Copilot",
+        "Copilot Studio",
+        "Graph API",
+        "Office Add-ins"
+      ]
+    },
+    {
+      "name": "Development & Automation",
+      "level": "Master",
+      "keywords": [
+        "Power Apps",
+        "Power Automate",
+        "PowerShell",
+        "Azure Automation",
+        "Custom API Development",
+        "Office JavaScript API",
+        "Modern Web Apps"
+      ]
+    },
+    {
+      "name": "AI & Generative AI",
+      "level": "Master",
+      "keywords": [
+        "Large Language Models",
+        "OpenAI",
+        "Azure OpenAI",
+        "Fine-tuning",
+        "AI-driven full-stack development",
+        "Prompt Engineering",
+        "AI-Enhanced Workflows"
+      ]
+    },
+    {
+      "name": "Data & Analytics",
+      "level": "Advanced",
+      "keywords": [
+        "Power BI",
+        "SQL",
+        "DAX",
+        "ETL Pipelines",
+        "Governance Automation",
+        "Data Visualization"
+      ]
+    },
+    {
+      "name": "Programming Languages",
+      "level": "Advanced",
+      "keywords": [
+        "Python",
+        "PowerShell",
+        "TypeScript",
+        "JavaScript",
+        "C#",
+        "PowerFx"
+      ]
+    },
+    {
+      "name": "Web Technologies",
+      "level": "Advanced",
+      "keywords": [
+        "React",
+        "REST APIs",
+        "Document Management",
+        "Outlook Integration",
+        "SharePoint Integration"
+      ]
+    },
+    {
+      "name": "Methodologies & Tools",
+      "level": "Advanced",
+      "keywords": [
+        "Agile",
+        "Jira",
+        "Azure DevOps",
+        "Change Management",
+        "Compliance & Governance"
+      ]
+    },
+    {
+      "name": "Consulting & Professional Services",
+      "level": "Master",
+      "keywords": [
+        "Government Contracts",
+        "Financial Services",
+        "Legal Services",
+        "Regulatory Compliance",
+        "Enterprise Architecture"
+      ]
+    },
+    {
+      "name": "Soft Skills",
+      "level": "Master",
+      "keywords": [
+        "Leadership",
+        "Collaboration",
+        "Communication",
+        "Stakeholder Engagement",
+        "Business-Technical Alignment",
+        "Strategic Consulting",
+        "Solution Architecture"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Native speaker"
+    }
+  ],
+  "interests": [],
+  "references": [],
+  "projects": [
+    {
+      "name": "Personal Portfolio Site",
+      "description": "Modern static portfolio site showcasing technical work and projects",
+      "highlights": [
+        "Built with Astro static site generator for optimal performance",
+        "GitHub API integration to dynamically display repositories and projects",
+        "Automated CI/CD pipeline using GitHub Actions for continuous deployment",
+        "Deployed to Cloudflare for global CDN distribution and edge computing",
+        "Clean, performant architecture demonstrating modern web development practices"
+      ],
+      "keywords": [
+        "Astro",
+        "GitHub API",
+        "GitHub Actions",
+        "Cloudflare",
+        "CI/CD",
+        "Static Site Generation"
+      ],
+      "startDate": "2024",
+      "url": "https://jonathonhackbarth.com",
+      "roles": [
+        "Architect",
+        "Developer"
+      ],
+      "entity": "Personal",
+      "type": "Website"
+    }
+  ],
+  "meta": {
+    "canonical": "https://raw.githubusercontent.com/jsonresume/resume-schema/master/sample.resume.json",
+    "version": "v1.0.0",
+    "lastModified": "2017-12-24T15:53:00"
+  }
+}

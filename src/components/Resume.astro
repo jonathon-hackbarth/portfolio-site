@@ -1,0 +1,153 @@
+---
+// Import resume data - using glob pattern for build-time resolution
+const resumeModule = import.meta.glob('../../public/resume.json', { eager: true });
+const resumeFile = Object.values(resumeModule)[0] as any;
+const resumeData = resumeFile.default || resumeFile;
+const { basics, work, education, skills, projects } = resumeData;
+---
+
+<section id="resume" aria-labelledby="resume-heading" class="w-full mx-auto px-4 sm:px-6 lg:px-8 py-12" style="scroll-margin-top: 100px;">
+  <h2 id="resume-heading" class="sr-only">Resume</h2>
+  
+  <!-- Download Button -->
+  <div class="max-w-6xl mx-auto mb-6 flex justify-end">
+    <a
+      href="/resume.pdf"
+      download="Jonathon-Hackbarth-Resume.pdf"
+      class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors text-sm"
+    >
+      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+      </svg>
+      Download PDF
+    </a>
+  </div>
+
+  <!-- Main Resume Container -->
+  <div class="max-w-6xl mx-auto rounded-lg shadow-lg overflow-hidden" style="background: var(--color-surface); color: var(--color-text);">
+    <div class="p-8 space-y-8">
+      <!-- Header -->
+      {basics && (
+        <div class="pb-6 border-b-2 border-blue-600" style="border-color: var(--color-accent);">
+          <h1 class="text-5xl font-bold mb-1" style="color: var(--color-heading);">{basics.name}</h1>
+          <p class="text-lg mb-4" style="color: var(--color-text);">{basics.label}</p>
+          
+          <!-- Contact Info -->
+          <div class="flex flex-wrap gap-4 text-sm mb-4">
+            <a href={`mailto:${basics.email}`} style="color: var(--color-accent);" class="hover:underline">
+              {basics.email}
+            </a>
+            <span style="color: var(--color-text-muted);">•</span>
+            <span style="color: var(--color-text-muted);">{basics.location?.countryCode || 'US'}</span>
+            <span style="color: var(--color-text-muted);">•</span>
+            <a href={basics.url} target="_blank" rel="noopener noreferrer" style="color: var(--color-accent);" class="hover:underline">
+              {basics.url?.replace('https://', '').replace('http://', '')}
+            </a>
+            {basics.profiles && basics.profiles.map((profile: any) => (
+              <>
+                <span style="color: var(--color-text-muted);">•</span>
+                <a href={profile.url} target="_blank" rel="noopener noreferrer" style="color: var(--color-accent);" class="hover:underline">
+                  {profile.network}
+                </a>
+              </>
+            ))}
+          </div>
+
+          <!-- Summary -->
+          <p class="text-sm leading-relaxed" style="color: var(--color-text);">{basics.summary}</p>
+        </div>
+      )}
+
+      <!-- Experience -->
+      {work && work.length > 0 && (
+        <div>
+          <h2 class="text-2xl font-bold mb-1 pb-2 border-b-2" style="color: var(--color-heading); border-color: var(--color-accent);">Experience</h2>
+          <div class="space-y-6 mt-6">
+            {work.map((job: any) => (
+              <div>
+                <div class="flex justify-between items-start gap-4 mb-1">
+                  <h3 class="text-lg font-bold" style="color: var(--color-heading);">{job.position}</h3>
+                  <span class="text-sm whitespace-nowrap" style="color: var(--color-text-muted);">
+                    {job.startDate} {job.endDate ? `– ${job.endDate}` : '– Present'}
+                  </span>
+                </div>
+                <p class="text-sm font-semibold mb-1" style="color: var(--color-accent);">{job.name}</p>
+                {job.summary && <p class="text-sm mb-2" style="color: var(--color-text);">{job.summary}</p>}
+                {job.highlights && job.highlights.length > 0 && (
+                  <ul class="list-disc list-inside space-y-1 text-sm" style="color: var(--color-text);">
+                    {job.highlights.map((highlight: any) => (
+                      <li>{highlight}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Education -->
+      {education && education.length > 0 && (
+        <div>
+          <h2 class="text-2xl font-bold mb-1 pb-2 border-b-2" style="color: var(--color-heading); border-color: var(--color-accent);">Education</h2>
+          <div class="space-y-4 mt-6">
+            {education.map((edu: any) => (
+              <div>
+                <div class="flex justify-between items-start gap-4 mb-1">
+                  <h3 class="text-lg font-bold" style="color: var(--color-heading);">
+                    {edu.studyType} in {edu.area}
+                  </h3>
+                  <span class="text-sm whitespace-nowrap" style="color: var(--color-text-muted);">{edu.endDate}</span>
+                </div>
+                <p class="text-sm font-semibold" style="color: var(--color-accent);">{edu.institution}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Skills Grid -->
+      {skills && skills.length > 0 && (
+        <div>
+          <h2 class="text-2xl font-bold mb-1 pb-2 border-b-2" style="color: var(--color-heading); border-color: var(--color-accent);">Skills</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+            {skills.map((skillGroup: any) => (
+              <div class="border-l-4 pl-4 py-2" style="border-color: var(--color-accent); background: var(--color-bg);">
+                <h3 class="font-bold text-sm mb-2" style="color: var(--color-heading);">{skillGroup.name}</h3>
+                <div class="flex flex-wrap gap-1">
+                  {skillGroup.keywords.map((keyword: any) => (
+                    <span class="text-xs" style="color: var(--color-text);">
+                      {keyword}{skillGroup.keywords.indexOf(keyword) < skillGroup.keywords.length - 1 ? ',' : ''}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Projects -->
+      {projects && projects.length > 0 && (
+        <div>
+          <h2 class="text-2xl font-bold mb-1 pb-2 border-b-2" style="color: var(--color-heading); border-color: var(--color-accent);">Projects</h2>
+          <div class="space-y-4 mt-6">
+            {projects.map((project: any) => (
+              <div>
+                <h3 class="text-lg font-bold" style="color: var(--color-heading);">{project.name}</h3>
+                {project.description && <p class="text-sm mb-2" style="color: var(--color-text);">{project.description}</p>}
+                {project.highlights && project.highlights.length > 0 && (
+                  <ul class="list-disc list-inside space-y-1 text-sm" style="color: var(--color-text);">
+                    {project.highlights.map((highlight: any) => (
+                      <li>{highlight}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+</section>

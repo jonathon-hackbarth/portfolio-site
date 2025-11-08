@@ -5,6 +5,9 @@
 dist/
 .output/
 
+# generated files
+public/resume.pdf
+
 # dependencies
 node_modules/
 
