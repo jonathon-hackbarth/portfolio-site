@@ -293,7 +293,7 @@ html {
   }
 
   .language-tag {
-    @apply rounded-md px-2 py-0.5 min-w-[80px] flex items-center;
+    @apply rounded-md px-2 py-0.5 min-w-20 flex items-center;
     background: color-mix(
       in srgb,
       var(--color-surface) 78%,
