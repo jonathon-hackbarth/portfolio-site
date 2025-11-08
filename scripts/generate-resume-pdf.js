@@ -229,7 +229,6 @@ function generateResumeHTML(basics, work, education, skills, projects) {
     </div>
     
     <p class="summary">${basics.summary}</p>
-    <div class="header-divider"></div>
     
     <!-- Experience -->
     ${work && work.length > 0 ? `
