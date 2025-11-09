@@ -76,11 +76,12 @@ html {
   .nav-list {
     @apply flex gap-1 sm:gap-3 flex-nowrap list-none px-0 m-0 items-center;
     position: relative;
+    order: -1;
   }
 
   /* Hamburger menu button */
   .nav-toggle {
-    @apply relative w-8 h-8 flex flex-col justify-center items-center gap-1.5 bg-transparent border-none cursor-pointer p-0;
+    @apply relative w-8 h-8 flex flex-col justify-center items-center gap-1.5 bg-transparent border-none cursor-pointer p-0 sm:hidden;
     color: var(--color-text-muted);
     transition: color 0.3s ease;
   }
@@ -97,6 +98,11 @@ html {
 
   .hamburger-line {
     @apply block w-6 h-0.5 bg-current transition-all duration-300 ease-in-out;
+  }
+
+  /* Brand styling */
+  .nav-brand {
+    @apply flex items-center shrink-0 gap-2 sm:gap-3 ml-auto;
   }
 
   /* Hamburger animation when menu is open */
