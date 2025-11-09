@@ -8,7 +8,7 @@ const resumeData = resumeFile.default || resumeFile;
 const { basics, work, education, skills, projects } = resumeData;
 ---
 
-<section id="resume" aria-labelledby="resume-heading" class="w-full mx-auto px-4 sm:px-6 lg:px-8 py-12" style="scroll-margin-top: 100px;">
+<section id="resume" aria-labelledby="resume-heading" class="w-full mx-auto px-4 sm:px-6 lg:px-8 py-12" style="scroll-margin-top: calc(var(--nav-height) + 1.5rem);">
   <h2 id="resume-heading" class="sr-only">Resume</h2>
   
   <!-- Download Button -->
@@ -26,7 +26,7 @@ const { basics, work, education, skills, projects } = resumeData;
   </div>
 
   <!-- Main Resume Container -->
-  <div class="max-w-6xl mx-auto rounded-lg shadow-lg overflow-hidden" style="background: var(--color-surface); color: var(--color-text);">
+  <div class="max-w-6xl mx-auto rounded-lg shadow-lg overflow-hidden resume-gradient" style="color: var(--color-text);">
     <div class="p-8 sm:p-8 space-y-8 resume-content" style="padding: clamp(1.5rem, 5%, 2rem);">
 
       <!-- Header -->
@@ -179,7 +179,7 @@ const { basics, work, education, skills, projects } = resumeData;
           <h2 class="text-2xl font-bold mb-1 pb-2 border-b-2" style="color: var(--color-heading); border-color: var(--color-accent);">Skills</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
             {skills.map((skillGroup: any) => (
-              <div class="border-l-4 pl-4 py-2" style="border-color: var(--color-accent); background: var(--color-bg);">
+              <div class="border-l-4 pl-4 py-2 skill-card" style="border-color: var(--color-accent);">
                 <h3 class="font-bold text-sm mb-2" style="color: var(--color-heading);">{skillGroup.name}</h3>
                 <div class="flex flex-wrap gap-1">
                   {skillGroup.keywords.map((keyword: any) => (

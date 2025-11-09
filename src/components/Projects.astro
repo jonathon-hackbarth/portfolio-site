@@ -31,7 +31,6 @@ try {
 ---
 
 <section id="projects" class="projects-section">
-  <h2 class="projects-title">Recent Projects</h2>
   {
     error && (
       <div class="flex justify-center items-center py-8">
@@ -48,9 +47,9 @@ try {
   }
   {
     !error && projects.length > 0 && (
-      <div class="projects-grid flex flex-wrap gap-4">
-        {projects.map((p) => (
-          <ProjectCard project={p} />
+      <div class="projects-grid">
+        {projects.map((p, index) => (
+          <ProjectCard project={p} index={index} />
         ))}
       </div>
     )

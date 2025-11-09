@@ -3,13 +3,30 @@ import type { ProjectData } from "../utils/projectUtils";
 
 export interface Props {
   project: ProjectData;
+  index: number;
 }
 
-const { project: p } = Astro.props;
+const { project: p, index = 0 } = Astro.props;
+
+// Map project names to their image files (light and dark versions)
+const imageMap: Record<string, { light: string; dark: string }> = {
+  "portfolio-site": {
+    light: "/portfolio-light.png",
+    dark: "/portfolio-dark.png",
+  },
+  "conversion-app": {
+    light: "/conversion-app-light.png",
+    dark: "/conversion-app-dark.png",
+  },
+};
+
+const imageSet = imageMap[p.name] || null;
+const hasImage = imageSet !== null;
+const isEvenIndex = index % 2 === 0;
 ---
 
-<article class="project-card" aria-labelledby={`project-title-${p.name}`}>
-  <div class="project-content">
+<article class="project-row" aria-labelledby={`project-title-${p.name}`}>
+  <div class="project-card">
     <h3 id={`project-title-${p.name}`} class="project-title">
       {p.name}
     </h3>

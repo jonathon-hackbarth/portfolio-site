@@ -3,11 +3,11 @@
 /* Design tokens */
 :root {
   --color-heading: #111827; /* gray-900 */
-  --color-bg: #f8fafc; /* light background */
+  --color-bg: #f3f4f6; /* light background - lighter grey */
   --color-surface: #ffffff;
   --color-text: #1f2937; /* gray-800 */
-  --color-text-muted: #4b5563; /* gray-600 */
-  --color-border: #e5e7eb; /* gray-200 */
+  --color-text-muted: #6b7280; /* gray-500 - more grey */
+  --color-border: #d1d5db; /* gray-300 - more grey */
   --color-accent: #2563eb; /* blue-600 */
   --color-accent-hover: #1d4ed8; /* blue-700 */
   --shadow-elev: 0 2px 4px -2px rgba(0, 0, 0, 0.08),
@@ -310,9 +310,13 @@ html {
 
   /* Hero section */
   .hero-section {
-    @apply flex flex-col md:flex-row items-center gap-12 justify-center px-8 py-16;
-    /* Extra top padding compensates for fixed nav overlay so visible space remains balanced */
-    padding-top: calc(4rem + var(--nav-height));
+    @apply flex flex-col md:flex-row items-center gap-12 justify-center px-4 sm:px-6 lg:px-8 py-16 rounded-lg shadow-lg mx-auto w-full max-w-6xl;
+    margin: 5rem auto 0;
+    background: linear-gradient(to right, rgba(107, 114, 128, 0.05) 0%, rgba(107, 114, 128, 0.02) 60%, rgba(107, 114, 128, 0) 100%);
+  }
+
+  html.theme-dark .hero-section {
+    background: linear-gradient(to right, rgba(96, 165, 250, 0.05) 0%, rgba(96, 165, 250, 0.01) 60%, rgba(96, 165, 250, 0) 100%);
   }
 
   .hero-image-container-left {
@@ -386,15 +390,8 @@ html {
 
   /* Projects section */
   .projects-section {
-    @apply py-16 relative;
-    /* Subtle band using a tint of surface over background */
-    background: linear-gradient(
-      to bottom,
-      color-mix(in srgb, var(--color-surface) 88%, var(--color-bg)) 0%,
-      color-mix(in srgb, var(--color-surface) 94%, var(--color-bg)) 100%
-    );
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
+    @apply w-full mx-auto px-3 sm:px-6 lg:px-8 py-12;
+    background: var(--color-bg);
     /* Anchor offset ensures nav does not cover heading */
     scroll-margin-top: calc(var(--nav-height) + 1.5rem);
   }
@@ -405,34 +402,137 @@ html {
   }
 
   .projects-grid {
-    @apply flex flex-wrap justify-center gap-8 mx-auto px-8;
+    @apply flex flex-col gap-8 sm:gap-20 mx-auto w-full max-w-6xl;
+  }
+
+  .project-row {
+    @apply flex items-stretch flex-col sm:flex-row gap-8 sm:gap-12 w-full py-8 sm:py-10 rounded-lg shadow-lg;
+    background: linear-gradient(to right, rgba(107, 114, 128, 0.05) 0%, rgba(107, 114, 128, 0.02) 60%, rgba(107, 114, 128, 0) 100%);
+  }
+
+  html.theme-dark .project-row {
+    background: linear-gradient(to right, rgba(96, 165, 250, 0.05) 0%, rgba(96, 165, 250, 0.01) 60%, rgba(96, 165, 250, 0) 100%);
+  }
+
+  .project-row:last-child {
+    padding-bottom: 0;
+  }
+
+  .resume-gradient {
+    background: linear-gradient(to right, rgba(107, 114, 128, 0.05) 0%, rgba(107, 114, 128, 0.02) 60%, rgba(107, 114, 128, 0) 100%) !important;
+  }
+
+  html.theme-dark .resume-gradient {
+    background: linear-gradient(to right, rgba(96, 165, 250, 0.05) 0%, rgba(96, 165, 250, 0.01) 60%, rgba(96, 165, 250, 0) 100%) !important;
+  }
+
+  .skill-card {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.15) 0%, rgba(37, 99, 235, 0.08) 100%);
+  }
+
+  html.theme-dark .skill-card {
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.08) 0%, rgba(96, 165, 250, 0.03) 100%);
+  }
+
+  .project-image-container {
+    @apply w-full sm:w-5/12 shrink-0 overflow-hidden order-1 sm:order-1 bg-gray-100 h-64 sm:h-80;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  html.theme-dark .project-image-container {
+    @apply bg-gray-900;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+  }
+
+  .project-image-container.image-right {
+    @apply sm:order-2;
+  }
+
+  .project-image {
+    @apply w-full h-full object-contain transition-transform duration-300 rounded-lg;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+  }
+
+  html.theme-dark .project-image {
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+  }
+
+  .light-image {
+    display: block;
+  }
+
+  .dark-image {
+    display: none;
+  }
+
+  html.theme-dark .light-image {
+    display: none;
+  }
+
+  html.theme-dark .dark-image {
+    display: block;
+  }
+
+  .project-image:hover {
+    @apply scale-105;
+  }
+
+  .github-placeholder {
+    @apply w-full h-full flex flex-col items-center justify-center gap-4;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+    color: var(--color-text-muted);
+  }
+
+  html.theme-dark .github-placeholder {
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+    color: var(--color-text-muted);
+  }
+
+  .github-icon {
+    @apply w-20 h-20 opacity-60;
+    color: var(--color-accent);
+  }
+
+  .image-placeholder {
+    @apply w-full h-full bg-linear-to-br from-gray-200 to-gray-300 flex items-center justify-center;
+  }
+
+  html.theme-dark .image-placeholder {
+    @apply from-gray-800 to-gray-900;
   }
 
   .project-card {
-    @apply rounded-lg p-5 transition-all duration-300 h-fit w-100;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    box-shadow: var(--shadow-elev);
+    @apply px-4 py-4 sm:p-10 transition-all duration-300 h-fit flex-1 order-2 sm:order-0 flex flex-col justify-between;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
   }
+
   .project-card:hover {
-    border-color: var(--color-accent);
+    border-color: transparent;
+  }
+
+  .project-card.order-right {
+    @apply sm:order-1;
   }
 
   .project-content {
-    @apply flex flex-col gap-3;
+    @apply flex flex-col gap-6;
   }
 
   .project-title {
-    @apply text-xl font-semibold;
+    @apply text-2xl sm:text-3xl font-bold;
     color: var(--color-heading);
   }
 
   .project-description {
+    @apply text-base sm:text-lg;
     color: var(--color-text-muted);
   }
 
   .project-buttons {
-    @apply flex gap-2;
+    @apply flex gap-3 mt-6;
   }
 
   .project-button-primary {
@@ -448,11 +548,11 @@ html {
   }
 
   .project-divider {
-    @apply border-t border-gray-200;
+    @apply border-t border-gray-200 hidden;
   }
 
   .project-languages {
-    @apply flex flex-wrap gap-2;
+    @apply flex flex-wrap gap-3 mt-6;
   }
 
   .language-tag {

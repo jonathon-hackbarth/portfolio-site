@@ -19,14 +19,13 @@ import Resume from "../components/Resume.astro";
       <section
         id="about"
         aria-labelledby="about-heading"
-        class="w-full mx-auto px-4 sm:px-6 lg:px-8"
+        class="w-full mx-auto px-3 sm:px-6 lg:px-8"
+        style="scroll-margin-top: var(--nav-height);"
       >
         <h2 id="about-heading" class="sr-only">About</h2>
         <Hero />
       </section>
-      <div class="w-full mx-auto px-4 sm:px-6 lg:px-8">
-        <Projects />
-      </div>
+      <Projects />
       <Resume />
     </main>
     <footer
