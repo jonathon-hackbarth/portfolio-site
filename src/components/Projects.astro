@@ -9,14 +9,13 @@ let projects: ProjectData[] = [];
 let error: string | null = null;
 try {
   const token = import.meta.env.GH_TOKEN;
-  if (!token) throw new Error("GitHub token not configured");
 
   // Fetch repos directly from GitHub (avoids internal /api call in SSR context)
   const repoRes = await fetch(
     `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&direction=desc`,
     {
       headers: {
-        Authorization: `Bearer ${token}`,
+        ...(token && { Authorization: `Bearer ${token}` }),
         Accept: "application/vnd.github.v3+json",
       },
     }

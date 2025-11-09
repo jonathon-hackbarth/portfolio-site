@@ -26,11 +26,11 @@ export interface ProjectData extends Repository {
 // Moved fetchLanguages here to avoid circular dependencies
 async function fetchLanguages(
   url: string,
-  token: string
+  token?: string
 ): Promise<GitHubLanguages> {
   const response = await fetch(url, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      ...(token && { Authorization: `Bearer ${token}` }),
       Accept: "application/vnd.github.v3+json",
     },
   });
@@ -47,12 +47,8 @@ async function fetchLanguages(
  */
 export async function getProjectsData(
   repos: Repository[],
-  token: string
+  token?: string
 ): Promise<ProjectData[]> {
-  if (!token) {
-    throw new Error("GitHub token is required");
-  }
-
   try {
     return await Promise.all(
       repos.map(async (repo) => {
