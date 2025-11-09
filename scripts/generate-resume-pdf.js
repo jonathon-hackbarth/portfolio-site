@@ -11,6 +11,39 @@ const __dirname = dirname(__filename);
 const resumePath = join(__dirname, '../public/resume.json');
 const outputPath = join(__dirname, '../public/resume.pdf');
 
+/**
+ * Converts a date string in YYYY-MM format to 'Mon YYYY' format
+ */
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  
+  const parts = dateStr.split('-');
+  const year = parts[0];
+  const month = parts[1];
+  
+  if (!year) return '';
+  
+  if (!month) return year;
+  
+  const monthNum = parseInt(month, 10);
+  const months = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+  ];
+  
+  const monthStr = months[monthNum - 1] || '';
+  return monthStr ? `${monthStr} ${year}` : year;
+}
+
+/**
+ * Formats a date range with start and optional end date
+ */
+function formatDateRange(startDate, endDate) {
+  const start = formatDate(startDate);
+  const end = endDate ? formatDate(endDate) : 'Present';
+  return `${start} – ${end}`;
+}
+
 async function generateResumePDF() {
   console.log('🔄 Generating resume PDF...');
   
@@ -140,9 +173,6 @@ function generateResumeHTML(basics, work, education, skills, projects) {
       font-size: 13px;
       font-weight: 600;
       color: #111827;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
       margin-bottom: 2px;
     }
     
@@ -173,7 +203,8 @@ function generateResumeHTML(basics, work, education, skills, projects) {
     .date {
       font-size: 11px;
       color: #6b7280;
-      white-space: nowrap;
+      margin-bottom: 4px;
+      font-weight: 500;
     }
     
     .skills-grid {
@@ -236,10 +267,8 @@ function generateResumeHTML(basics, work, education, skills, projects) {
       <h2>Experience</h2>
       ${work.map(job => `
         <div class="job">
-          <div class="job-title">
-            <span>${job.position}</span>
-            <span class="date">${job.startDate} ${job.endDate ? `– ${job.endDate}` : '– Present'}</span>
-          </div>
+          <div class="job-title">${job.position}</div>
+          <div class="date">${formatDateRange(job.startDate, job.endDate)}</div>
           <div class="job-company">${job.name}</div>
           ${job.summary ? `<div class="job-summary">${job.summary}</div>` : ''}
           ${job.highlights && job.highlights.length > 0 ? `
@@ -258,10 +287,8 @@ function generateResumeHTML(basics, work, education, skills, projects) {
       <h2>Education</h2>
       ${education.map(edu => `
         <div class="edu">
-          <div class="job-title">
-            <span>${edu.studyType} in ${edu.area}</span>
-            <span class="date">${edu.endDate}</span>
-          </div>
+          <div class="job-title">${edu.studyType} in ${edu.area}</div>
+          <div class="date">${formatDate(edu.endDate)}</div>
           <div class="edu-school">${edu.institution}</div>
         </div>
       `).join('')}

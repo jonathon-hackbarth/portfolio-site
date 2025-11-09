@@ -20,7 +20,23 @@ const navItems = [
       <span class="brand-accent" aria-hidden="true"></span>
     </a>
   </div>
-  <ul class="nav-list" role="list">
+
+  <!-- Hamburger button for mobile -->
+  <button
+    id="nav-toggle"
+    class="nav-toggle hidden sm:hidden"
+    type="button"
+    aria-label="Toggle navigation menu"
+    aria-expanded="false"
+    aria-controls="nav-menu"
+  >
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  </button>
+
+  <!-- Desktop nav list -->
+  <ul id="nav-menu" class="nav-list" role="list">
     {
       navItems.map((item) => (
         <li>
@@ -31,6 +47,7 @@ const navItems = [
       ))
     }
   </ul>
+
   <button
     id="theme-toggle"
     class="theme-toggle-btn theme-slider"
@@ -95,4 +112,6 @@ const navItems = [
   </button>
   <script src="../scripts/theme-toggle.ts"></script>
   <script src="../scripts/nav-active.ts"></script>
+  <script src="../scripts/hamburger-menu.ts"></script>
+  <script src="../scripts/brand-link.ts"></script>
 </nav>

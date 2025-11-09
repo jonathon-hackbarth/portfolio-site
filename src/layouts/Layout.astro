@@ -74,7 +74,7 @@ const personJsonLd = {
   <body>
     <script is:inline>
       {
-        `(() => { try { const t = localStorage.getItem('theme-pref-v1'); if (t==='dark') document.documentElement.classList.add('theme-dark'); } catch {} })();`;
+        `(() => { try { const t = localStorage.getItem('theme-pref-v1'); const isDark = t === 'dark' || (t === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches); if (isDark) document.documentElement.classList.add('theme-dark'); } catch {} })();`;
       }
     </script>
     <slot />
