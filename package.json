@@ -2,9 +2,9 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "node scripts/generate-resume-pdf.js && astro dev",
+    "dev": "tsx scripts/generate-resume-pdf.ts && astro dev",
     "start": "astro dev",
-    "build": "node scripts/generate-resume-pdf.js && astro build",
+    "build": "tsx scripts/generate-resume-pdf.ts && astro build",
     "preview": "wrangler pages dev ./dist",
     "astro": "astro",
     "test": "vitest run",
@@ -20,6 +20,7 @@
   "devDependencies": {
     "@types/node": "^20.12.12",
     "puppeteer": "^24.29.1",
+    "tsx": "^4.20.6",
     "typescript": "^5.5.4",
     "vitest": "^4.0.6"
   },

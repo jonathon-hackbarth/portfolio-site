@@ -11,26 +11,78 @@ const __dirname = dirname(__filename);
 const resumePath = join(__dirname, '../public/resume.json');
 const outputPath = join(__dirname, '../public/resume.pdf');
 
+interface Profile {
+  network: string;
+  url: string;
+}
+
+interface Basics {
+  name: string;
+  label: string;
+  email: string;
+  location?: {
+    countryCode?: string;
+  };
+  url: string;
+  summary: string;
+  profiles?: Profile[];
+}
+
+interface Work {
+  position: string;
+  name: string;
+  startDate: string;
+  endDate?: string;
+  summary?: string;
+  highlights?: string[];
+}
+
+interface Education {
+  studyType: string;
+  area: string;
+  endDate: string;
+  institution: string;
+}
+
+interface Skill {
+  name: string;
+  keywords: string[];
+}
+
+interface Project {
+  name: string;
+  description?: string;
+  highlights?: string[];
+}
+
+interface ResumeData {
+  basics: Basics;
+  work?: Work[];
+  education?: Education[];
+  skills?: Skill[];
+  projects?: Project[];
+}
+
 /**
  * Converts a date string in YYYY-MM format to 'Mon YYYY' format
  */
-function formatDate(dateStr) {
+function formatDate(dateStr: string): string {
   if (!dateStr) return '';
-  
+
   const parts = dateStr.split('-');
   const year = parts[0];
   const month = parts[1];
-  
+
   if (!year) return '';
-  
+
   if (!month) return year;
-  
+
   const monthNum = parseInt(month, 10);
   const months = [
     'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
   ];
-  
+
   const monthStr = months[monthNum - 1] || '';
   return monthStr ? `${monthStr} ${year}` : year;
 }
@@ -38,17 +90,17 @@ function formatDate(dateStr) {
 /**
  * Formats a date range with start and optional end date
  */
-function formatDateRange(startDate, endDate) {
+function formatDateRange(startDate: string, endDate?: string): string {
   const start = formatDate(startDate);
   const end = endDate ? formatDate(endDate) : 'Present';
   return `${start} – ${end}`;
 }
 
-async function generateResumePDF() {
+async function generateResumePDF(): Promise<void> {
   console.log('🔄 Generating resume PDF...');
-  
+
   try {
-    const resumeData = JSON.parse(readFileSync(resumePath, 'utf-8'));
+    const resumeData: ResumeData = JSON.parse(readFileSync(resumePath, 'utf-8'));
     const { basics, work, education, skills, projects } = resumeData;
 
     // Generate HTML from resume data
@@ -56,12 +108,12 @@ async function generateResumePDF() {
 
     // Launch browser and generate PDF
     const browser = await puppeteer.launch({
-      headless: 'new',
-    });
+      headless: true,
+    } as Parameters<typeof puppeteer.launch>[0]);
 
     const page = await browser.newPage();
     await page.setContent(html, { waitUntil: 'networkidle0' });
-    
+
     await page.pdf({
       path: outputPath,
       format: 'A4',
@@ -82,7 +134,13 @@ async function generateResumePDF() {
   }
 }
 
-function generateResumeHTML(basics, work, education, skills, projects) {
+function generateResumeHTML(
+  basics: Basics,
+  work?: Work[],
+  education?: Education[],
+  skills?: Skill[],
+  projects?: Project[]
+): string {
   return `
 <!DOCTYPE html>
 <html lang="en">
@@ -97,7 +155,7 @@ function generateResumeHTML(basics, work, education, skills, projects) {
       padding: 0;
       box-sizing: border-box;
     }
-    
+
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       line-height: 1.5;
@@ -105,26 +163,26 @@ function generateResumeHTML(basics, work, education, skills, projects) {
       background: white;
       padding: 0;
     }
-    
+
     .container {
       max-width: 8.5in;
       margin: 0 auto;
       background: white;
     }
-    
+
     h1 {
       font-size: 28px;
       font-weight: 700;
       margin-bottom: 2px;
       color: #111827;
     }
-    
+
     .subtitle {
       font-size: 14px;
       color: #6b7280;
       margin-bottom: 8px;
     }
-    
+
     .contact-info {
       font-size: 11px;
       color: #4b5563;
@@ -133,28 +191,28 @@ function generateResumeHTML(basics, work, education, skills, projects) {
       flex-wrap: wrap;
       gap: 6px;
     }
-    
+
     .contact-info a {
       color: #2563eb;
       text-decoration: none;
     }
-    
+
     .summary {
       font-size: 11px;
       line-height: 1.5;
       margin-bottom: 10px;
       color: #1f2937;
     }
-    
+
     .header-divider {
       border-top: 2px solid #2563eb;
       margin-bottom: 10px;
     }
-    
+
     section {
       margin-bottom: 12px;
     }
-    
+
     h2 {
       font-size: 14px;
       font-weight: 600;
@@ -163,57 +221,57 @@ function generateResumeHTML(basics, work, education, skills, projects) {
       padding-bottom: 2px;
       margin-bottom: 8px;
     }
-    
+
     .job, .edu {
       margin-bottom: 10px;
       page-break-inside: avoid;
     }
-    
+
     .job-title, .edu-title {
       font-size: 13px;
       font-weight: 600;
       color: #111827;
       margin-bottom: 2px;
     }
-    
+
     .job-company, .edu-school {
       font-size: 12px;
       color: #2563eb;
       font-weight: 600;
       margin-bottom: 4px;
     }
-    
+
     .job-summary {
       font-size: 11px;
       color: #4b5563;
       margin-bottom: 6px;
     }
-    
+
     .highlights {
       font-size: 11px;
       color: #1f2937;
       margin-left: 16px;
       margin-top: 4px;
     }
-    
+
     .highlights li {
       margin-bottom: 3px;
     }
-    
+
     .date {
       font-size: 11px;
       color: #6b7280;
       margin-bottom: 4px;
       font-weight: 500;
     }
-    
+
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
       margin-top: 8px;
     }
-    
+
     .skill-category {
       border-left: 3px solid #2563eb;
       padding-left: 12px;
@@ -222,20 +280,20 @@ function generateResumeHTML(basics, work, education, skills, projects) {
       padding-left: 12px;
       page-break-inside: avoid;
     }
-    
+
     .skill-category-title {
       font-size: 12px;
       font-weight: 600;
       color: #111827;
       margin-bottom: 6px;
     }
-    
+
     .skill-keywords {
       font-size: 10px;
       color: #4b5563;
       line-height: 1.4;
     }
-    
+
     @media print {
       body {
         margin: 0;
@@ -249,7 +307,7 @@ function generateResumeHTML(basics, work, education, skills, projects) {
     <!-- Header -->
     <h1>${basics.name}</h1>
     <p class="subtitle">${basics.label}</p>
-    
+
     <div class="contact-info">
       <a href="mailto:${basics.email}">${basics.email}</a>
       <span>•</span>
@@ -258,9 +316,9 @@ function generateResumeHTML(basics, work, education, skills, projects) {
       <a href="${basics.url}" target="_blank">${basics.url?.replace('https://', '').replace('http://', '')}</a>
       ${basics.profiles ? basics.profiles.map(p => `<span>•</span><a href="${p.url}" target="_blank">${p.network}</a>`).join('') : ''}
     </div>
-    
+
     <p class="summary">${basics.summary}</p>
-    
+
     <!-- Experience -->
     ${work && work.length > 0 ? `
     <section>
@@ -280,7 +338,7 @@ function generateResumeHTML(basics, work, education, skills, projects) {
       `).join('')}
     </section>
     ` : ''}
-    
+
     <!-- Education -->
     ${education && education.length > 0 ? `
     <section>
@@ -294,7 +352,7 @@ function generateResumeHTML(basics, work, education, skills, projects) {
       `).join('')}
     </section>
     ` : ''}
-    
+
     <!-- Skills -->
     ${skills && skills.length > 0 ? `
     <section>
@@ -309,7 +367,7 @@ function generateResumeHTML(basics, work, education, skills, projects) {
       </div>
     </section>
     ` : ''}
-    
+
     <!-- Projects -->
     ${projects && projects.length > 0 ? `
     <section>
