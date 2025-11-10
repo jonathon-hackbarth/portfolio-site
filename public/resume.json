@@ -208,6 +208,10 @@
       "level": "Advanced",
       "keywords": [
         "React",
+        "Next.js",
+        "Tailwind CSS",
+        "Radix UI",
+        "Accessibility (ARIA)",
         "Fluent UI",
         "REST APIs",
         "Document Management",
@@ -286,6 +290,37 @@
       ],
       "entity": "Personal",
       "type": "Website"
+    },
+    {
+      "name": "quikconvert.app",
+      "description": "Fast, accessible web application for converting cooking and kitchen measurements instantly",
+      "highlights": [
+        "Built with Next.js 15 and React 19 for optimal performance with server-side rendering",
+        "Focused converters for cooking measurements (volume, weight, temperature) with additional utilities",
+        "Fully accessible with ARIA support and keyboard navigation for all users",
+        "Dark mode support with automatic theme detection and user preference persistence",
+        "SEO-optimized with structured data markup and Open Graph metadata",
+        "Responsive design optimized for mobile, tablet, and desktop devices",
+        "Lightweight production build (~102KB shared JS) with Tailwind CSS 4 styling"
+      ],
+      "keywords": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Radix UI",
+        "Accessibility",
+        "Server-side Rendering",
+        "Responsive Design"
+      ],
+      "startDate": "2024",
+      "url": "https://quikconvert.app",
+      "roles": [
+        "Architect",
+        "Developer"
+      ],
+      "entity": "Personal",
+      "type": "Web Application"
     }
   ],
   "meta": {
