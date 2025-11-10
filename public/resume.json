@@ -38,9 +38,9 @@
       "startDate": "2025-08",
       "summary": "Senior full-stack developer specializing in Microsoft Power Platform, SharePoint, and Office web app development, driving enterprise application development and cloud transformations.",
       "highlights": [
-        "Leveraged AI-enhanced development reducing feature cycles from 80 hours to 8-16 hours (80-90% acceleration), delivering 2-3 features weekly vs. 1 per sprint; enabled feedback-to-deployment cycles in days vs. weeks",
-        "Accelerated POC development to 8 weeks (vs. 6-month industry standard), delivering rapid prototyping cycle for legal professionals; architected for enterprise-scale deployment",
-        "Architected Modern Web App Add-In eliminating context-switching between Outlook/SharePoint, reducing document management time by 80% (5 minutes to 1 minute per record); positioned to process hundreds of documents monthly"
+        "Accelerated feature cycles 80-90% with AI-enhanced development, delivering 2-3 features weekly vs. 1 per sprint; enabled daily deployment cycles vs. weekly",
+        "Delivered 8-week POC (vs. 6-month standard) for legal professionals; architected for enterprise-scale deployment",
+        "Architected Outlook/SharePoint Add-In reducing document time by 80% (5→1 minute per record); positioned for hundreds monthly"
       ]
     },
     {

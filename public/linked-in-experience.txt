@@ -1,0 +1,113 @@
+Experience
+
+Alpha Omega logo
+Senior Microsoft Power Platform, SharePoint & Applications Developer III
+Senior Microsoft Power Platform, SharePoint & Applications Developer III
+Alpha Omega · Full-timeAlpha Omega · Full-time
+Aug 2025 - Present · 4 mosAug 2025 to Present · 4 mos
+United States · RemoteUnited States · Remote
+ helped me get this job
+LinkedIn helped me get this job
+Senior full-stack developer specializing in Microsoft Power Platform, SharePoint, and Office web app development, driving enterprise application development and cloud transformations.
+
+- Accelerated feature cycles 80-90% with AI-enhanced development, delivering 2-3 features weekly vs. 1 per sprint; enabled daily deployment cycles vs. weekly
+
+- Delivered 8-week POC (vs. 6-month standard) for legal professionals; architected for enterprise-scale deployment
+
+- Architected Outlook/SharePoint Add-In reducing document time by 80% (5→1 minute per record); positioned for hundreds monthly
+Senior full-stack developer specializing in Microsoft Power Platform, SharePoint, and Office web app development, driving enterprise application development and cloud transformations. - Accelerated feature cycles 80-90% with AI-enhanced development, delivering 2-3 features weekly vs. 1 per sprint; enabled daily deployment cycles vs. weekly - Delivered 8-week POC (vs. 6-month standard) for legal professionals; architected for enterprise-scale deployment - Architected Outlook/SharePoint Add-In reducing document time by 80% (5→1 minute per record); positioned for hundreds monthly
+Skills: React.js · Fluent UI · Microsoft Azure · Microsoft SharePoint · Microsoft Power Platform · JavaScript · TypeScript
+Skills: React.js · Fluent UI · Microsoft Azure · Microsoft SharePoint · Microsoft Power Platform · JavaScript · TypeScript
+Best Buy logo
+Best Buy
+Best Buy
+18 yrs 2 mos18 yrs 2 mos
+Engineer II - Microsoft M365 Admin, Power Platform Admin & Developer
+Engineer II - Microsoft M365 Admin, Power Platform Admin & Developer
+Full-timeFull-time
+Oct 2022 - Aug 2025 · 2 yrs 11 mosOct 2022 to Aug 2025 · 2 yrs 11 mos
+United States · RemoteUnited States · Remote
+- Spearheaded enterprise-wide implementation of M365 Copilot, participating in Microsoft's first Copilot pilot program
+- Created internal knowledge base by integrating Microsoft Learn with proprietary enterprise content, reducing support tickets and improving operational efficiency
+- Directed proof-of-concept for Copilot Studio, managing end-to-end security and accelerating time to business outcomes
+- Built custom Graph API connectors for Power Platform and developed governance automation scripts
+- Directed migration of SharePoint to cloud infrastructure, reducing costs and improving system reliability
+- Designed enterprise automation frameworks, increasing engineering capacity by 50%
+- Spearheaded enterprise-wide implementation of M365 Copilot, participating in Microsoft's first Copilot pilot program - Created internal knowledge base by integrating Microsoft Learn with proprietary enterprise content, reducing support tickets and improving operational efficiency - Directed proof-of-concept for Copilot Studio, managing end-to-end security and accelerating time to business outcomes - Built custom Graph API connectors for Power Platform and developed governance automation scripts - Directed migration of SharePoint to cloud infrastructure, reducing costs and improving system reliability - Designed enterprise automation frameworks, increasing engineering capacity by 50%
+Skills: Graph API · Relational Databases · Software Development · M365 CoPilot · Microsoft Power Platform · Microsoft Azure · Microsoft Dynamics · AI & Generative AI · JavaScript · Data Governance
+Skills: Graph API · Relational Databases · Software Development · M365 CoPilot · Microsoft Power Platform · Microsoft Azure · Microsoft Dynamics · AI & Generative AI · JavaScript · Data Governance
+Developer - Microsoft Power Platform and SharePoint
+Developer - Microsoft Power Platform and SharePoint
+Full-timeFull-time
+Nov 2019 - Oct 2022 · 3 yrsNov 2019 to Oct 2022 · 3 yrs
+United States · RemoteUnited States · Remote
+- Developed enterprise applications on Power Platform, achieving $15M in annual labor cost savings through streamlined automation
+- Implemented control processes to reduce support tickets by 90%, significantly improving user experiences and operational reliability
+- Created scalable solutions across CRM, services, and supply chain systems to enhance productivity across teams
+- Created 50+ Power Apps, Power Automates, Azure Automations and other Solutions to solve critical business needs
+- Developed enterprise applications on Power Platform, achieving $15M in annual labor cost savings through streamlined automation - Implemented control processes to reduce support tickets by 90%, significantly improving user experiences and operational reliability - Created scalable solutions across CRM, services, and supply chain systems to enhance productivity across teams - Created 50+ Power Apps, Power Automates, Azure Automations and other Solutions to solve critical business needs
+Skills: Relational Databases · Operational Efficiency · PowerBI · Process Automation · Automation · System Integration · Software Development · Microsoft Power Platform · Microsoft Dynamics · Business Process Improvement · JavaScript
+Skills: Relational Databases · Operational Efficiency · PowerBI · Process Automation · Automation · System Integration · Software Development · Microsoft Power Platform · Microsoft Dynamics · Business Process Improvement · JavaScript
+Data Analyst & Automation Developer
+Data Analyst & Automation Developer
+Full-timeFull-time
+Nov 2018 - Nov 2019 · 1 yr 1 moNov 2018 to Nov 2019 · 1 yr 1 mo
+United States · RemoteUnited States · Remote
+- Led SharePoint migrations for 100k+ user base, managing sites up to 300GB with advanced migration configurations and execution
+- Architected complex transformations from InfoPath to Power Automate, Power Apps, and custom connectors enabling modernized workflows
+- Designed automation workflows leveraging Graph API endpoints for governance and operational efficiency, ensuring adherence to compliance standards
+- Developed Power BI dashboards, improving analytics and reporting efficiency by 40%
+- Led SharePoint migrations for 100k+ user base, managing sites up to 300GB with advanced migration configurations and execution - Architected complex transformations from InfoPath to Power Automate, Power Apps, and custom connectors enabling modernized workflows - Designed automation workflows leveraging Graph API endpoints for governance and operational efficiency, ensuring adherence to compliance standards - Developed Power BI dashboards, improving analytics and reporting efficiency by 40%
+Skills: Graph API · Relational Databases · Data Visualization · Microsoft Power BI · Microsoft Azure · Microsoft Dynamics · Cloud Automation
+Skills: Graph API · Relational Databases · Data Visualization · Microsoft Power BI · Microsoft Azure · Microsoft Dynamics · Cloud Automation
+Manager of Remote Support Quality Operations
+Manager of Remote Support Quality Operations
+Full-timeFull-time
+Jul 2014 - Nov 2018 · 4 yrs 5 mosJul 2014 to Nov 2018 · 4 yrs 5 mos
+United States · RemoteUnited States · Remote
+- Established customer outreach program leveraging Geek Squad's 90+ NPS framework, delivering industry-leading CSAT scores for both onshore and offshore teams
+- Developed Office VBA add-ins for Outlook and Excel integrations, automating customer interaction workflows and reducing customer interaction time by 90%
+- Improved workforce productivity by 20% through enhanced training and leadership development
+- Implemented scalable frameworks for issue resolution and operational efficiency
+- Established customer outreach program leveraging Geek Squad's 90+ NPS framework, delivering industry-leading CSAT scores for both onshore and offshore teams - Developed Office VBA add-ins for Outlook and Excel integrations, automating customer interaction workflows and reducing customer interaction time by 90% - Improved workforce productivity by 20% through enhanced training and leadership development - Implemented scalable frameworks for issue resolution and operational efficiency
+Skills: Operational Efficiency · Change Management · Leadership · Customer Success · Team Building · Microsoft Teams
+Skills: Operational Efficiency · Change Management · Leadership · Customer Success · Team Building · Microsoft Teams
+Quality Assurance Specialist
+Quality Assurance Specialist
+Full-timeFull-time
+Apr 2013 - Jul 2014 · 1 yr 4 mosApr 2013 to Jul 2014 · 1 yr 4 mos
+United States · RemoteUnited States · Remote
+- Technical Support Excellence: Delivered exceptional technical support, resolving customer issues with a 95%+ first-call resolution rate while consistently surpassing performance metrics in speed, quality, and satisfaction.
+- Customer Solutions Implementation: Designed and implemented tailored technical solutions for clients, improving system functionality and ensuring seamless technology adoption for both business and consumer clients.
+- Technical Support Excellence: Delivered exceptional technical support, resolving customer issues with a 95%+ first-call resolution rate while consistently surpassing performance metrics in speed, quality, and satisfaction. - Customer Solutions Implementation: Designed and implemented tailored technical solutions for clients, improving system functionality and ensuring seamless technology adoption for both business and consumer clients.
+Skills: Technical Support · Problem Solving · Customer Support · Technology Adoption · Customer Engagement
+Skills: Technical Support · Problem Solving · Customer Support · Technology Adoption · Customer Engagement
+Remote Senior Service Technician
+Remote Senior Service Technician
+Full-timeFull-time
+Mar 2012 - Apr 2013 · 1 yr 2 mosMar 2012 to Apr 2013 · 1 yr 2 mos
+United States · RemoteUnited States · Remote
+Skills: Technical Support · LogMeIn · Mac · iOS · Windows · Android · Linux
+Skills: Technical Support · LogMeIn · Mac · iOS · Windows · Android · Linux
+Senior Service Technician
+Senior Service Technician
+Full-timeFull-time
+Dec 2009 - Mar 2012 · 2 yrs 4 mosDec 2009 to Mar 2012 · 2 yrs 4 mos
+Racine, Wisconsin, United States · On-siteRacine, Wisconsin, United States · On-site
+- Provided remote support, resolving technical issues and enhancing system performance.
+- Provided remote support, resolving technical issues and enhancing system performance.
+Skills: OS X · Technical Support · Mac · Windows · Linux
+Skills: OS X · Technical Support · Mac · Windows · Linux
+Retail Sales Specialist
+Retail Sales Specialist
+Full-timeFull-time
+Oct 2007 - Dec 2009 · 2 yrs 3 mosOct 2007 to Dec 2009 · 2 yrs 3 mos
+Racine, Wisconsin, United States · On-siteRacine, Wisconsin, United States · On-site
+Skills: Retail · Analytical Skills · Operations Management · Negotiation · Sales
+Skills: Retail · Analytical Skills · Operations Management · Negotiation · Sales
+Service Technician
+Service Technician
+Part-timePart-time
+Jul 2007 - Oct 2007 · 4 mosJul 2007 to Oct 2007 · 4 mos
+Racine, Wisconsin, United States · On-siteRacine, Wisconsin, United States · On-site
+Skills: Computer Repair
