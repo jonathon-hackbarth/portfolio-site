@@ -36,12 +36,11 @@
       "position": "Senior Microsoft Power Platform, SharePoint & Applications Developer III",
       "url": "https://www.alphaomega.com",
       "startDate": "2025-08",
-      "summary": "Senior developer specializing in Microsoft Power Platform and SharePoint solutions, driving enterprise application development and cloud transformations.",
+      "summary": "Senior full-stack developer specializing in Microsoft Power Platform, SharePoint, and Office web app development, driving enterprise application development and cloud transformations.",
       "highlights": [
-        "Architecting and leading development of enterprise Modern Web App Add-In for Office, seamlessly integrating Outlook and SharePoint for advanced document management capabilities",
-        "Leveraging AI-enhanced workflows to accelerate development velocity and enable rapid feature prototyping, delivering solutions faster and more efficiently to clients",
-        "Delivering strategic consulting services for government contracts with rigorous compliance and security requirements",
-        "Collaborating with Financial and Legal institutions on mission-critical applications requiring regulatory adherence and data protection standards"
+        "Leveraged AI-enhanced development reducing feature cycles from 80 hours to 8-16 hours (80-90% acceleration), delivering 2-3 features weekly vs. 1 per sprint; enabled feedback-to-deployment cycles in days vs. weeks",
+        "Accelerated POC development to 8 weeks (vs. 6-month industry standard), delivering rapid prototyping cycle for legal professionals; architected for enterprise-scale deployment",
+        "Architected Modern Web App Add-In eliminating context-switching between Outlook/SharePoint, reducing document management time by 80% (5 minutes to 1 minute per record); positioned to process hundreds of documents monthly"
       ]
     },
     {
@@ -86,10 +85,11 @@
       "url": "https://www.bestbuy.com",
       "startDate": "2018-11",
       "endDate": "2019-11",
-      "summary": "Spearheaded enterprise automation efforts and cloud migration initiatives with focus on Graph API integrations and data analytics.",
+      "summary": "Spearheaded enterprise automation efforts and large-scale cloud migration initiatives with focus on advanced transformation strategies and analytics.",
       "highlights": [
-        "Spearheaded enterprise automation efforts during migration projects",
-        "Designed automation workflows leveraging Graph API endpoints for governance",
+        "Led SharePoint migrations for 100k+ user base, managing sites up to 300GB, requiring advanced migration configurations and execution",
+        "Architected complex transformations from InfoPath to Power Automate, Power Apps, and custom connectors enabling modernized workflows",
+        "Designed automation workflows leveraging Graph API endpoints for governance and operational efficiency",
         "Developed Power BI dashboards, improving analytics and reporting efficiency by 40%"
       ]
     },
@@ -101,12 +101,12 @@
       "url": "https://www.bestbuy.com",
       "startDate": "2014-07",
       "endDate": "2018-11",
-      "summary": "Established customer success programs and led major migration projects, delivering industry-leading CSAT scores and improving workforce productivity.",
+      "summary": "Established customer success programs and managed support operations aligned with industry-leading standards, delivering exceptional CSAT outcomes and driving process improvements.",
       "highlights": [
-        "Established customer outreach program, delivering industry-leading CSAT scores for both onshore and offshore teams",
-        "Successfully led multiple major migration projects with clear expectations and actionable milestones",
+        "Established customer outreach program leveraging Geek Squad's 90+ NPS framework, delivering industry-leading CSAT scores for both onshore and offshore teams",
+        "Developed Office VBA add-ins for Outlook and Excel integrations, automating customer interaction workflows and reducing customer interaction time by 90%",
         "Improved workforce productivity by 20% through enhanced training and leadership development",
-        "Implemented scalable frameworks for issue resolution"
+        "Implemented scalable frameworks for issue resolution and operational efficiency"
       ]
     },
     {
@@ -208,6 +208,7 @@
       "level": "Advanced",
       "keywords": [
         "React",
+        "Fluent UI",
         "REST APIs",
         "Document Management",
         "Outlook Integration",
