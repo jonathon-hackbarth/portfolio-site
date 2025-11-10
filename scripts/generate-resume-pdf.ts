@@ -294,7 +294,11 @@ function generateResumeHTML(
       line-height: 1.4;
     }
 
-    @media print {
+    section {
+      margin-bottom: 12px;
+    }
+
+    h2 {
       body {
         margin: 0;
         padding: 0;

@@ -7,7 +7,7 @@
     "email": "me@jonathonhackbarth.com",
     "phone": "",
     "url": "https://www.jonathonhackbarth.com",
-    "summary": "Enterprise Solutions Architect with 18+ years driving transformational cloud initiatives in Microsoft 365, Power Platform, and Azure ecosystems. Specialized expertise in M365 Copilot implementation (Microsoft first pilot program participant), AI-enhanced workflow automation, Graph API architecture, and government/financial sector compliance. Proven ability to architect scalable solutions delivering measurable business impact: $15M annual automation savings, 90% support ticket reduction, 100k+ user governance frameworks. Combining deep technical expertise with strategic vision to build enterprise-grade solutions that solve critical business problems at scale.",
+    "summary": "Enterprise Solutions Architect with 18+ years of experience in Microsoft 365, Power Platform, and Azure. Specialized in M365 Copilot implementation, AI-enhanced automation, and enterprise governance. Proven track record: $15M annual savings, 90% ticket reduction, 100k+ user frameworks.",
     "location": {
       "address": "",
       "postalCode": "",
@@ -295,13 +295,9 @@
       "name": "quikconvert.app",
       "description": "Fast, accessible web application for converting cooking and kitchen measurements instantly",
       "highlights": [
-        "Built with Next.js 15 and React 19 for optimal performance with server-side rendering",
-        "Focused converters for cooking measurements (volume, weight, temperature) with additional utilities",
-        "Fully accessible with ARIA support and keyboard navigation for all users",
-        "Dark mode support with automatic theme detection and user preference persistence",
-        "SEO-optimized with structured data markup and Open Graph metadata",
-        "Responsive design optimized for mobile, tablet, and desktop devices",
-        "Lightweight production build (~102KB shared JS) with Tailwind CSS 4 styling"
+        "Built with Next.js 15 and React 19 for optimal performance with server-side rendering and ~102KB production build",
+        "Fully accessible with ARIA support, keyboard navigation, and dark mode with automatic theme detection",
+        "SEO-optimized with structured data markup and responsive design for mobile, tablet, and desktop"
       ],
       "keywords": [
         "Next.js",
