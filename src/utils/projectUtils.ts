@@ -26,7 +26,7 @@ export interface ProjectData extends Repository {
 // Moved fetchLanguages here to avoid circular dependencies
 async function fetchLanguages(
   url: string,
-  token?: string
+  token?: string,
 ): Promise<GitHubLanguages> {
   const response = await fetch(url, {
     headers: {
@@ -47,7 +47,7 @@ async function fetchLanguages(
  */
 export async function getProjectsData(
   repos: Repository[],
-  token?: string
+  token?: string,
 ): Promise<ProjectData[]> {
   try {
     return await Promise.all(
@@ -55,21 +55,21 @@ export async function getProjectsData(
         const languages = await fetchLanguages(repo.languages_url, token);
         const totalBytes = Object.values(languages).reduce(
           (acc, bytes) => acc + bytes,
-          0
+          0,
         );
 
         const languagePercentages = Object.entries(languages).map(
           ([lang, bytes]) => ({
             name: lang,
             percentage: ((bytes / totalBytes) * 100).toFixed(1),
-          })
+          }),
         );
 
         return {
           ...repo,
           languages: languagePercentages,
         };
-      })
+      }),
     );
   } catch (error) {
     console.error("Error processing project data:", error);

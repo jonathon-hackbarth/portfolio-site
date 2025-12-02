@@ -60,19 +60,16 @@ npm run test:watch   # Run tests in watch mode
 ### Cloudflare Pages Setup
 
 1. **Connect Repository**
-
    - Go to [Cloudflare Dashboard](https://dash.cloudflare.com/)
    - Navigate to Workers & Pages > Create application > Pages > Connect to Git
    - Select repository: `jonathon-hackbarth/portfolio-site`
 
 2. **Build Settings**
-
    - Build command: `npm run build`
    - Build output directory: `dist`
    - Root directory: `/`
 
 3. **Environment Variables**
-
    - Add `GH_TOKEN` with your GitHub Personal Access Token
    - Apply to Production (and Preview if needed)
 

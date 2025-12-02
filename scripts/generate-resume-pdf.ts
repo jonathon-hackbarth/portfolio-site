@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 
-import puppeteer from 'puppeteer';
-import { readFileSync } from 'fs';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
+import puppeteer from "puppeteer";
+import { readFileSync } from "fs";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const resumePath = join(__dirname, '../public/resume.json');
-const outputPath = join(__dirname, '../public/resume.pdf');
+const resumePath = join(__dirname, "../public/resume.json");
+const outputPath = join(__dirname, "../public/resume.pdf");
 
 interface Profile {
   network: string;
@@ -67,23 +67,33 @@ interface ResumeData {
  * Converts a date string in YYYY-MM format to 'Mon YYYY' format
  */
 function formatDate(dateStr: string): string {
-  if (!dateStr) return '';
+  if (!dateStr) return "";
 
-  const parts = dateStr.split('-');
+  const parts = dateStr.split("-");
   const year = parts[0];
   const month = parts[1];
 
-  if (!year) return '';
+  if (!year) return "";
 
   if (!month) return year;
 
   const monthNum = parseInt(month, 10);
   const months = [
-    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
 
-  const monthStr = months[monthNum - 1] || '';
+  const monthStr = months[monthNum - 1] || "";
   return monthStr ? `${monthStr} ${year}` : year;
 }
 
@@ -92,15 +102,17 @@ function formatDate(dateStr: string): string {
  */
 function formatDateRange(startDate: string, endDate?: string): string {
   const start = formatDate(startDate);
-  const end = endDate ? formatDate(endDate) : 'Present';
+  const end = endDate ? formatDate(endDate) : "Present";
   return `${start} – ${end}`;
 }
 
 async function generateResumePDF(): Promise<void> {
-  console.log('🔄 Generating resume PDF...');
+  console.log("🔄 Generating resume PDF...");
 
   try {
-    const resumeData: ResumeData = JSON.parse(readFileSync(resumePath, 'utf-8'));
+    const resumeData: ResumeData = JSON.parse(
+      readFileSync(resumePath, "utf-8"),
+    );
     const { basics, work, education, skills, projects } = resumeData;
 
     // Generate HTML from resume data
@@ -112,16 +124,16 @@ async function generateResumePDF(): Promise<void> {
     } as Parameters<typeof puppeteer.launch>[0]);
 
     const page = await browser.newPage();
-    await page.setContent(html, { waitUntil: 'networkidle0' });
+    await page.setContent(html, { waitUntil: "networkidle0" });
 
     await page.pdf({
       path: outputPath,
-      format: 'A4',
+      format: "A4",
       margin: {
-        top: '0.4in',
-        right: '0.4in',
-        bottom: '0.4in',
-        left: '0.4in',
+        top: "0.4in",
+        right: "0.4in",
+        bottom: "0.4in",
+        left: "0.4in",
       },
       printBackground: true,
     });
@@ -129,7 +141,7 @@ async function generateResumePDF(): Promise<void> {
     await browser.close();
     console.log(`✅ Resume PDF generated: ${outputPath}`);
   } catch (error) {
-    console.error('❌ Error generating resume PDF:', error);
+    console.error("❌ Error generating resume PDF:", error);
     process.exit(1);
   }
 }
@@ -139,7 +151,7 @@ function generateResumeHTML(
   work?: Work[],
   education?: Education[],
   skills?: Skill[],
-  projects?: Project[]
+  projects?: Project[],
 ): string {
   return `
 <!DOCTYPE html>
@@ -315,80 +327,120 @@ function generateResumeHTML(
     <div class="contact-info">
       <a href="mailto:${basics.email}">${basics.email}</a>
       <span>•</span>
-      <span>${basics.location?.countryCode || 'US'}</span>
+      <span>${basics.location?.countryCode || "US"}</span>
       <span>•</span>
-      <a href="${basics.url}" target="_blank">${basics.url?.replace('https://', '').replace('http://', '')}</a>
-      ${basics.profiles ? basics.profiles.map(p => `<span>•</span><a href="${p.url}" target="_blank">${p.network}</a>`).join('') : ''}
+      <a href="${basics.url}" target="_blank">${basics.url?.replace("https://", "").replace("http://", "")}</a>
+      ${basics.profiles ? basics.profiles.map((p) => `<span>•</span><a href="${p.url}" target="_blank">${p.network}</a>`).join("") : ""}
     </div>
 
     <p class="summary">${basics.summary}</p>
 
     <!-- Experience -->
-    ${work && work.length > 0 ? `
+    ${
+      work && work.length > 0
+        ? `
     <section>
       <h2>Experience</h2>
-      ${work.map(job => `
+      ${work
+        .map(
+          (job) => `
         <div class="job">
           <div class="job-title">${job.position}</div>
           <div class="date">${formatDateRange(job.startDate, job.endDate)}</div>
           <div class="job-company">${job.name}</div>
-          ${job.summary ? `<div class="job-summary">${job.summary}</div>` : ''}
-          ${job.highlights && job.highlights.length > 0 ? `
+          ${job.summary ? `<div class="job-summary">${job.summary}</div>` : ""}
+          ${
+            job.highlights && job.highlights.length > 0
+              ? `
             <ul class="highlights">
-              ${job.highlights.map(h => `<li>${h}</li>`).join('')}
+              ${job.highlights.map((h) => `<li>${h}</li>`).join("")}
             </ul>
-          ` : ''}
+          `
+              : ""
+          }
         </div>
-      `).join('')}
+      `,
+        )
+        .join("")}
     </section>
-    ` : ''}
+    `
+        : ""
+    }
 
     <!-- Education -->
-    ${education && education.length > 0 ? `
+    ${
+      education && education.length > 0
+        ? `
     <section>
       <h2>Education</h2>
-      ${education.map(edu => `
+      ${education
+        .map(
+          (edu) => `
         <div class="edu">
           <div class="job-title">${edu.studyType} in ${edu.area}</div>
           <div class="date">${formatDate(edu.endDate)}</div>
           <div class="edu-school">${edu.institution}</div>
         </div>
-      `).join('')}
+      `,
+        )
+        .join("")}
     </section>
-    ` : ''}
+    `
+        : ""
+    }
 
     <!-- Skills -->
-    ${skills && skills.length > 0 ? `
+    ${
+      skills && skills.length > 0
+        ? `
     <section>
       <h2>Skills</h2>
       <div class="skills-grid">
-        ${skills.map(skill => `
+        ${skills
+          .map(
+            (skill) => `
           <div class="skill-category">
             <div class="skill-category-title">${skill.name}</div>
-            <div class="skill-keywords">${skill.keywords.join(', ')}</div>
+            <div class="skill-keywords">${skill.keywords.join(", ")}</div>
           </div>
-        `).join('')}
+        `,
+          )
+          .join("")}
       </div>
     </section>
-    ` : ''}
+    `
+        : ""
+    }
 
     <!-- Projects -->
-    ${projects && projects.length > 0 ? `
+    ${
+      projects && projects.length > 0
+        ? `
     <section>
       <h2>Projects</h2>
-      ${projects.map(proj => `
+      ${projects
+        .map(
+          (proj) => `
         <div class="job">
           <div class="job-title">${proj.name}</div>
-          ${proj.description ? `<div class="job-summary">${proj.description}</div>` : ''}
-          ${proj.highlights && proj.highlights.length > 0 ? `
+          ${proj.description ? `<div class="job-summary">${proj.description}</div>` : ""}
+          ${
+            proj.highlights && proj.highlights.length > 0
+              ? `
             <ul class="highlights">
-              ${proj.highlights.map(h => `<li>${h}</li>`).join('')}
+              ${proj.highlights.map((h) => `<li>${h}</li>`).join("")}
             </ul>
-          ` : ''}
+          `
+              : ""
+          }
         </div>
-      `).join('')}
+      `,
+        )
+        .join("")}
     </section>
-    ` : ''}
+    `
+        : ""
+    }
   </div>
 </body>
 </html>

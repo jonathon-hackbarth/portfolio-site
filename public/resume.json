@@ -284,10 +284,7 @@
       ],
       "startDate": "2024",
       "url": "https://jonathonhackbarth.com",
-      "roles": [
-        "Architect",
-        "Developer"
-      ],
+      "roles": ["Architect", "Developer"],
       "entity": "Personal",
       "type": "Website"
     },
@@ -311,10 +308,7 @@
       ],
       "startDate": "2024",
       "url": "https://quikconvert.app",
-      "roles": [
-        "Architect",
-        "Developer"
-      ],
+      "roles": ["Architect", "Developer"],
       "entity": "Personal",
       "type": "Web Application"
     }

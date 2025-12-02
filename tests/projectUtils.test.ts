@@ -11,7 +11,7 @@ describe("getProjectsData", () => {
       if (u.endsWith("/languages")) {
         return new Response(
           JSON.stringify({ TypeScript: 300, Astro: 100, CSS: 100 }),
-          { status: 200 }
+          { status: 200 },
         );
       }
       return new Response("Not Found", { status: 404 });
@@ -33,7 +33,7 @@ describe("getProjectsData", () => {
     const langs = result[0].languages;
     const sum = langs.reduce(
       (acc: number, l: any) => acc + parseFloat(l.percentage),
-      0
+      0,
     );
     expect(sum).toBeGreaterThan(99.9);
     expect(sum).toBeLessThan(100.2);

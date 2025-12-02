@@ -4,24 +4,34 @@
  * @returns Formatted date string like 'Aug 2025'
  */
 export function formatDate(dateStr: string): string {
-  if (!dateStr) return '';
-  
-  const parts = dateStr.split('-');
+  if (!dateStr) return "";
+
+  const parts = dateStr.split("-");
   const year = parts[0];
   const month = parts[1];
-  
-  if (!year) return '';
-  
+
+  if (!year) return "";
+
   // If no month, just return year
   if (!month) return year;
-  
+
   const monthNum = parseInt(month, 10);
   const months = [
-    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
-  
-  const monthStr = months[monthNum - 1] || '';
+
+  const monthStr = months[monthNum - 1] || "";
   return monthStr ? `${monthStr} ${year}` : year;
 }
 
@@ -33,6 +43,6 @@ export function formatDate(dateStr: string): string {
  */
 export function formatDateRange(startDate: string, endDate?: string): string {
   const start = formatDate(startDate);
-  const end = endDate ? formatDate(endDate) : 'Present';
+  const end = endDate ? formatDate(endDate) : "Present";
   return `${start} – ${end}`;
 }
