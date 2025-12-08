@@ -837,21 +837,24 @@ section {
   border-width: 0;
 }
 
-@keyframes background-fade {
+@keyframes pop-in {
   0% {
-    background-color: transparent;
-  }
-  50% {
-    background-color: rgba(8, 145, 178, 0.2);
+    opacity: 0;
+    transform: scale(0.95);
   }
   100% {
-    background-color: transparent;
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
 .metric-highlight {
-  animation: background-fade 1.5s ease-out forwards;
   position: relative;
+}
+
+.metric-highlight.active {
+  animation: pop-in 0.5s ease-out forwards;
+  font-weight: 600;
 }
 
 /* Print Styles */

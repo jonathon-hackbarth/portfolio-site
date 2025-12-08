@@ -111,20 +111,32 @@ const metrics = [
       // Scroll to the target element
       target.scrollIntoView({ behavior: 'smooth', block: 'center' });
       
-      // Wait for scroll to complete (~1000ms for smooth scroll) then add animation
+      // Add active class to trigger animation
       setTimeout(() => {
-        // Remove any existing highlight animation
-        target.classList.remove('metric-highlight');
-        // Trigger reflow to restart animation
-        void target.offsetWidth;
-        // Add animation class
-        target.classList.add('metric-highlight');
-
-        // Remove the animation class after it completes
-        setTimeout(() => {
-          target.classList.remove('metric-highlight');
-        }, 1500);
-      }, 1000);
+        target.classList.add('active');
+      }, 500);
     });
   });
+
+  // Check if highlights are in view and keep them bold only if they have active class
+  const highlightElements = document.querySelectorAll('.metric-highlight');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Only keep bold if it has the active class
+        if (entry.target.classList.contains('active')) {
+          entry.target.style.fontWeight = '600';
+        }
+      } else {
+        // Remove bold and active class when out of view
+        entry.target.classList.remove('active');
+        entry.target.style.fontWeight = '';
+      }
+    });
+  }, {
+    threshold: 0.5
+  });
+
+  highlightElements.forEach(el => observer.observe(el));
 </script>
