@@ -274,6 +274,7 @@ body {
 }
 
 /* Scroll margin for section anchors to account for fixed navbar */
+#hero,
 #impact,
 #resume,
 #code-samples {
@@ -511,13 +512,15 @@ html.theme-dark .navbar {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: var(--spacing-section) var(--spacing-md);
+  padding-top: calc(var(--nav-height) + var(--spacing-section));
+  padding-bottom: var(--spacing-section);
+  padding-left: var(--spacing-md);
+  padding-right: var(--spacing-md);
   gap: var(--spacing-xl);
 }
 
 @media (max-width: 768px) {
   .hero-section {
-    padding: var(--spacing-section) var(--spacing-md);
     gap: var(--spacing-lg);
   }
 }
