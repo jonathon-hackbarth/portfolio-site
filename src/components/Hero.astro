@@ -1,10 +1,10 @@
 ---
 // Hero section with professional positioning and impact metrics
 const metrics = [
-  { value: "$15M", label: "Annual Savings Delivered", target: "metric-savings" },
-  { value: "100k+", label: "Users Served", target: "metric-users" },
-  { value: "90%", label: "Ticket Reduction", target: "metric-ticket-reduction" },
-  { value: "M365 Copilot", label: "Pioneer - First Pilot", target: "metric-m365-copilot" },
+  { value: "$15M", label: "Annual Savings Delivered", target: "metric-savings", icon: "chart" },
+  { value: "100k+", label: "Users Served", target: "metric-users", icon: "users" },
+  { value: "90%", label: "Ticket Reduction", target: "metric-ticket-reduction", icon: "check" },
+  { value: "M365 Copilot", label: "Pioneer - First Pilot", target: "metric-m365-copilot", icon: "sparkles" },
 ];
 ---
 
@@ -89,7 +89,23 @@ const metrics = [
           type="button"
           aria-label={`${metric.value} - ${metric.label}, click to view details`}
         >
-          <div class="metric-value">{metric.value}</div>
+          <div class="flex items-center gap-4 justify-center">
+            <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-xl bg-[var(--bg-elevated)] text-[var(--accent-hero)] border border-[var(--border-card)]">
+              {metric.icon === 'chart' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="metric-icon"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>
+              )}
+              {metric.icon === 'users' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="metric-icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              )}
+              {metric.icon === 'check' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="metric-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              )}
+              {metric.icon === 'sparkles' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="metric-icon"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M5.6 18.4L18.4 5.6"/></svg>
+              )}
+            </div>
+            <div class="metric-value">{metric.value}</div>
+          </div>
           <div class="metric-label">{metric.label}</div>
         </button>
       ))}
@@ -140,3 +156,10 @@ const metrics = [
 
   highlightElements.forEach(el => observer.observe(el));
 </script>
+
+<style>
+  .metric-icon {
+    width: 24px;
+    height: 24px;
+  }
+</style>

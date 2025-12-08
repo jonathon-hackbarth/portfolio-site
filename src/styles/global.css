@@ -207,7 +207,6 @@ html.theme-dark {
   border: 1px solid var(--border-card);
   border-radius: 16px;
   padding: var(--spacing-lg);
-  text-align: center;
   box-shadow: var(--shadow-card);
   transition: all var(--transition-fast);
   position: relative;
@@ -248,8 +247,7 @@ html.theme-dark {
   font-variant-numeric: tabular-nums;
   color: var(--accent-hero);
   line-height: 1.2;
-  margin-bottom: var(--spacing-sm);
-  text-align: center;
+  text-align: left;
   max-width: 100%;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -262,6 +260,7 @@ html.theme-dark {
   text-align: center;
   line-height: 1.4;
   max-width: 100%;
+  margin-top: var(--spacing-sm);
 }
 
 /* Navigation */
