@@ -3,36 +3,30 @@ import "../styles/global.css";
 import Layout from "../layouts/Layout.astro";
 import NavBar from "../components/NavBar.astro";
 import Hero from "../components/Hero.astro";
-import Projects from "../components/Projects.astro";
+import ImpactHighlights from "../components/ImpactHighlights.astro";
 import Resume from "../components/Resume.astro";
+import CodeSamples from "../components/CodeSamples.astro";
 ---
 
 <Layout
-  title="Jonathon Hackbarth - Portfolio"
-  description="Explore the portfolio of Jonathon Hackbarth, Cloud Systems Engineer & Web Developer."
+  title="Jonathon Hackbarth - Enterprise Solutions Architect"
+  description="Enterprise Solutions Architect with 18+ years experience in Microsoft 365, Power Platform, and Azure. Proven impact: $15M annual savings, 90% ticket reduction, 100k+ user frameworks."
 >
   <div class="min-h-screen flex flex-col">
     <header>
       <NavBar />
     </header>
-    <main id="main-content" class="flex-1 w-full mx-auto" tabindex="-1">
-      <section
-        id="about"
-        aria-labelledby="about-heading"
-        class="w-full mx-auto px-3 sm:px-6 lg:px-8"
-        style="scroll-margin-top: var(--nav-height);"
-      >
-        <h2 id="about-heading" class="sr-only">About</h2>
-        <Hero />
-      </section>
-      <Projects />
+    <main id="main-content" class="flex-1 w-full" tabindex="-1">
+      <Hero />
+      <ImpactHighlights />
       <Resume />
+      <CodeSamples />
     </main>
     <footer
-      class="site-footer mt-auto py-8 text-center text-xs"
+      class="py-12 text-center text-sm text-[var(--text-secondary)] bg-[var(--bg-card)] border-t border-[var(--border-card)]"
       role="contentinfo"
     >
-      <p>&copy; {new Date().getFullYear()} Jonathon Hackbarth</p>
+      <p class="font-medium">&copy; {new Date().getFullYear()} Jonathon Hackbarth. All rights reserved.</p>
     </footer>
   </div>
 </Layout>
