@@ -614,9 +614,13 @@ html.theme-dark .navbar {
 
 /* Section Styles */
 section {
+  min-height: 100vh;
   padding: var(--spacing-section) var(--spacing-md);
   max-width: var(--container-max);
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .section-title {
