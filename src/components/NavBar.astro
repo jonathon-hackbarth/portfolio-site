@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 const navItems = [
   { href: "#hero", label: "Home" },
   { href: "#impact", label: "Impact" },
@@ -18,7 +20,7 @@ const navItems = [
   <div class="navbar-inner">
     <!-- Profile Picture (left) -->
     <div class="nav-profile">
-      <img src="/og-image.webp" alt="Jonathon Hackbarth" class="nav-profile-img" id="profile-img" />
+      <Image src="/og-image.webp" alt="Jonathon Hackbarth" width={48} height={48} class="nav-profile-img" id="profile-img" loading="eager" />
     </div>
 
     <!-- Desktop Navigation (center) - hidden on mobile -->
