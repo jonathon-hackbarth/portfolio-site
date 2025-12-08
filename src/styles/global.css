@@ -505,6 +505,11 @@ html.theme-dark .navbar {
   height: 22px;
 }
 
+/* Navbar Spacer */
+.navbar-spacer {
+  height: var(--nav-height);
+}
+
 /* Hero Section */
 .hero-section {
   min-height: 100vh;
@@ -512,10 +517,7 @@ html.theme-dark .navbar {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding-top: calc(var(--nav-height) + var(--spacing-section));
-  padding-bottom: var(--spacing-section);
-  padding-left: var(--spacing-md);
-  padding-right: var(--spacing-md);
+  padding: var(--spacing-section) var(--spacing-md);
   gap: var(--spacing-xl);
 }
 
