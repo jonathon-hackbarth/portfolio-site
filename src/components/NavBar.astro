@@ -18,7 +18,7 @@ const navItems = [
   <div class="navbar-inner">
     <!-- Profile Picture (left) -->
     <div class="nav-profile">
-      <img src="/og-image.webp" alt="Jonathon Hackbarth" class="nav-profile-img" />
+      <img src="/og-image.webp" alt="Jonathon Hackbarth" class="nav-profile-img" id="profile-img" />
     </div>
 
     <!-- Desktop Navigation (center) - hidden on mobile -->
@@ -127,12 +127,22 @@ const navItems = [
     });
   });
 
-  // Active nav link on scroll
+  // Active nav link on scroll and profile image border color
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-link');
+  const profileImg = document.getElementById('profile-img');
+
+  // Map section IDs to their accent colors
+  const sectionAccentColors = {
+    'hero': 'var(--accent-hero)',       // Teal
+    'impact': 'var(--accent-impact)',   // Orange
+    'resume': 'var(--accent)',          // Blue
+    'code-samples': 'var(--accent-code)' // Coral
+  };
 
   function setActiveLink() {
     const scrollY = window.scrollY;
+    let currentSectionId = 'hero'; // Default to hero
     
     sections.forEach(section => {
       const sectionTop = (section as HTMLElement).offsetTop - 100;
@@ -140,6 +150,7 @@ const navItems = [
       const sectionId = section.getAttribute('id');
       
       if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+        currentSectionId = sectionId || 'hero';
         navLinks.forEach(link => {
           link.classList.remove('is-active');
           if (link.getAttribute('href') === `#${sectionId}`) {
@@ -148,6 +159,16 @@ const navItems = [
         });
       }
     });
+
+    // Update profile image border color based on current section
+    if (profileImg) {
+      const accentColor = sectionAccentColors[currentSectionId as keyof typeof sectionAccentColors];
+      if (accentColor) {
+        // Get the CSS variable value
+        const computedColor = getComputedStyle(document.documentElement).getPropertyValue(accentColor.replace('var(', '').replace(')', '')).trim();
+        profileImg.style.borderColor = computedColor || accentColor;
+      }
+    }
   }
 
   window.addEventListener('scroll', setActiveLink);

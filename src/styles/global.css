@@ -314,7 +314,7 @@ html.theme-dark .navbar {
   object-fit: cover;
   border: 2px solid var(--accent);
   box-shadow: var(--shadow-sm);
-  transition: all var(--transition-fast);
+  transition: all var(--transition-fast), border-color var(--transition-medium);
 }
 
 .nav-profile-img:hover {
