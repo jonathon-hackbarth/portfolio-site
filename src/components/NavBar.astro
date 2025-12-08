@@ -1,121 +1,194 @@
 ---
 const navItems = [
-  { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects" },
+  { href: "#hero", label: "Home" },
+  { href: "#impact", label: "Impact" },
   { href: "#resume", label: "Resume" },
+  { href: "#code-samples", label: "Code" },
 ];
 ---
 
 <a
   href="#main-content"
-  class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:bg-white focus:text-blue-600 focus:px-3 focus:py-2 focus:rounded"
+  class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[110] focus:bg-[var(--bg-elevated)] focus:text-[var(--accent)] focus:px-3 focus:py-2 focus:rounded-lg focus:border focus:border-[var(--accent)]"
 >
   Skip to content
 </a>
-<nav class="navbar" aria-label="Primary">
-  <!-- Hamburger button for mobile (left) -->
-  <button
-    id="nav-toggle"
-    class="nav-toggle sm:hidden"
-    type="button"
-    aria-label="Toggle navigation menu"
-    aria-expanded="false"
-    aria-controls="nav-menu"
-  >
-    <span class="hamburger-line"></span>
-    <span class="hamburger-line"></span>
-    <span class="hamburger-line"></span>
-  </button>
 
-  <!-- Desktop nav list (middle) -->
-  <ul id="nav-menu" class="nav-list" role="list">
-    {
-      navItems.map((item) => (
+<nav class="navbar" aria-label="Primary">
+  <div class="navbar-inner">
+    <!-- Desktop Navigation (center) - hidden on mobile -->
+    <ul class="nav-desktop" role="list">
+      {navItems.map((item) => (
         <li>
           <a href={item.href} class="nav-link">
             {item.label}
           </a>
         </li>
-      ))
-    }
-  </ul>
+      ))}
+    </ul>
 
-  <!-- Brand and Theme toggle (far right) -->
-  <div class="nav-brand">
-    <!-- Theme toggle button -->
-    <button
-      id="theme-toggle"
-      class="theme-toggle-btn theme-slider"
-      type="button"
-      aria-label="Activate dark theme"
-      aria-pressed="false"
-      data-theme-state="light"
-      data-mode="explicit"
-    >
-      <span class="slider-track" aria-hidden="true">
-        <span class="slider-thumb">
-          <!-- Light: day cloud -->
-          <svg
-            class="icon-light"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path
-              d="M6 15.5a4.5 4.5 0 0 1 .74-2.47 4 4 0 0 1 7.52-1.53A3.5 3.5 0 1 1 17.5 18H7A3.5 3.5 0 0 1 6 15.5Z"
-            ></path>
-            <path d="M9 6.5 9.5 5"></path>
-            <path d="M5.5 9H4"></path>
-            <path d="M13.5 7 14 5.5"></path>
-          </svg>
-          <!-- Dark: crescent + star -->
-          <svg
-            class="icon-dark"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M21 12.8A9 9 0 0 1 11.2 3a7 7 0 1 0 9.8 9.8Z"></path>
-            <path
-              d="M17 4.5 17.6 6 19 6.4 17.9 7.5 18.1 9 17 8.2 15.9 9l.2-1.5L15 6.4 16.4 6z"
-            ></path>
-          </svg>
-          <!-- Auto: hybrid cloud + star overlay -->
-          <svg
-            class="icon-auto"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path
-              d="M5.8 15.4a4.2 4.2 0 0 1 .69-2.3 3.7 3.7 0 0 1 6.9-1.42 3.3 3.3 0 1 1 1.96 6.02H7.4a3.4 3.4 0 0 1-1.6-2.3Z"
-            ></path>
-            <path
-              d="M18 7.2 18.6 8.7 20 9.1 18.9 10.2 19.1 11.7 18 10.9 16.9 11.7l.2-1.5L16 8.7l1.4-.4z"
-            ></path>
-            <path d="M9.2 6.2 9.6 5"></path>
-          </svg>
-        </span>
-      </span>
-      <span class="sr-only">Toggle theme</span>
-    </button>
-
-    <!-- Brand Link -->
-    <a href="/" class="brand-link" aria-label="Home">
-      <span class="brand-text hidden sm:inline">Jonathon Hackbarth</span>
-      <span class="brand-text-mobile sm:hidden">JH</span>
-      <span class="brand-accent" aria-hidden="true"></span>
-    </a>
+    <!-- Actions (right) -->
+    <div class="nav-actions">
+      <!-- Mobile Menu Button - only on mobile -->
+      <button
+        id="mobile-menu-toggle"
+        class="nav-mobile-toggle"
+        type="button"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <line x1="4" y1="6" x2="20" y2="6"/>
+          <line x1="4" y1="12" x2="20" y2="12"/>
+          <line x1="4" y1="18" x2="20" y2="18"/>
+        </svg>
+        <svg class="close-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      
+      <!-- Theme Toggle - always visible -->
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+        type="button"
+        aria-label="Toggle theme"
+        title="Toggle theme"
+      >
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="moon-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
   </div>
 
-  <script src="../scripts/theme-toggle.ts"></script>
-  <script src="../scripts/nav-active.ts"></script>
-  <script src="../scripts/hamburger-menu.ts"></script>
-  <script src="../scripts/brand-link.ts"></script>
+  <!-- Mobile Menu Dropdown -->
+  <div class="mobile-menu" id="mobile-menu" role="menu">
+    <ul role="list">
+      {navItems.map((item) => (
+        <li>
+          <a href={item.href} class="nav-link" role="menuitem">
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
 </nav>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = mobileMenuToggle?.querySelector('.menu-icon');
+  const closeIcon = mobileMenuToggle?.querySelector('.close-icon');
+
+  mobileMenuToggle?.addEventListener('click', () => {
+    const isOpen = mobileMenu?.classList.contains('open');
+    
+    if (isOpen) {
+      mobileMenu?.classList.remove('open');
+      mobileMenuToggle.setAttribute('aria-expanded', 'false');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+    } else {
+      mobileMenu?.classList.add('open');
+      mobileMenuToggle.setAttribute('aria-expanded', 'true');
+      menuIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+    }
+  });
+
+  // Close mobile menu when clicking a link
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      mobileMenuToggle?.setAttribute('aria-expanded', 'false');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+    });
+  });
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  function setActiveLink() {
+    const scrollY = window.scrollY;
+    
+    sections.forEach(section => {
+      const sectionTop = (section as HTMLElement).offsetTop - 100;
+      const sectionHeight = (section as HTMLElement).offsetHeight;
+      const sectionId = section.getAttribute('id');
+      
+      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+        navLinks.forEach(link => {
+          link.classList.remove('is-active');
+          if (link.getAttribute('href') === `#${sectionId}`) {
+            link.classList.add('is-active');
+          }
+        });
+      }
+    });
+  }
+
+  window.addEventListener('scroll', setActiveLink);
+  setActiveLink();
+
+  // Theme toggle with View Transitions API
+  const themeToggle = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+  const sunIcon = themeToggle?.querySelector('.sun-icon');
+  const moonIcon = themeToggle?.querySelector('.moon-icon');
+
+  // Initialize theme from localStorage or system preference
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+
+  if (isDark) {
+    html.classList.add('theme-dark');
+    sunIcon?.classList.add('hidden');
+    moonIcon?.classList.remove('hidden');
+  }
+
+  themeToggle?.addEventListener('click', () => {
+    const isDarkNow = html.classList.contains('theme-dark');
+    
+    // Use View Transitions API if supported
+    if ('startViewTransition' in document) {
+      (document as any).startViewTransition(() => {
+        toggleTheme(isDarkNow);
+      });
+    } else {
+      toggleTheme(isDarkNow);
+    }
+  });
+
+  function toggleTheme(isDark: boolean) {
+    if (isDark) {
+      html.classList.remove('theme-dark');
+      localStorage.setItem('theme', 'light');
+      sunIcon?.classList.remove('hidden');
+      moonIcon?.classList.add('hidden');
+    } else {
+      html.classList.add('theme-dark');
+      localStorage.setItem('theme', 'dark');
+      sunIcon?.classList.add('hidden');
+      moonIcon?.classList.remove('hidden');
+    }
+  }
+</script>
