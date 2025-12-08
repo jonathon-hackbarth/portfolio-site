@@ -26,7 +26,7 @@ const { basics, work, skills } = resumeData;
 
     <div class="card">
       {basics && (
-        <div class="pb-8 border-b border-[var(--border-card)] mb-16 flex flex-col gap-4">
+        <div class="pb-8 border-b border-[var(--border-card)] flex flex-col gap-4">
           <h1 class="text-3xl sm:text-4xl font-bold text-[var(--text-primary)] tracking-tight">{basics.name}</h1>
           <p class="text-xl text-[var(--accent)] font-semibold">{basics.label}</p>
           
@@ -55,8 +55,8 @@ const { basics, work, skills } = resumeData;
       )}
 
       {work && work.length > 0 && (
-        <div class="pt-16 pb-8 border-b border-[var(--border-card)]">
-          <h2 class="text-2xl font-bold mb-8 text-[var(--text-primary)] tracking-tight">Experience</h2>
+        <div class="border-b border-[var(--border-card)]">
+          <h2 class="text-2xl font-bold pt-8 pb-8 text-[var(--text-primary)] tracking-tight">Experience</h2>
           <div class="space-y-6">
             {work.map((job: any) => (
               <div class="experience-card">
@@ -78,8 +78,8 @@ const { basics, work, skills } = resumeData;
       )}
 
       {skills && skills.length > 0 && (
-        <div class="pt-8 pb-8">
-          <h2 class="text-2xl font-bold mb-8 text-[var(--text-primary)] tracking-tight">Skills</h2>
+        <div class="">
+          <h2 class="text-2xl pt-8 pb-8 font-bold text-[var(--text-primary)] tracking-tight">Skills</h2>
           <div class="skills-grid">
             {skills.map((skillGroup: any) => (
               <div class="skill-card">

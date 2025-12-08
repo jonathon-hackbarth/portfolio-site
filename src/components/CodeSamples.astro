@@ -63,9 +63,9 @@ try {
               </p>
 
               {project.languages && project.languages.length > 0 && (
-                <div class="flex flex-wrap gap-2">
+                <div class="flex flex-wrap gap-4">
                   {project.languages.slice(0, 3).map((lang) => (
-                    <span class="text-xs px-3 py-1 bg-[var(--bg-elevated)] text-[var(--text-secondary)] rounded-lg font-medium">
+                    <span class="text-xs py-1 bg-[var(--bg-elevated)] text-[var(--text-secondary)] rounded-lg font-medium">
                       {lang.name}
                     </span>
                   ))}

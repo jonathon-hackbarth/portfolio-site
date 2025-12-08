@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "{src/**/*.astro,src/**/*.ts,src/**/*.tsx}";
 
 /* ===================================
    M365-ALIGNED DESIGN SYSTEM
@@ -135,47 +136,49 @@ html.theme-dark {
    BASE STYLES
    ================================== */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
-}
-
-@media (prefers-reduced-motion: reduce) {
   html {
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
+    font-size: 16px;
   }
-  
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
-}
 
-body {
-  font-family: var(--font-system);
-  background: var(--bg-page);
-  color: var(--text-primary);
-  line-height: 1.6;
-  transition: background-color var(--transition-medium), color var(--transition-medium);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  body {
+    font-family: var(--font-system);
+    background: var(--bg-page);
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: background-color var(--transition-medium), color var(--transition-medium);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-/* View Transitions API for smooth theme switching */
-@view-transition {
-  navigation: auto;
-}
+  /* View Transitions API for smooth theme switching */
+  @view-transition {
+    navigation: auto;
+  }
 
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 0.3s;
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.3s;
+  }
 }
 
 /* ===================================
