@@ -298,6 +298,30 @@ html.theme-dark .navbar {
   position: relative;
 }
 
+.nav-profile {
+  position: absolute;
+  left: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.nav-profile-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.nav-profile-img:hover {
+  box-shadow: var(--shadow-md);
+  transform: scale(1.05);
+}
+
 .nav-desktop {
   display: none;
   list-style: none;
