@@ -1,0 +1,102 @@
+---
+import { formatDateRange } from '../utils/dateFormatter';
+
+// Import resume data to extract key highlights
+const resumeModule = import.meta.glob('../../public/resume.json', { eager: true });
+const resumeFile = Object.values(resumeModule)[0] as any;
+const resumeData = resumeFile.default || resumeFile;
+const { work } = resumeData;
+
+// Extract the most impactful highlights from recent roles
+const impactHighlights = [
+  {
+    title: "M365 Copilot Pioneer",
+    description: "Spearheaded enterprise-wide implementation of M365 Copilot, participating in Microsoft's first pilot program",
+    company: "Best Buy",
+    icon: "sparkles"
+  },
+  {
+    title: "AI-Enhanced Development",
+    description: "Accelerated feature cycles 80-90% with AI-enhanced development, delivering 2-3 features weekly vs. 1 per sprint",
+    company: "Alpha Omega",
+    icon: "rocket"
+  },
+  {
+    title: "$15M Annual Savings",
+    description: "Developed enterprise applications on Power Platform achieving $15M in annual labor cost savings",
+    company: "Best Buy",
+    icon: "chart"
+  },
+  {
+    title: "Enterprise Scale Migrations",
+    description: "Led SharePoint migrations for 100k+ user base, managing sites up to 300GB with advanced migration configurations",
+    company: "Best Buy",
+    icon: "database"
+  },
+  {
+    title: "90% Ticket Reduction",
+    description: "Implemented control processes to reduce support tickets by 90% through automation and governance",
+    company: "Best Buy",
+    icon: "check"
+  },
+  {
+    title: "Rapid POC Delivery",
+    description: "Delivered 8-week POC (vs. 6-month standard) for legal professionals; architected for enterprise-scale deployment",
+    company: "Alpha Omega",
+    icon: "lightning"
+  }
+];
+
+---
+
+<section id="impact" aria-labelledby="impact-heading">
+  <h2 id="impact-heading" class="font-bold text-[var(--text-primary)] tracking-tight mb-12" style="font-size: var(--font-size-h2); margin: 0 0 var(--spacing-xl) 0;">Key Impact & Achievements</h2>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {impactHighlights.map((highlight, index) => (
+      <article class="card animate-fade-up" style={`animation-delay: ${index * 0.1}s`}>
+          <div class="flex items-start gap-4">
+          <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-xl bg-[var(--bg-elevated)] text-[var(--accent-impact)] border border-[var(--border-card)]">
+            {highlight.icon === 'sparkles' && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-svg"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M5.6 18.4L18.4 5.6"/></svg>
+            )}
+            {highlight.icon === 'rocket' && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-svg"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+            )}
+            {highlight.icon === 'chart' && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-svg"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>
+            )}
+            {highlight.icon === 'database' && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-svg"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
+            )}
+            {highlight.icon === 'check' && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-svg"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            )}
+            {highlight.icon === 'lightning' && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-svg"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            )}
+          </div>
+          <div class="flex-1 min-w-0 flex flex-col gap-4">
+            <h3 class="text-xl font-semibold text-[var(--text-primary)] tracking-tight">
+              {highlight.title}
+            </h3>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+              {highlight.description}
+            </p>
+            <span class="inline-block w-fit text-xs font-semibold bg-[var(--bg-elevated)] text-[var(--accent-impact)] rounded-lg border border-[var(--border-card)]" style="padding: 8px 20px;">
+              {highlight.company}
+            </span>
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .icon-svg {
+    width: 24px;
+    height: 24px;
+  }
+</style>
+
