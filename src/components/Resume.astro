@@ -66,9 +66,13 @@ const { basics, work, skills } = resumeData;
                 {job.summary && <p class="text-sm mb-6 text-[var(--text-secondary)]">{job.summary}</p>}
                 {job.highlights && job.highlights.length > 0 && (
                   <ul>
-                    {job.highlights.map((highlight: any) => (
-                      <li>{highlight}</li>
-                    ))}
+                    {job.highlights.map((highlight: any) => {
+                      const id = typeof highlight === 'string' ? '' : (highlight.id || '');
+                      const text = typeof highlight === 'string' ? highlight : highlight.text;
+                      return (
+                        <li {...(id && { id })} class={id ? 'metric-highlight' : ''}>{text}</li>
+                      );
+                    })}
                   </ul>
                 )}
               </div>

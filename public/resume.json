@@ -53,12 +53,30 @@
       "endDate": "2025-08",
       "summary": "Leading enterprise cloud transformations and AI implementations across Microsoft 365 ecosystem, including M365 Copilot pilot programs, Graph API integrations, and Power Platform automation frameworks.",
       "highlights": [
-        "Spearheaded enterprise-wide implementation of M365 Copilot, participating in Microsoft's first Copilot pilot program",
-        "Created internal knowledge base by integrating Microsoft Learn with proprietary enterprise content, reducing support tickets and improving operational efficiency",
-        "Directed proof-of-concept for Copilot Studio, managing end-to-end security and accelerating time to business outcomes",
-        "Built custom Graph API connectors for Power Platform and developed governance automation scripts",
-        "Directed migration of SharePoint to cloud infrastructure, reducing costs and improving system reliability",
-        "Designed enterprise automation frameworks, increasing engineering capacity by 50%"
+        {
+          "text": "Spearheaded enterprise-wide implementation of M365 Copilot, participating in Microsoft's first Copilot pilot program",
+          "id": "metric-m365-copilot"
+        },
+        {
+          "text": "Created internal knowledge base by integrating Microsoft Learn with proprietary enterprise content, reducing support tickets and improving operational efficiency",
+          "id": "metric-ticket-reduction"
+        },
+        {
+          "text": "Directed proof-of-concept for Copilot Studio, managing end-to-end security and accelerating time to business outcomes",
+          "id": ""
+        },
+        {
+          "text": "Built custom Graph API connectors for Power Platform and developed governance automation scripts",
+          "id": ""
+        },
+        {
+          "text": "Directed migration of SharePoint to cloud infrastructure, reducing costs and improving system reliability",
+          "id": ""
+        },
+        {
+          "text": "Designed enterprise automation frameworks, increasing engineering capacity by 50%",
+          "id": ""
+        }
       ]
     },
     {
@@ -71,10 +89,22 @@
       "endDate": "2022-10",
       "summary": "Developed enterprise applications achieving $15M in annual labor cost savings through streamlined automation and quality control initiatives.",
       "highlights": [
-        "Developed enterprise applications on Power Platform, achieving $15M in annual labor cost savings",
-        "Implemented control processes to reduce support tickets by 90%",
-        "Created scalable solutions across CRM, services, and supply chain systems",
-        "Created 50+ Power Apps, Power Automates, Azure Automations and other solutions"
+        {
+          "text": "Developed enterprise applications on Power Platform, achieving $15M in annual labor cost savings",
+          "id": "metric-savings"
+        },
+        {
+          "text": "Implemented control processes to reduce support tickets by 90%",
+          "id": "metric-ticket-reduction"
+        },
+        {
+          "text": "Created scalable solutions across CRM, services, and supply chain systems",
+          "id": ""
+        },
+        {
+          "text": "Created 50+ Power Apps, Power Automations, Azure Automations and other solutions",
+          "id": ""
+        }
       ]
     },
     {
@@ -87,10 +117,22 @@
       "endDate": "2019-11",
       "summary": "Spearheaded enterprise automation efforts and large-scale cloud migration initiatives with focus on advanced transformation strategies and analytics.",
       "highlights": [
-        "Led SharePoint migrations for 100k+ user base, managing sites up to 300GB, requiring advanced migration configurations and execution",
-        "Architected complex transformations from InfoPath to Power Automate, Power Apps, and custom connectors enabling modernized workflows",
-        "Designed automation workflows leveraging Graph API endpoints for governance and operational efficiency",
-        "Developed Power BI dashboards, improving analytics and reporting efficiency by 40%"
+        {
+          "text": "Led SharePoint migrations for 100k+ user base, managing sites up to 300GB, requiring advanced migration configurations and execution",
+          "id": "metric-users"
+        },
+        {
+          "text": "Architected complex transformations from InfoPath to Power Automate, Power Apps, and custom connectors enabling modernized workflows",
+          "id": ""
+        },
+        {
+          "text": "Designed automation workflows leveraging Graph API endpoints for governance and operational efficiency",
+          "id": ""
+        },
+        {
+          "text": "Developed Power BI dashboards, improving analytics and reporting efficiency by 40%",
+          "id": ""
+        }
       ]
     },
     {
