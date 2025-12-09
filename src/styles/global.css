@@ -5,12 +5,11 @@
    M365-ALIGNED DESIGN SYSTEM
    ================================== */
 
-@supports (color: oklch(0% 0 0)) {
-  @property --accent-lightness {
-    syntax: "<percentage>";
-    inherits: true;
-    initial-value: 50%;
-  }
+/* CSS Custom Property (browsers that don't support @property will safely ignore it) */
+@property --accent-lightness {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 50%;
 }
 
 :root {
