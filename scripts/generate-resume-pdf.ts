@@ -28,13 +28,18 @@ interface Basics {
   profiles?: Profile[];
 }
 
+interface Highlight {
+  text: string;
+  id?: string;
+}
+
 interface Work {
   position: string;
   name: string;
   startDate: string;
   endDate?: string;
   summary?: string;
-  highlights?: string[];
+  highlights?: (string | Highlight)[];
 }
 
 interface Education {
@@ -52,7 +57,7 @@ interface Skill {
 interface Project {
   name: string;
   description?: string;
-  highlights?: string[];
+  highlights?: (string | Highlight)[];
 }
 
 interface ResumeData {
@@ -104,6 +109,13 @@ function formatDateRange(startDate: string, endDate?: string): string {
   const start = formatDate(startDate);
   const end = endDate ? formatDate(endDate) : "Present";
   return `${start} – ${end}`;
+}
+
+/**
+ * Extracts text from a highlight (handles both string and object formats)
+ */
+function getHighlightText(highlight: string | Highlight): string {
+  return typeof highlight === "string" ? highlight : highlight.text;
 }
 
 async function generateResumePDF(): Promise<void> {
@@ -353,7 +365,7 @@ function generateResumeHTML(
             job.highlights && job.highlights.length > 0
               ? `
             <ul class="highlights">
-              ${job.highlights.map((h) => `<li>${h}</li>`).join("")}
+              ${job.highlights.map((h) => `<li>${getHighlightText(h)}</li>`).join("")}
             </ul>
           `
               : ""
@@ -428,7 +440,7 @@ function generateResumeHTML(
             proj.highlights && proj.highlights.length > 0
               ? `
             <ul class="highlights">
-              ${proj.highlights.map((h) => `<li>${h}</li>`).join("")}
+              ${proj.highlights.map((h) => `<li>${getHighlightText(h)}</li>`).join("")}
             </ul>
           `
               : ""
