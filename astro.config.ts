@@ -5,10 +5,9 @@ import cloudflare from "@astrojs/cloudflare";
 
 export default defineConfig({
   site: "https://jonathonhackbarth.com",
-  adapter: cloudflare(),
-  image: {
-    service: { entrypoint: "astro/assets/services/noop" },
-  },
+  adapter: cloudflare({
+    imageService: "compile",
+  }),
   vite: {
     plugins: [tailwindcss() as any],
   },

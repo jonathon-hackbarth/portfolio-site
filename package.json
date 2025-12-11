@@ -2,7 +2,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "tsx scripts/generate-resume-pdf.ts && astro dev",
+    "dev": "astro dev",
     "start": "astro dev",
     "build": "tsx scripts/generate-resume-pdf.ts && astro build",
     "preview": "wrangler pages dev ./dist",

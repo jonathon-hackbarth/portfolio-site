@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import meImage from '../assets/me-image.webp';
 
 const navItems = [
   { href: "#hero", label: "Home" },
@@ -20,7 +21,7 @@ const navItems = [
   <div class="navbar-inner">
     <!-- Profile Picture (left) -->
     <div class="nav-profile">
-      <img src="/me-image.webp" alt="Jonathon Hackbarth" class="nav-profile-img" id="profile-img" />
+      <Image src={meImage} alt="Jonathon Hackbarth" class="nav-profile-img" id="profile-img" loading="eager" />
     </div>
 
     <!-- Desktop Navigation (center) - hidden on mobile -->
