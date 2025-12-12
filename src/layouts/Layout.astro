@@ -38,7 +38,8 @@ const personJsonLd = {
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonical} />
     <meta name="robots" content="index,follow" />
-    <meta name="theme-color" content="#0070f3" />
+    <!-- Keep browser chrome stable (Orion can be inconsistent) -->
+    <meta name="theme-color" content="#0a0a0a" />
     <meta name="color-scheme" content="light dark" />
     <meta name="view-transition" content="same-origin" />
     <link
@@ -76,7 +77,14 @@ const personJsonLd = {
   <body>
     <script is:inline>
       {
-        `(() => { try { const t = localStorage.getItem('theme-pref-v1'); const isDark = t === 'dark' || (t === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches); if (isDark) document.documentElement.classList.add('theme-dark'); } catch {} })();`;
+        `(() => {
+          try {
+            const t = localStorage.getItem('theme'); // 'light' | 'dark' | null
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const isDark = t === 'dark' || (t !== 'light' && prefersDark);
+            document.documentElement.classList.toggle('theme-dark', isDark);
+          } catch {}
+        })();`;
       }
     </script>
     <div class="navbar-spacer"></div>
