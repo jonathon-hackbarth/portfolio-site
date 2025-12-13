@@ -7,8 +7,8 @@
     "esModuleInterop": true,
     "isolatedModules": true,
     "skipLibCheck": true,
-    "types": ["node", "vitest"]
+    "types": ["node"]
   },
-  "include": ["src", "tests", "astro.config.ts"],
+  "include": ["src", "astro.config.ts"],
   "exclude": ["dist", "node_modules"]
 }

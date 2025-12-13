@@ -139,6 +139,7 @@ const metrics = [
   
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
+      if (!(entry.target instanceof HTMLElement)) return;
       if (entry.isIntersecting) {
         // Only keep bold if it has the active class
         if (entry.target.classList.contains('active')) {

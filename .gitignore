@@ -17,7 +17,7 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# environment variables (ignore all real env files but allow example)
+# environment variables 
 .env
 .env.*
 !.env.example
