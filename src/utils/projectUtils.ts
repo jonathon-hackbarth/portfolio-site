@@ -1,4 +1,3 @@
-// Define proper types for GitHub API responses
 export interface GitHubLanguages {
   readonly [key: string]: number;
 }
@@ -23,7 +22,6 @@ export interface ProjectData extends Repository {
   readonly languages: ReadonlyArray<Language>;
 }
 
-// Moved fetchLanguages here to avoid circular dependencies
 async function fetchLanguages(
   url: string,
   token?: string,
@@ -73,6 +71,6 @@ export async function getProjectsData(
     );
   } catch (error) {
     console.error("Error processing project data:", error);
-    throw error; // Re-throw to handle in the component
+    throw error;
   }
 }

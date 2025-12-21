@@ -1,13 +1,11 @@
 ---
 import { formatDateRange } from '../utils/dateFormatter';
 
-// Import resume data to extract key highlights
 const resumeModule = import.meta.glob('../../public/resume.json', { eager: true });
 const resumeFile = Object.values(resumeModule)[0] as any;
 const resumeData = resumeFile.default || resumeFile;
 const { work } = resumeData;
 
-// Extract the most impactful highlights from recent roles
 const impactHighlights = [
   {
     title: "M365 Copilot Pioneer",

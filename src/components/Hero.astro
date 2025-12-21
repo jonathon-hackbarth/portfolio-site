@@ -1,5 +1,4 @@
 ---
-// Hero section with professional positioning and impact metrics
 const metrics = [
   { value: "$15M", label: "Annual Savings Delivered", target: "metric-savings", icon: "chart" },
   { value: "100k+", label: "Users Served", target: "metric-users", icon: "users" },
@@ -7,14 +6,11 @@ const metrics = [
   { value: "M365 Copilot", label: "Pioneer - First Pilot", target: "metric-m365-copilot", icon: "sparkles" },
 ];
 
-// Mapping from old metric IDs to index-based highlight IDs
-// This maintains schema compliance while supporting the UI feature
-// Old ID -> job-{jobIdx}-highlight-{highlightIdx}
 const metricIdMapping: Record<string, string> = {
-  "metric-m365-copilot": "job-1-highlight-0",      // Engineer II, 1st highlight
-  "metric-ticket-reduction": "job-1-highlight-1",  // Engineer II, 2nd highlight
-  "metric-savings": "job-2-highlight-0",           // Developer, 1st highlight
-  "metric-users": "job-3-highlight-0",             // Data Analyst, 1st highlight
+  "metric-m365-copilot": "job-1-highlight-0",
+  "metric-ticket-reduction": "job-1-highlight-1",
+  "metric-savings": "job-2-highlight-0",
+  "metric-users": "job-3-highlight-0",
 };
 ---
 
@@ -124,7 +120,6 @@ const metricIdMapping: Record<string, string> = {
 </section>
 
 <script>
-  // Mapping from old metric IDs to index-based highlight IDs
   const metricIdMapping: Record<string, string> = {
     "metric-m365-copilot": "job-1-highlight-0",
     "metric-ticket-reduction": "job-1-highlight-1",
@@ -132,49 +127,35 @@ const metricIdMapping: Record<string, string> = {
     "metric-users": "job-3-highlight-0",
   };
 
-  // Handle metric card clicks to highlight resume items
   document.querySelectorAll('.metric-card[data-target]').forEach(card => {
     card.addEventListener('click', () => {
       const targetId = card.getAttribute('data-target');
       if (!targetId) return;
 
-      // Translate old metric ID to index-based highlight ID
       const actualId = metricIdMapping[targetId] || targetId;
-
-      // Find the target element
       const target = document.getElementById(actualId);
       if (!target) return;
 
-      // Scroll to the target element
       target.scrollIntoView({ behavior: 'smooth', block: 'center' });
       
-      // Add active class to trigger animation
       setTimeout(() => {
         target.classList.add('active');
       }, 500);
     });
   });
 
-  // Check if highlights are in view and keep them bold only if they have active class
   const highlightElements = document.querySelectorAll('.metric-highlight');
-  
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!(entry.target instanceof HTMLElement)) return;
-      if (entry.isIntersecting) {
-        // Only keep bold if it has the active class
-        if (entry.target.classList.contains('active')) {
-          entry.target.style.fontWeight = '600';
-        }
+      if (entry.isIntersecting && entry.target.classList.contains('active')) {
+        entry.target.style.fontWeight = '600';
       } else {
-        // Remove bold and active class when out of view
         entry.target.classList.remove('active');
         entry.target.style.fontWeight = '';
       }
     });
-  }, {
-    threshold: 0.5
-  });
+  }, { threshold: 0.5 });
 
   highlightElements.forEach(el => observer.observe(el));
 </script>

@@ -79,7 +79,7 @@ const personJsonLd = {
       {
         `(() => {
           try {
-            const t = localStorage.getItem('theme'); // 'light' | 'dark' | null
+            const t = localStorage.getItem('theme');
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             const isDark = t === 'dark' || (t !== 'light' && prefersDark);
             document.documentElement.classList.toggle('theme-dark', isDark);

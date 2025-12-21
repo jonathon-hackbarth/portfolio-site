@@ -9,8 +9,6 @@ let error: string | null = null;
 
 try {
   const token = import.meta.env.GH_DEV_TOKEN;
-
-  // Fetch repos directly from GitHub
   const repoRes = await fetch(
     `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&direction=desc`,
     {

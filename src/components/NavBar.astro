@@ -98,7 +98,6 @@ const navItems = [
 </nav>
 
 <script>
-  // Mobile menu toggle
   const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
   const menuIcon = mobileMenuToggle?.querySelector('.menu-icon');
@@ -120,7 +119,6 @@ const navItems = [
     }
   });
 
-  // Close mobile menu when clicking a link
   mobileMenu?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       mobileMenu.classList.remove('open');
@@ -130,22 +128,20 @@ const navItems = [
     });
   });
 
-  // Active nav link on scroll and profile image border color
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-link');
   const profileImg = document.getElementById('profile-img');
 
-  // Map section IDs to their accent colors
   const sectionAccentColors = {
-    'hero': 'var(--accent-hero)',       // Teal
-    'impact': 'var(--accent-impact)',   // Orange
-    'resume': 'var(--accent)',          // Blue
-    'code-samples': 'var(--accent-code)' // Coral
+    'hero': 'var(--accent-hero)',
+    'impact': 'var(--accent-impact)',
+    'resume': 'var(--accent)',
+    'code-samples': 'var(--accent-code)'
   };
 
   function setActiveLink() {
     const scrollY = window.scrollY;
-    let currentSectionId = 'hero'; // Default to hero
+    let currentSectionId = 'hero';
     
     sections.forEach(section => {
       const sectionTop = (section as HTMLElement).offsetTop - 100;
@@ -163,11 +159,9 @@ const navItems = [
       }
     });
 
-    // Update profile image border color based on current section
     if (profileImg) {
       const accentColor = sectionAccentColors[currentSectionId as keyof typeof sectionAccentColors];
       if (accentColor) {
-        // Get the CSS variable value
         const computedColor = getComputedStyle(document.documentElement).getPropertyValue(accentColor.replace('var(', '').replace(')', '')).trim();
         profileImg.style.borderColor = computedColor || accentColor;
       }
@@ -177,13 +171,11 @@ const navItems = [
   window.addEventListener('scroll', setActiveLink);
   setActiveLink();
 
-  // Theme toggle with View Transitions API
   const themeToggle = document.getElementById('theme-toggle');
   const html = document.documentElement;
   const sunIcon = themeToggle?.querySelector('.sun-icon');
   const moonIcon = themeToggle?.querySelector('.moon-icon');
 
-  // Initialize theme from localStorage or system preference
   const savedTheme = localStorage.getItem('theme');
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
@@ -197,7 +189,6 @@ const navItems = [
   themeToggle?.addEventListener('click', () => {
     const isDarkNow = html.classList.contains('theme-dark');
     
-    // Use View Transitions API if supported
     if ('startViewTransition' in document) {
       (document as any).startViewTransition(() => {
         toggleTheme(isDarkNow);
