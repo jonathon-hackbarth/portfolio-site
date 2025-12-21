@@ -10,6 +10,9 @@ export default defineConfig({
   }),
   vite: {
     plugins: [tailwindcss() as any],
+    ssr: {
+      external: ["fs", "path", "url"],
+    },
   },
   integrations: [sitemap()],
   output: "static",
