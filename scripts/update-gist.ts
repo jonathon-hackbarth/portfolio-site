@@ -4,26 +4,16 @@ import { readFileSync } from "fs";
 import { join } from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
+import { config } from "dotenv";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+// Load environment variables from .env
+config({ path: join(__dirname, "../.env") });
+
 const GIST_ID = "e125205972dd01bdcf6729c6960fe50c";
 const resumePath = join(__dirname, "../public/resume.json");
-
-// Load environment variables from .env
-const envPath = join(__dirname, "../.env");
-try {
-  const envContent = readFileSync(envPath, "utf-8");
-  envContent.split("\n").forEach((line) => {
-    const [key, value] = line.split("=");
-    if (key && value) {
-      process.env[key.trim()] = value.trim();
-    }
-  });
-} catch {
-  // .env file not found, that's ok
-}
 
 async function updateGist() {
   try {
@@ -45,7 +35,7 @@ async function updateGist() {
     const response = await fetch(url, {
       method: "PATCH",
       headers: {
-        Authorization: `token ${token}`,
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -58,9 +48,12 @@ async function updateGist() {
     });
 
     if (!response.ok) {
-      const error = await response.text();
+      const errorBody = await response.text();
       console.error(`❌ Failed to update gist: ${response.status}`);
-      console.error(error);
+      // Log detailed error only in development
+      if (process.env.NODE_ENV !== "production") {
+        console.error("Details:", errorBody);
+      }
       process.exit(1);
     }
 
