@@ -34,7 +34,7 @@ async function fetchLanguages(
   });
 
   if (!response.ok) {
-    throw new Error(`Failed to fetch languages: ${response.statusText}`);
+    throw new Error(`github_languages_fetch_error_${response.status}`);
   }
 
   return response.json();
