@@ -1,0 +1,21 @@
+/*
+  # Security Headers
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; font-src 'self'; connect-src 'self' https://api.github.com https://avatars.githubusercontent.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
+  
+  # Prevent MIME type sniffing (already set by Cloudflare, but explicit here)
+  X-Content-Type-Options: nosniff
+  
+  # Prevent clickjacking
+  X-Frame-Options: DENY
+  
+  # Enable HSTS (1 year, include subdomains)
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  
+  # Control referrer information
+  Referrer-Policy: strict-origin-when-cross-origin
+  
+  # Restrict CORS to same origin only
+  Access-Control-Allow-Origin: https://jonathonhackbarth.com
+  
+  # Disable feature policy for unused browser features
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()
