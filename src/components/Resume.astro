@@ -58,7 +58,7 @@ const { basics, work, skills } = resumeData;
         <div class="border-b border-[var(--border-card)]">
           <h2 class="text-2xl font-bold pt-8 pb-8 text-[var(--text-primary)] tracking-tight">Experience</h2>
           <div class="space-y-6">
-            {work.map((job: any) => (
+            {work.map((job: any, jobIdx: number) => (
               <div class="experience-card">
                 <h3 class="job-title">{job.position}</h3>
                 <span class="company-badge">{job.name}</span>
@@ -66,11 +66,10 @@ const { basics, work, skills } = resumeData;
                 {job.summary && <p class="text-sm mb-6 text-[var(--text-secondary)]">{job.summary}</p>}
                 {job.highlights && job.highlights.length > 0 && (
                   <ul>
-                    {job.highlights.map((highlight: any) => {
-                      const id = typeof highlight === 'string' ? '' : (highlight.id || '');
-                      const text = typeof highlight === 'string' ? highlight : highlight.text;
+                    {job.highlights.map((highlight: string, highlightIdx: number) => {
+                      const id = `job-${jobIdx}-highlight-${highlightIdx}`;
                       return (
-                        <li {...(id && { id })} class={id ? 'metric-highlight' : ''}>{text}</li>
+                        <li id={id} class="metric-highlight">{highlight}</li>
                       );
                     })}
                   </ul>
