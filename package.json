@@ -6,7 +6,8 @@
     "start": "astro dev",
     "build": "tsx scripts/generate-resume-pdf.ts && astro build",
     "preview": "wrangler pages dev ./dist",
-    "astro": "astro"
+    "astro": "astro",
+    "update-registry": "tsx scripts/update-gist.ts"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.10",
