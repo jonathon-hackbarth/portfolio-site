@@ -1,30 +1,46 @@
 ---
 import type { ProjectData } from "../utils/projectUtils";
 import { getProjectsData } from "../utils/projectUtils";
+import { readProjectsCache, writeProjectsCache } from "../utils/cache";
 
 const GITHUB_USERNAME = "jonathon-hackbarth";
 
 let projects: ProjectData[] = [];
 let error: string | null = null;
+let fromCache = false;
 
 try {
   const token = import.meta.env.GH_DEV_TOKEN;
-  const repoRes = await fetch(
-    `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&direction=desc`,
-    {
-      headers: {
-        ...(token && { Authorization: `Bearer ${token}` }),
-        Accept: "application/vnd.github.v3+json",
-      },
+  
+  // Try to load from cache first
+  const cachedProjects = readProjectsCache<ProjectData[]>();
+  if (cachedProjects) {
+    projects = cachedProjects;
+    fromCache = true;
+  } else {
+    // Fetch from GitHub API
+    const repoRes = await fetch(
+      `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&direction=desc`,
+      {
+        headers: {
+          ...(token && { Authorization: `Bearer ${token}` }),
+          Accept: "application/vnd.github.v3+json",
+        },
+      }
+    );
+    if (!repoRes.ok) {
+      throw new Error(`github_api_error_${repoRes.status}`);
     }
-  );
-  if (!repoRes.ok) {
-    throw new Error(`GitHub API responded with ${repoRes.status}`);
+    const repos = await repoRes.json();
+    projects = await getProjectsData(repos, token);
+    
+    // Cache the results
+    writeProjectsCache(projects);
   }
-  const repos = await repoRes.json();
-  projects = await getProjectsData(repos, token);
 } catch (err) {
-  error = err instanceof Error ? err.message : "Failed to load projects";
+  // Log detailed error for debugging, but show generic message to user
+  console.error("Projects loading error:", err);
+  error = "Unable to load projects. Please try again later.";
 }
 ---
 
