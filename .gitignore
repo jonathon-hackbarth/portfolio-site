@@ -8,6 +8,9 @@ dist/
 # generated files
 public/resume.pdf
 
+# cache
+.cache/
+
 # dependencies
 node_modules/
 
