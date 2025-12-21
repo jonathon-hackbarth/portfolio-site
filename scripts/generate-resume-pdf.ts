@@ -28,18 +28,13 @@ interface Basics {
   profiles?: Profile[];
 }
 
-interface Highlight {
-  text: string;
-  id?: string;
-}
-
 interface Work {
   position: string;
   name: string;
   startDate: string;
   endDate?: string;
   summary?: string;
-  highlights?: (string | Highlight)[];
+  highlights?: string[];
 }
 
 interface Education {
@@ -57,7 +52,7 @@ interface Skill {
 interface Project {
   name: string;
   description?: string;
-  highlights?: (string | Highlight)[];
+  highlights?: string[];
 }
 
 interface ResumeData {
@@ -112,10 +107,10 @@ function formatDateRange(startDate: string, endDate?: string): string {
 }
 
 /**
- * Extracts text from a highlight (handles both string and object formats)
+ * Generates an index-based ID for a highlight: job-{jobIdx}-highlight-{highlightIdx}
  */
-function getHighlightText(highlight: string | Highlight): string {
-  return typeof highlight === "string" ? highlight : highlight.text;
+function generateHighlightId(jobIdx: number, highlightIdx: number): string {
+  return `job-${jobIdx}-highlight-${highlightIdx}`;
 }
 
 async function generateResumePDF(): Promise<void> {
@@ -355,7 +350,7 @@ function generateResumeHTML(
       <h2>Experience</h2>
       ${work
         .map(
-          (job) => `
+          (job, jobIdx) => `
         <div class="job">
           <div class="job-title">${job.position}</div>
           <div class="date">${formatDateRange(job.startDate, job.endDate)}</div>
@@ -365,7 +360,7 @@ function generateResumeHTML(
             job.highlights && job.highlights.length > 0
               ? `
             <ul class="highlights">
-              ${job.highlights.map((h) => `<li>${getHighlightText(h)}</li>`).join("")}
+              ${job.highlights.map((h, highlightIdx) => `<li id="${generateHighlightId(jobIdx, highlightIdx)}" class="metric-highlight">${h}</li>`).join("")}
             </ul>
           `
               : ""
@@ -432,7 +427,7 @@ function generateResumeHTML(
       <h2>Projects</h2>
       ${projects
         .map(
-          (proj) => `
+          (proj, projIdx) => `
         <div class="job">
           <div class="job-title">${proj.name}</div>
           ${proj.description ? `<div class="job-summary">${proj.description}</div>` : ""}
@@ -440,7 +435,7 @@ function generateResumeHTML(
             proj.highlights && proj.highlights.length > 0
               ? `
             <ul class="highlights">
-              ${proj.highlights.map((h) => `<li>${getHighlightText(h)}</li>`).join("")}
+              ${proj.highlights.map((h, highlightIdx) => `<li id="${generateHighlightId(projIdx + (work?.length || 0), highlightIdx)}" class="metric-highlight">${h}</li>`).join("")}
             </ul>
           `
               : ""
