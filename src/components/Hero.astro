@@ -6,6 +6,16 @@ const metrics = [
   { value: "90%", label: "Ticket Reduction", target: "metric-ticket-reduction", icon: "check" },
   { value: "M365 Copilot", label: "Pioneer - First Pilot", target: "metric-m365-copilot", icon: "sparkles" },
 ];
+
+// Mapping from old metric IDs to index-based highlight IDs
+// This maintains schema compliance while supporting the UI feature
+// Old ID -> job-{jobIdx}-highlight-{highlightIdx}
+const metricIdMapping: Record<string, string> = {
+  "metric-m365-copilot": "job-1-highlight-0",      // Engineer II, 1st highlight
+  "metric-ticket-reduction": "job-1-highlight-1",  // Engineer II, 2nd highlight
+  "metric-savings": "job-2-highlight-0",           // Developer, 1st highlight
+  "metric-users": "job-3-highlight-0",             // Data Analyst, 1st highlight
+};
 ---
 
 <section id="hero" class="hero-section">
@@ -114,14 +124,25 @@ const metrics = [
 </section>
 
 <script>
+  // Mapping from old metric IDs to index-based highlight IDs
+  const metricIdMapping: Record<string, string> = {
+    "metric-m365-copilot": "job-1-highlight-0",
+    "metric-ticket-reduction": "job-1-highlight-1",
+    "metric-savings": "job-2-highlight-0",
+    "metric-users": "job-3-highlight-0",
+  };
+
   // Handle metric card clicks to highlight resume items
   document.querySelectorAll('.metric-card[data-target]').forEach(card => {
     card.addEventListener('click', () => {
       const targetId = card.getAttribute('data-target');
       if (!targetId) return;
 
+      // Translate old metric ID to index-based highlight ID
+      const actualId = metricIdMapping[targetId] || targetId;
+
       // Find the target element
-      const target = document.getElementById(targetId);
+      const target = document.getElementById(actualId);
       if (!target) return;
 
       // Scroll to the target element
