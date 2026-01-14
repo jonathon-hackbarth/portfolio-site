@@ -1,17 +1,10 @@
 ---
 const metrics = [
-  { value: "$15M", label: "Annual Savings Delivered", target: "metric-savings", icon: "chart" },
-  { value: "100k+", label: "Users Served", target: "metric-users", icon: "users" },
-  { value: "90%", label: "Ticket Reduction", target: "metric-ticket-reduction", icon: "check" },
   { value: "M365 Copilot", label: "Pioneer - First Pilot", target: "metric-m365-copilot", icon: "sparkles" },
+  { value: "GitHub Copilot", label: "3x Developer Velocity", target: "metric-github-copilot", icon: "rocket" },
+  { value: "Copilot Studio", label: "POC Director", target: "metric-copilot-studio", icon: "lightning" },
+  { value: "Power Platform AI", label: "$15M Savings", target: "metric-power-platform", icon: "chart" },
 ];
-
-const metricIdMapping: Record<string, string> = {
-  "metric-m365-copilot": "job-1-highlight-0",
-  "metric-ticket-reduction": "job-1-highlight-1",
-  "metric-savings": "job-2-highlight-0",
-  "metric-users": "job-3-highlight-0",
-};
 ---
 
 <section id="hero" class="hero-section">
@@ -19,8 +12,7 @@ const metricIdMapping: Record<string, string> = {
     <h1 class="hero-name">Jonathon Hackbarth</h1>
     <p class="hero-title">Enterprise Solutions Architect</p>
     <p class="hero-summary">
-      Microsoft 365 & AI Innovation Specialist with 18+ years of experience driving enterprise transformation, 
-      Power Platform automation, and M365 Copilot implementation.
+      Enterprise Solutions Architect with 18+ years of experience in Microsoft 365 and AI innovation. Expert in M365 Copilot, GitHub Copilot, Copilot Studio, and Power Platform, driving AI-enhanced enterprise transformation and advisory services.
     </p>
     
     <!-- Contact Links -->
@@ -95,24 +87,24 @@ const metricIdMapping: Record<string, string> = {
           type="button"
           aria-label={`${metric.value} - ${metric.label}, click to view details`}
         >
-          <div class="flex items-center gap-4 justify-center">
+          <div class="flex flex-col items-center gap-4 w-full">
+            <div class="metric-value">{metric.value}</div>
+            <div class="metric-label">{metric.label}</div>
             <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-xl bg-[var(--bg-elevated)] text-[var(--accent-hero)] border border-[var(--border-card)]">
               {metric.icon === 'chart' && (
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="metric-icon"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>
               )}
-              {metric.icon === 'users' && (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="metric-icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-              )}
-              {metric.icon === 'check' && (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="metric-icon"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              )}
               {metric.icon === 'sparkles' && (
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="metric-icon"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M5.6 18.4L18.4 5.6"/></svg>
               )}
+              {metric.icon === 'rocket' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="metric-icon"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+              )}
+              {metric.icon === 'lightning' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="metric-icon"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              )}
             </div>
-            <div class="metric-value">{metric.value}</div>
           </div>
-          <div class="metric-label">{metric.label}</div>
         </button>
       ))}
     </div>
@@ -122,9 +114,9 @@ const metricIdMapping: Record<string, string> = {
 <script>
   const metricIdMapping: Record<string, string> = {
     "metric-m365-copilot": "job-1-highlight-0",
-    "metric-ticket-reduction": "job-1-highlight-1",
-    "metric-savings": "job-2-highlight-0",
-    "metric-users": "job-3-highlight-0",
+    "metric-github-copilot": "job-0-highlight-0",
+    "metric-copilot-studio": "job-1-highlight-2",
+    "metric-power-platform": "job-2-highlight-0",
   };
 
   document.querySelectorAll('.metric-card[data-target]').forEach(card => {

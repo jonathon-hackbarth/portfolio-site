@@ -246,10 +246,11 @@ html.theme-dark {
   font-variant-numeric: tabular-nums;
   color: var(--accent-hero);
   line-height: 1.2;
-  text-align: left;
+  text-align: center;
   max-width: 100%;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  padding: 0 var(--spacing-xs);
 }
 
 .metric-label {
@@ -259,7 +260,7 @@ html.theme-dark {
   text-align: center;
   line-height: 1.4;
   max-width: 100%;
-  margin-top: var(--spacing-sm);
+  padding: 0 var(--spacing-xs);
 }
 
 /* Navigation */
