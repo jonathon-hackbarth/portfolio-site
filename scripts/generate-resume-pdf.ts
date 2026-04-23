@@ -239,11 +239,14 @@ function generateResumeHTML(
       border-bottom: 2px solid #2563eb;
       padding-bottom: 2px;
       margin-bottom: 8px;
+      break-after: avoid;
+      page-break-after: avoid;
     }
 
     .job, .edu {
       margin-bottom: 10px;
       page-break-inside: avoid;
+      break-inside: avoid;
     }
 
     .job-title, .edu-title {
@@ -400,7 +403,7 @@ function generateResumeHTML(
     ${
       skills && skills.length > 0
         ? `
-    <section>
+    <section style="break-before: page; page-break-before: always; break-inside: avoid; page-break-inside: avoid;">
       <h2>Skills</h2>
       <div class="skills-grid">
         ${skills

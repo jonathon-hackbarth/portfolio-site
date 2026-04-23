@@ -2,12 +2,12 @@
   "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
   "basics": {
     "name": "Jonathon Hackbarth",
-    "label": "Enterprise Solutions Architect - Microsoft 365 & AI Innovation",
+    "label": "Microsoft 365 Platform Engineer & Administrator | Power Platform, Copilot & AI",
     "image": "https://jonathonhackbarth.com/og-image.webp",
     "email": "me@jonathonhackbarth.com",
     "phone": "",
     "url": "https://www.jonathonhackbarth.com",
-    "summary": "Enterprise Solutions Architect with 18+ years of experience in Microsoft 365, Power Platform, and Azure. Specialized in M365 Copilot implementation, GitHub Copilot agentic workflows, and AI-enhanced automation. Expert in Azure infrastructure design, CI/CD pipeline architecture, and C4 model-driven stakeholder alignment in regulated environments. Proven track record: $15M annual savings, 90% ticket reduction, 100k+ user frameworks.",
+    "summary": "Microsoft 365 Platform Engineer and Administrator with 18+ years of experience in Power Platform, Copilot, and Azure. Specialized in platform governance, DLP policy administration, Copilot Studio deployment, and enterprise ALM — bridging low-code and pro-code solutions in regulated environments. Proven track record: $15M annual savings, 90% ticket reduction, 100k+ user frameworks.",
     "location": {
       "address": "",
       "postalCode": "",
@@ -42,6 +42,7 @@
         "Pioneered GitHub Copilot planning, documentation, and agentic workflows; demonstrated expertise in critically analyzing AI agents to identify weak points and ensure accuracy while maximizing velocity",
         "Accelerated feature delivery 80-90% with AI-enhanced development, enabling 2-3 features weekly vs. 1 per sprint and daily deployment cycles vs. weekly",
         "Architected Outlook/SharePoint Add-In for legal professionals reducing document processing time by 80% (5→1 minute per record); solution positioned for enterprise-scale deployment serving hundreds of records monthly",
+        "Managed end-to-end publishing and lifecycle of Office Add-In through the M365 integrated app store, including tenant deployment, app permissions, and rollout governance in a regulated environment",
         "Designed and built Azure infrastructure, web services, and CI/CD pipelines for automated application deployment across the M365 and Azure ecosystem",
         "Led requirements gathering, technical planning, and architectural decision-making driving solution direction for a complex enterprise system",
         "Developed comprehensive application architecture using the C4 model (Context, Container, Component, Code) to achieve alignment from all stakeholders and secure approval in a highly regulated environment for a system spanning M365, Azure, SharePoint, Outlook, and M365 Apps"
@@ -55,14 +56,18 @@
       "url": "https://www.bestbuy.com",
       "startDate": "2022-10",
       "endDate": "2025-08",
-      "summary": "Leading enterprise cloud transformations and AI implementations across Microsoft 365 ecosystem, including M365 Copilot pilot programs, Graph API integrations, and Power Platform automation frameworks.",
+      "summary": "Led enterprise cloud transformations and AI implementations across the Microsoft 365 ecosystem, including M365 Copilot pilot programs, Graph API integrations, and Power Platform governance and automation frameworks.",
       "highlights": [
         "Spearheaded enterprise-wide implementation of M365 Copilot, participating in Microsoft's first Copilot pilot program",
         "Created internal knowledge base by integrating Microsoft Learn with proprietary enterprise content, reducing support tickets and improving operational efficiency",
-        "Directed proof-of-concept for Copilot Studio, managing end-to-end security and accelerating time to business outcomes",
+        "Architected and deployed Copilot Studio solutions integrating SharePoint, ServiceNow, and custom connectors; managed ALM across lower and production environments, supporting developers with structured solution export and import processes",
+        "Published and managed Copilot Studio agents through the M365 integrated app store (Agent 365), overseeing app permissions, publishing approvals, and agent lifecycle management across the enterprise",
         "Built custom Graph API connectors for Power Platform and developed governance automation scripts",
         "Directed migration of SharePoint to cloud infrastructure, reducing costs and improving system reliability",
-        "Designed enterprise automation frameworks, increasing engineering capacity by 50%"
+        "Designed enterprise automation frameworks, increasing engineering capacity by 50%",
+        "Administered DLP policies across Power Platform, reducing enterprise connector surface area by 80% and establishing a structured intake and governance process for connector requests",
+        "Established ALM lifecycle governance for Power Platform, identifying 100% of shared and business-critical apps and migrating them from personal productivity environments into defined, managed environment tiers (Dev/Test/Prod)",
+        "Managed and mentored a team of engineers while maintaining CoE operations and platform administration, delivering enterprise-leading CSAT outcomes"
       ]
     },
     {
@@ -78,7 +83,7 @@
         "Developed enterprise applications on Power Platform, achieving $15M in annual labor cost savings",
         "Implemented control processes to reduce support tickets by 90%",
         "Created scalable solutions across CRM, services, and supply chain systems",
-        "Created 50+ Power Apps, Power Automations, Azure Automations and other solutions"
+        "Created 50+ Power Apps, Power Automate flows, Azure Automations, and other solutions"
       ]
     },
     {
@@ -123,7 +128,6 @@
       "endDate": "2014-07",
       "summary": "Delivered exceptional technical support and customer solutions with 95%+ first-call resolution rate.",
       "highlights": [
-        "Delivered exceptional technical support with 95%+ first-call resolution rate",
         "Consistently surpassed performance metrics in speed, quality, and satisfaction",
         "Designed and implemented tailored technical solutions for clients"
       ]
@@ -155,7 +159,12 @@
         "Copilot Studio",
         "Graph API",
         "Office Add-ins",
-        "Azure Infrastructure"
+        "Azure Infrastructure",
+        "Power Platform Admin Center",
+        "M365 Admin Center",
+        "DLP Policy Administration",
+        "Power Platform ALM",
+        "ServiceNow Integration"
       ]
     },
     {
@@ -164,7 +173,6 @@
       "keywords": [
         "Power Apps",
         "Power Automate",
-        "PowerShell",
         "Azure Automation",
         "Custom API Development",
         "Office JavaScript API",
@@ -236,7 +244,9 @@
         "Change Management",
         "Compliance & Governance",
         "C4 Architecture Model",
-        "CI/CD Pipelines"
+        "CI/CD Pipelines",
+        "Policy-as-Code",
+        "Environment Lifecycle Management"
       ]
     },
     {
@@ -325,7 +335,7 @@
   "meta": {
     "canonical": "https://raw.githubusercontent.com/jsonresume/resume-schema/master/sample.resume.json",
     "version": "v1.0.0",
-    "lastModified": "2017-12-24T15:53:00",
+    "lastModified": "2026-04-23T00:00:00",
     "highlightIdScheme": "index-based",
     "highlightIdNote": "Highlight IDs are generated as job-{jobIndex}-highlight-{highlightIndex}. These IDs are used for anchor links in the web resume and PDF. WARNING: Reordering jobs or highlights will break existing anchor links pointing to specific highlights."
   }
