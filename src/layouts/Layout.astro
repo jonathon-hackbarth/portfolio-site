@@ -1,4 +1,6 @@
 ---
+import resumeData from "../../public/resume.json";
+
 export interface Props {
   title: string;
   description?: string;
@@ -6,7 +8,7 @@ export interface Props {
 
 const {
   title,
-  description = "Enterprise Solutions Architect with 18+ years experience in Microsoft 365, Power Platform, and Azure. Proven impact: $15M annual savings, 90% ticket reduction, 100k+ user frameworks.",
+  description = resumeData.basics.summary,
 } = Astro.props;
 
 const siteUrl = "https://jonathonhackbarth.com";
@@ -22,7 +24,7 @@ const personJsonLd = {
     "https://github.com/jonathon-hackbarth",
     "https://www.linkedin.com/in/jonathon-w-hackbarth",
   ],
-  jobTitle: "Enterprise Solutions Architect - Microsoft 365 & AI Innovation",
+  jobTitle: resumeData.basics.label,
   description,
 };
 ---

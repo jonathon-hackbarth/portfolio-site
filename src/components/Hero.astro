@@ -1,8 +1,10 @@
 ---
+import resumeData from '../../public/resume.json';
+
 const metrics = [
-  { value: "M365 Copilot", label: "Pioneer - First Pilot", target: "metric-m365-copilot", icon: "sparkles" },
-  { value: "GitHub Copilot", label: "3x Developer Velocity", target: "metric-github-copilot", icon: "rocket" },
-  { value: "Azure & M365", label: "Enterprise Architect", target: "metric-azure-architect", icon: "lightning" },
+  { value: "Technical Lead", label: "2 Teams / 10 People", target: "metric-technical-lead", icon: "rocket" },
+  { value: "Azure & Terraform", label: "Repeatable Delivery", target: "metric-azure-architect", icon: "lightning" },
+  { value: "M365 Copilot", label: "Readiness & Governance", target: "metric-m365-copilot", icon: "sparkles" },
   { value: "Power Platform AI", label: "$15M Savings", target: "metric-power-platform", icon: "chart" },
 ];
 ---
@@ -10,9 +12,9 @@ const metrics = [
 <section id="hero" class="hero-section">
   <div class="max-w-4xl">
     <h1 class="hero-name">Jonathon Hackbarth</h1>
-    <p class="hero-title">Enterprise Solutions Architect</p>
+    <p class="hero-title">{resumeData.basics.label}</p>
     <p class="hero-summary">
-      Enterprise Solutions Architect with 18+ years of experience in Microsoft 365 and AI innovation. Expert in M365 Copilot, GitHub Copilot, Copilot Studio, and Power Platform, driving AI-enhanced enterprise transformation and advisory services.
+      {resumeData.basics.summary}
     </p>
     
     <!-- Contact Links -->
@@ -113,9 +115,9 @@ const metrics = [
 
 <script>
   const metricIdMapping: Record<string, string> = {
-    "metric-m365-copilot": "job-1-highlight-0",
-    "metric-github-copilot": "job-0-highlight-0",
-    "metric-azure-architect": "job-0-highlight-6",
+    "metric-m365-copilot": "job-0-highlight-3",
+    "metric-technical-lead": "job-0-highlight-2",
+    "metric-azure-architect": "job-0-highlight-1",
     "metric-power-platform": "job-2-highlight-0",
   };
 
