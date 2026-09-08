@@ -240,16 +240,21 @@ html.theme-dark {
   opacity: 1;
 }
 
+.metric-card {
+  container-type: inline-size;
+}
+
 .metric-value {
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-size: clamp(1.25rem, 10cqi, 1.75rem);
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   color: var(--accent-hero);
   line-height: 1.2;
   text-align: center;
   max-width: 100%;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+  overflow-wrap: normal;
+  word-break: normal;
+  text-wrap: balance;
   padding: 0 var(--spacing-xs);
 }
 
