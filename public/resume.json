@@ -59,7 +59,7 @@
         "Spearheaded enterprise-wide implementation of M365 Copilot, participating in Microsoft's first Copilot pilot program",
         "Created internal knowledge base by integrating Microsoft Learn with proprietary enterprise content, reducing support tickets and improving operational efficiency",
         "Architected and deployed Copilot Studio solutions integrating SharePoint, ServiceNow, and custom connectors; managed ALM across lower and production environments, supporting developers with structured solution export and import processes",
-        "Published and managed Copilot Studio agents through the M365 integrated app store (Agent 365), overseeing app permissions, publishing approvals, and agent lifecycle management across the enterprise",
+        "Published and managed Copilot Studio agents through the M365 integrated app store, overseeing app permissions, publishing approvals, and agent lifecycle management across the enterprise",
         "Built custom Graph API connectors for Power Platform and developed governance automation scripts",
         "Directed migration of SharePoint to cloud infrastructure, reducing costs and improving system reliability",
         "Designed enterprise automation frameworks, increasing engineering capacity by 50%",
