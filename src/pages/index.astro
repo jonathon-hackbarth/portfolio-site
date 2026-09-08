@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import resumeData from "../../public/resume.json";
 import Layout from "../layouts/Layout.astro";
 import NavBar from "../components/NavBar.astro";
 import Hero from "../components/Hero.astro";
@@ -9,8 +10,8 @@ import CodeSamples from "../components/CodeSamples.astro";
 ---
 
 <Layout
-  title="Jonathon Hackbarth - Enterprise Solutions Architect"
-  description="Enterprise Solutions Architect with 18+ years experience in Microsoft 365, Power Platform, and Azure. Proven impact: $15M annual savings, 90% ticket reduction, 100k+ user frameworks."
+  title={`${resumeData.basics.name} - Solutions Architect & Technical Lead`}
+  description={resumeData.basics.summary}
 >
   <div class="min-h-screen flex flex-col">
     <header>

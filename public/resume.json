@@ -2,12 +2,12 @@
   "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
   "basics": {
     "name": "Jonathon Hackbarth",
-    "label": "Microsoft 365 Platform Engineer & Administrator | Power Platform, Copilot & AI",
+    "label": "Solutions Architect & Technical Lead | Azure, Microsoft 365 & Copilot",
     "image": "https://jonathonhackbarth.com/og-image.webp",
     "email": "me@jonathonhackbarth.com",
     "phone": "",
     "url": "https://www.jonathonhackbarth.com",
-    "summary": "Microsoft 365 Platform Engineer and Administrator with 18+ years of experience in Power Platform, Copilot, and Azure. Specialized in platform governance, DLP policy administration, Copilot Studio deployment, and enterprise ALM — bridging low-code and pro-code solutions in regulated environments. Proven track record: $15M annual savings, 90% ticket reduction, 100k+ user frameworks.",
+    "summary": "Hands-on solutions architect and technical lead with 18+ years across technology services, engineering, and leadership. Specializes in Azure infrastructure, Microsoft 365, Power Platform, and secure Copilot readiness in regulated environments. Provides technical direction across two five-person teams, combining architecture, automation, data governance, and mentoring. Earlier enterprise work delivered $15M in annual labor savings and a 90% reduction in support tickets.",
     "location": {
       "address": "",
       "postalCode": "",
@@ -18,13 +18,13 @@
     "profiles": [
       {
         "network": "GitHub",
-        "username": "jhackbarth",
-        "url": "https://github.com/jhackbarth"
+        "username": "jonathon-hackbarth",
+        "url": "https://github.com/jonathon-hackbarth"
       },
       {
         "network": "LinkedIn",
-        "username": "jonathonhackbarth",
-        "url": "https://linkedin.com/in/jonathonhackbarth"
+        "username": "jonathon-w-hackbarth",
+        "url": "https://linkedin.com/in/jonathon-w-hackbarth"
       }
     ]
   },
@@ -36,16 +36,14 @@
       "position": "Senior Microsoft Power Platform, SharePoint & Applications Developer III",
       "url": "https://www.alphaomega.com",
       "startDate": "2025-08",
-      "summary": "Senior solutions architect and full-stack developer driving enterprise architecture, Azure infrastructure, and cloud transformations across the Microsoft 365 ecosystem in highly regulated environments.",
+      "summary": "Technical lead for Azure application delivery and Microsoft 365 Copilot readiness. Provide architectural direction and technical leadership across two five-person teams, contributing to resource planning, work estimation, and delivery scheduling while remaining hands-on. Advance Office Add-In development toward production and lead M365 Copilot readiness through predeployment security assessment.",
       "highlights": [
-        "Delivered enterprise POC ahead of schedule, now advancing to full deployment; compressed multi-developer, multi-month scope into <3 months with single developer using GitHub Copilot agentic workflows",
-        "Pioneered GitHub Copilot planning, documentation, and agentic workflows; demonstrated expertise in critically analyzing AI agents to identify weak points and ensure accuracy while maximizing velocity",
-        "Accelerated feature delivery 80-90% with AI-enhanced development, enabling 2-3 features weekly vs. 1 per sprint and daily deployment cycles vs. weekly",
-        "Architected Outlook/SharePoint Add-In for legal professionals reducing document processing time by 80% (5→1 minute per record); solution positioned for enterprise-scale deployment serving hundreds of records monthly",
-        "Managed end-to-end publishing and lifecycle of Office Add-In through the M365 integrated app store, including tenant deployment, app permissions, and rollout governance in a regulated environment",
-        "Designed and built Azure infrastructure, web services, and CI/CD pipelines for automated application deployment across the M365 and Azure ecosystem",
-        "Led requirements gathering, technical planning, and architectural decision-making driving solution direction for a complex enterprise system",
-        "Developed comprehensive application architecture using the C4 model (Context, Container, Component, Code) to achieve alignment from all stakeholders and secure approval in a highly regulated environment for a system spanning M365, Azure, SharePoint, Outlook, and M365 Apps"
+        "Architected an Outlook/SharePoint Add-In to streamline document processing for legal professionals; translated the proof of concept into a working development deployment and established the foundation for continued team delivery.",
+        "Designed and validated Terraform infrastructure and end-to-end CI/CD pipelines for Azure provisioning, application builds, and Add-In manifests. Established a dev/QA/prod architecture using WAFs, App Services, Key Vault, and private endpoints, enabling repeatable deployment and rapid redeployment following an Azure subscription change.",
+        "Led technical hiring evaluation and mentoring across 10 team members; guided implementation, troubleshooting, and cross-team coordination, enabling the application team to deliver features largely independently.",
+        "Defined and adapted M365 Copilot data readiness and governance plans using SharePoint Advanced Management reporting and access and discovery controls; partnered with Microsoft FastTrack to address government-tenant requirements.",
+        "Validated Microsoft Purview DLP policies through Audit Logs, Activity Explorer, and structured alert testing; worked directly with Microsoft to investigate and troubleshoot enforcement issues.",
+        "Guided Azure environment hardening and partnered with security personnel on NIST-aligned controls, assessment documentation, and government change-review processes."
       ]
     },
     {
@@ -164,7 +162,15 @@
         "M365 Admin Center",
         "DLP Policy Administration",
         "Power Platform ALM",
-        "ServiceNow Integration"
+        "ServiceNow Integration",
+        "SharePoint Advanced Management (SAM)",
+        "Microsoft Purview",
+        "Purview Audit Logs",
+        "Purview Activity Explorer",
+        "Azure App Service",
+        "Azure Key Vault",
+        "Private Endpoints",
+        "Web Application Firewall (WAF)"
       ]
     },
     {
@@ -176,7 +182,9 @@
         "Azure Automation",
         "Custom API Development",
         "Office JavaScript API",
-        "Modern Web Apps"
+        "Modern Web Apps",
+        "Terraform",
+        "Infrastructure as Code (IaC)"
       ]
     },
     {
@@ -246,7 +254,12 @@
         "C4 Architecture Model",
         "CI/CD Pipelines",
         "Policy-as-Code",
-        "Environment Lifecycle Management"
+        "Environment Lifecycle Management",
+        "Copilot Data Readiness",
+        "Security Assessment Preparation",
+        "NIST-aligned Development Practices",
+        "Resource Planning",
+        "Work Estimation"
       ]
     },
     {
@@ -270,7 +283,10 @@
         "Stakeholder Engagement",
         "Business-Technical Alignment",
         "Strategic Consulting",
-        "Solution Architecture"
+        "Solution Architecture",
+        "Technical Leadership",
+        "Technical Hiring Evaluation",
+        "Mentoring"
       ]
     }
   ],
@@ -303,7 +319,10 @@
       ],
       "startDate": "2024",
       "url": "https://jonathonhackbarth.com",
-      "roles": ["Architect", "Developer"],
+      "roles": [
+        "Architect",
+        "Developer"
+      ],
       "entity": "Personal",
       "type": "Website"
     },
@@ -327,7 +346,10 @@
       ],
       "startDate": "2024",
       "url": "https://quikconvert.app",
-      "roles": ["Architect", "Developer"],
+      "roles": [
+        "Architect",
+        "Developer"
+      ],
       "entity": "Personal",
       "type": "Web Application"
     }
@@ -335,7 +357,7 @@
   "meta": {
     "canonical": "https://raw.githubusercontent.com/jsonresume/resume-schema/master/sample.resume.json",
     "version": "v1.0.0",
-    "lastModified": "2026-04-23T00:00:00",
+    "lastModified": "2026-09-07T00:00:00",
     "highlightIdScheme": "index-based",
     "highlightIdNote": "Highlight IDs are generated as job-{jobIndex}-highlight-{highlightIndex}. These IDs are used for anchor links in the web resume and PDF. WARNING: Reordering jobs or highlights will break existing anchor links pointing to specific highlights."
   }
